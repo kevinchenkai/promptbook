@@ -1,0 +1,65 @@
+.gitignore
+  s_0959213551d6d4::t_8d5bf62c5403f2 1-10
+README.md
+  s_0959213551d6d4::t_7f7d58ccc5874d 1-84
+build.py
+  s_0959213551d6d4::t_bdaa7573eeec43 1-202
+handbook.json
+  s_3b1fda05e430de::t_5cb2b87dd30468 1-6518
+index.html
+  s_3b1fda05e430de::t_e9d7f63ff9dc86 1-67
+index.template.html
+  s_0959213551d6d4::t_d2d25dbab8833c 1-19
+recipes/01.txt
+  s_0959213551d6d4::t_2d2dbb28125a88 1-18
+recipes/02.txt
+  s_0959213551d6d4::t_839d3d27e80773 1-18
+recipes/03.txt
+  s_0959213551d6d4::t_ed6048010c5376 1-18
+recipes/04.txt
+  s_0959213551d6d4::t_4f27521a325e4e 1-18
+recipes/05.txt
+  s_0959213551d6d4::t_35694e3b1ce1bb 1-18
+recipes/06.txt
+  s_0959213551d6d4::t_7f1d2dc33fa3fa 1-18
+recipes/07.txt
+  s_0959213551d6d4::t_18fe0c8cdc0501 1-18
+recipes/08.txt
+  s_0959213551d6d4::t_2a26fcf8fb0b49 1-18
+recipes/09.txt
+  s_0959213551d6d4::t_65d361a16a4037 1-18
+recipes/10.txt
+  s_0959213551d6d4::t_9bfc3552f07f16 1-18
+recipes/11.txt
+  s_0959213551d6d4::t_d84b36da13d1bc 1-18
+recipes/12.txt
+  s_0959213551d6d4::t_b5ef5cefeda445 1-18
+ui.css
+  s_0959213551d6d4::t_a654e0b98e4a38 1-5
+ui.js
+  s_0959213551d6d4::t_152a5745f4714b 1-43
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.1",
+  "base_commit_sha": "bf4096e76058676b45643fcf6b5c7f5f3f34e995",
+  "prompts": {},
+  "sessions": {
+    "s_0959213551d6d4": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a16bec-fad3-7c30-bf1b-7b869e62d432",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Kevin <kevinchenkai@126.com>"
+    },
+    "s_3b1fda05e430de": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1712d-80bf-7dc0-abc8-52f74e14b544",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Kevin <kevinchenkai@126.com>"
+    }
+  }
+}
