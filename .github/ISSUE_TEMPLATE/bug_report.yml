@@ -1,0 +1,25 @@
+name: Bug report / 问题反馈
+description: Report a UI or template problem / 反馈页面或指令问题
+title: '[Bug] '
+body:
+  - type: textarea
+    id: observed
+    attributes:
+      label: Actual and expected behavior / 实际与期望行为
+      description: Include the template ID if relevant. Redact filled parameters and secrets.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce / 复现步骤
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Browser, OS, online or offline / 浏览器、系统、在线或离线
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence or screenshots / 证据或截图

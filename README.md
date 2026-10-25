@@ -1,84 +1,104 @@
 # PromptBook
 
-一本可离线使用的 Codex / Claude 双语指令手册。
+**A practical, bilingual prompt handbook for Codex and Claude.**
 
-[在线使用](https://g.ismayday.com/tools/promptbook/) · [GitHub](https://github.com/kevinchenkai/promptbook)
+[Use the handbook](https://g.ismayday.com/tools/promptbook/) · [简体中文](README.zh-CN.md) · [Contribute](CONTRIBUTING.md) · [Sources](docs/SOURCES.md)
 
-**216 个场景 · 12 类任务 · 39 个标签 · 中文 / English**
+[![Validate handbook](https://github.com/kevinchenkai/promptbook/actions/workflows/validate.yml/badge.svg)](https://github.com/kevinchenkai/promptbook/actions/workflows/validate.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-245e68.svg)](LICENSE)
 
-## 使用
+**300 task templates · 16 categories · 47 tags · Chinese / English**
 
-用浏览器打开 [`index.html`](index.html)，无需安装依赖或连接模型。
+Search a developer task, fill in the relevant context, and copy an instruction that states the goal, action boundaries, and acceptance criteria. The interface is primarily Chinese; every prompt has a complete English version that can be used independently.
 
-1. 从上手指南或搜索中选择任务场景。
-2. 填写项目、目标、输入资料等参数。
-3. 选择中文或英文，核对执行边界与验收要求后复制到目标会话。
+![PromptBook handbook preview](assets/preview.png)
 
-支持全文搜索、分类与标签筛选、参数预览、收藏、模板下载和打印；另有 24 条入门推荐与 8 条常用流程。
+## Start using it
 
-参数只在当前打开期间保留。收藏使用浏览器本地存储；更换浏览器、文件位置或清理数据后可能需要重新收藏。导出收藏不包含填写的参数。
+1. [Open the website](https://g.ismayday.com/tools/promptbook/), or save the repository's [`index.html`](index.html) locally and open it in a browser (use GitHub's **Download raw file** button).
+2. Search by task, keyword, or template ID; filter by category, tag, or action mode.
+3. Fill in the working directory, goal, evidence, and other parameters.
+4. Choose **中文** or **English**, check the boundaries and acceptance criteria, then copy into your Codex or Claude session.
 
-## 文件结构
+No account, API key, backend, model connection, package install, or build is required to read the handbook. `index.html` embeds all styles, scripts, data, and public source references. It works offline.
 
-```text
-promptbook/
-├── index.html             # 独立的网页成品 / Web 默认入口
-├── index.template.html    # 页面结构
-├── ui.css                 # 页面样式
-├── ui.js                  # 本地搜索、填参、复制、收藏等交互
-├── recipes/               # 12 类双语指令，每类 18 条
-├── handbook.json          # 公开模板数据，不包含个人聊天摘录
-├── build.py               # Python 构建脚本
-├── .gitignore
-└── README.md
-```
+## What makes a template useful
 
-`index.html` 已内置全部数据、脚本和样式，可单独复制或托管。正常构建使用本目录内的文件，不依赖个人历史记录目录、父仓库或 AI 服务。
+- **Tasks rather than personas:** concrete inputs, bounded work, and inspectable outcomes.
+- **Six action modes:** read-only analysis, planning, local edits, remote changes, deliverable creation, and explicit Git actions.
+- **Reusable parameters:** bilingual previews, copy, TXT download, printing, favorites, and JSON export.
+- **A starting path:** 24 recommended templates and 8 common workflows.
+- **Traceable additions:** original templates and open-source method references are distinguished; references link to exact commits and licenses.
 
-## 本地构建与预览
+A template does not create tool access or grant permission to an external system. Use the mode that matches the action you intend to authorize. For simple tasks, remove context already established in your session instead of sending unnecessary instructions.
 
-在此目录使用 Python 3.9 或更新版本：
+## Task coverage
+
+| ID | Category | Templates |
+| --- | --- | ---: |
+| 01 | Working with an agent | 18 |
+| 02 | Research and planning | 18 |
+| 03 | Implementation and refactoring | 18 |
+| 04 | Debugging and review | 18 |
+| 05 | Git, sync and archiving | 18 |
+| 06 | SSH, networking and macOS | 18 |
+| 07 | GPU environments and services | 18 |
+| 08 | Training operations | 18 |
+| 09 | Models, data and experiments | 18 |
+| 10 | Images, video and assets | 18 |
+| 11 | Documents and knowledge | 18 |
+| 12 | Frontend and product work | 18 |
+| 13 | Security, privacy and access | 21 |
+| 14 | APIs, databases and data engineering | 21 |
+| 15 | Testing, quality and delivery | 21 |
+| 16 | Agents, tools and context | 21 |
+
+The original 216 templates retain their IDs and bodies. The 84 additions cover security/access, APIs/data engineering, testing/delivery, and agent/tool/context workflows.
+
+## Privacy and storage
+
+Search and parameter substitution run in your browser, with no analytics or runtime network requests. Filled values stay in memory while the page is open. Favorites use browser local storage; exports contain original templates, **not filled parameters**. Storage behavior can differ for local files, browser profiles, and site origins.
+
+Public files contain no original private chat excerpts, session identifiers, or assistant replies. The historical scenarios have been rewritten into general templates. Do not enter credentials into the handbook.
+
+## Build and preview
+
+Requires **Python 3.9+**, standard library only. Node.js is optional for syntax checking.
 
 ```bash
+git clone https://github.com/kevinchenkai/promptbook.git
+cd promptbook
 python3 build.py
+python3 build.py --check
+node --check ui.js
 python3 -m http.server 8000 --bind 127.0.0.1
 ```
 
-浏览器打开 `http://127.0.0.1:8000/`。停止预览时按 `Ctrl+C`。
-
-构建脚本会检查指令数量、重复项及中英文参数对应关系，并重新生成 `handbook.json` 和 `index.html`。JavaScript 语法可额外用 `node --check ui.js` 检查；浏览或 Python 构建不要求安装 Node.js。
-
-### 编辑指令
-
-编辑 `recipes/01.txt` 至 `recipes/12.txt`，每行一条，使用 `¦` 分隔七个字段：
+Open `http://127.0.0.1:8000/`. `--check` writes nothing and fails if generated outputs are stale. Builds use local repository sources; they need no personal history archive, external prompt repository, or model service.
 
 ```text
-中文标题¦English title¦模式¦原始关键词标签¦来源检索词¦中文任务正文¦English task text
+index.html                 Self-contained public handbook
+index.template.html        Page structure and metadata
+ui.css / ui.js             Styles and browser interactions
+recipes/01.txt … 16.txt     Bilingual editorial source records
+handbook.json              Generated public prompt data
+references.json            Pinned sources and prompt mappings
+build.py                   Standard-library builder and validator
+docs/SOURCES.md            Research and editorial decisions
+licenses/                  Retained upstream license notices
+.github/                   Validation workflow and contribution templates
 ```
 
-参数采用 `{{PROJECT}}` 一类命名占位符；中英文必须使用同一组参数。公共执行边界、验收要求、参数说明及标签归一化在 `build.py` 中维护。
+Edit a recipe, rebuild, and follow [CONTRIBUTING.md](CONTRIBUTING.md). Append records to preserve existing IDs used by favorites and workflows. The content date is editorial metadata rather than the build machine's clock, so builds are reproducible across days.
 
-模式：`R` 只读分析、`P` 先出方案、`E` 本地执行、`M` 远端执行、`D` 生成交付物、`C` 明确的 Git 操作。
+## Sources and quality
 
-公开构建只输出通用模板，不包含个人聊天摘录、会话标识或具体连接信息。原始聊天日志、完整历史导出及账号凭据不属于本项目；本地 `.local/` 目录不会提交到 Git。
+This edition combines rewritten real-world task scenarios with new original templates and method references from [Fabric](https://github.com/danielmiessler/Fabric), [Prompt Catalog](https://github.com/KevinRabun/prompt-catalog), and [OpenAI Cookbook](https://github.com/openai/openai-cookbook). See [the exact files, versions, license checks, and rejected approaches](docs/SOURCES.md). No complete external prompt collection is imported.
 
-## 内容说明
+Structural validation checks unique IDs/titles/bodies, bilingual parameter parity, source mappings, and generated-file freshness. Browser checks cover core handbook interactions. **The 300 templates have not all been evaluated in model A/B tests.** Suitability still depends on your context, model, tools, and permissions. This project is independent of OpenAI and Anthropic.
 
-模板由历史任务场景精选改写，不是历史原句的逐字翻译。公开版不包含历史摘录，也不代表模型效果认证。模板已核对参数结构与页面主要交互，未对全部模板逐条进行模型效果 A/B 测试。
+## Hosting and license
 
-远端相关模板要求按给定地址直连；SSH 失败时反馈错误并停止，不擅自使用跳板或替代路径。
+Publish the generated `index.html` on any static host. This project's canonical site is [g.ismayday.com/tools/promptbook/](https://g.ismayday.com/tools/promptbook/). Repository metadata includes developer-tool and prompt-library topics for discovery; the page includes search and social-sharing metadata.
 
-## 仓库与发布
-
-- 项目名：**PromptBook**。
-- GitHub：`kevinchenkai/promptbook`。
-- 静态站点入口：`index.html`；可将该文件单独作为发布内容。
-- 无后端、API key、服务器程序或前端打包依赖。
-- 网站：`https://g.ismayday.com/tools/promptbook/`。
-- Web 端仅发布生成的 `index.html`，不上传 Git 元数据、编辑源文件或本地历史记录。
-- 更新方式：修改模板 → `python3 build.py` → 检查成品 → 提交代码 → 上传新的 `index.html`；现有静态站点无需新增后端服务。
-
-## 提示词写作参考
-
-- [OpenAI · Prompt engineering](https://developers.openai.com/api/docs/guides/prompt-engineering)
-- [OpenAI · Rethinking skills and prompts](https://developers.openai.com/blog/rethinking-skills-and-prompts-for-gpt-6-astra)
+Original project material is **[MIT licensed](LICENSE)**. Referenced upstream MIT notices are retained in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and `licenses/`. Contributions and useful new scenarios are welcome through [issues](https://github.com/kevinchenkai/promptbook/issues) and pull requests.

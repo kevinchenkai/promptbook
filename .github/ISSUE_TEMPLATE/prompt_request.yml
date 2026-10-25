@@ -1,0 +1,26 @@
+name: Prompt request / 新场景建议
+description: Suggest a distinct, reusable developer task / 建议一个可复用任务
+title: '[Prompt] '
+body:
+  - type: textarea
+    id: scenario
+    attributes:
+      label: Task and expected result / 任务与期望结果
+      description: What should the agent accomplish? Please avoid private data.
+    validations:
+      required: true
+  - type: textarea
+    id: difference
+    attributes:
+      label: Related templates and missing coverage / 相关编号与缺口
+    validations:
+      required: true
+  - type: textarea
+    id: boundaries
+    attributes:
+      label: Inputs, action boundaries, acceptance / 输入、操作边界和验收
+  - type: textarea
+    id: source
+    attributes:
+      label: Optional upstream source and license / 可选的开源来源与许可
+      description: Include an exact file or commit when possible. Do not paste unlicensed prompt collections.

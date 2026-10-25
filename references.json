@@ -1,0 +1,94 @@
+{
+  "reviewed": "2026-10-24",
+  "references": [
+    {
+      "id": "fabric-threat",
+      "title": "Fabric · STRIDE threat modeling",
+      "repository": "https://github.com/danielmiessler/Fabric",
+      "commit": "f16de16827ae23e4bb9aa35c2e4b690d40c5907c",
+      "path": "data/patterns/create_stride_threat_model/system.md",
+      "url": "https://github.com/danielmiessler/Fabric/blob/f16de16827ae23e4bb9aa35c2e4b690d40c5907c/data/patterns/create_stride_threat_model/system.md",
+      "license": "MIT",
+      "license_url": "https://github.com/danielmiessler/Fabric/blob/f16de16827ae23e4bb9aa35c2e4b690d40c5907c/LICENSE",
+      "reviewed": "2026-10-24",
+      "relationship": "method-reference-original-wording",
+      "note": "资产、信任边界、数据流和可验证缓解措施；重新编写，删除固定思考时长。",
+      "prompt_ids": [
+        "13-01"
+      ]
+    },
+    {
+      "id": "fabric-review",
+      "title": "Fabric · Code review",
+      "repository": "https://github.com/danielmiessler/Fabric",
+      "commit": "f16de16827ae23e4bb9aa35c2e4b690d40c5907c",
+      "path": "data/patterns/review_code/system.md",
+      "url": "https://github.com/danielmiessler/Fabric/blob/f16de16827ae23e4bb9aa35c2e4b690d40c5907c/data/patterns/review_code/system.md",
+      "license": "MIT",
+      "license_url": "https://github.com/danielmiessler/Fabric/blob/f16de16827ae23e4bb9aa35c2e4b690d40c5907c/LICENSE",
+      "reviewed": "2026-10-24",
+      "relationship": "method-reference-original-wording",
+      "note": "按影响给出可行动发现、证据和修复建议；不复制角色提示词。",
+      "prompt_ids": [
+        "13-21"
+      ]
+    },
+    {
+      "id": "catalog-security",
+      "title": "Prompt Catalog · Security guardrails",
+      "repository": "https://github.com/KevinRabun/prompt-catalog",
+      "commit": "631e9a62f3fb4b32b5ed9f362c1e16c9d675db4e",
+      "path": "instructions/guardrails/security.instructions.md",
+      "url": "https://github.com/KevinRabun/prompt-catalog/blob/631e9a62f3fb4b32b5ed9f362c1e16c9d675db4e/instructions/guardrails/security.instructions.md",
+      "license": "MIT",
+      "license_url": "https://github.com/KevinRabun/prompt-catalog/blob/631e9a62f3fb4b32b5ed9f362c1e16c9d675db4e/LICENSE",
+      "reviewed": "2026-10-24",
+      "relationship": "method-reference-original-wording",
+      "note": "信任边界、访问控制、凭据保护与异常输入；按具体工程场景改写。",
+      "prompt_ids": [
+        "13-02",
+        "13-03",
+        "13-07",
+        "13-18"
+      ]
+    },
+    {
+      "id": "catalog-accuracy",
+      "title": "Prompt Catalog · Accuracy guardrails",
+      "repository": "https://github.com/KevinRabun/prompt-catalog",
+      "commit": "631e9a62f3fb4b32b5ed9f362c1e16c9d675db4e",
+      "path": "instructions/guardrails/accuracy.instructions.md",
+      "url": "https://github.com/KevinRabun/prompt-catalog/blob/631e9a62f3fb4b32b5ed9f362c1e16c9d675db4e/instructions/guardrails/accuracy.instructions.md",
+      "license": "MIT",
+      "license_url": "https://github.com/KevinRabun/prompt-catalog/blob/631e9a62f3fb4b32b5ed9f362c1e16c9d675db4e/LICENSE",
+      "reviewed": "2026-10-24",
+      "relationship": "method-reference-original-wording",
+      "note": "核验真实接口、来源和不确定性；区分断言与证据。",
+      "prompt_ids": [
+        "14-01",
+        "16-08",
+        "16-09",
+        "16-16"
+      ]
+    },
+    {
+      "id": "cookbook-codex",
+      "title": "OpenAI Cookbook · Codex prompting guide",
+      "repository": "https://github.com/openai/openai-cookbook",
+      "commit": "8495326b6f1b7cec94e7f5e393a4045e328a268e",
+      "path": "examples/gpt-5/codex_prompting_guide.ipynb",
+      "url": "https://github.com/openai/openai-cookbook/blob/8495326b6f1b7cec94e7f5e393a4045e328a268e/examples/gpt-5/codex_prompting_guide.ipynb",
+      "license": "MIT",
+      "license_url": "https://github.com/openai/openai-cookbook/blob/8495326b6f1b7cec94e7f5e393a4045e328a268e/LICENSE",
+      "reviewed": "2026-10-24",
+      "relationship": "method-reference-original-wording",
+      "note": "目标、必要上下文、持续交付与验证；不移植旧模型参数或系统提示词。",
+      "prompt_ids": [
+        "16-04",
+        "16-10",
+        "16-12",
+        "16-21"
+      ]
+    }
+  ]
+}
