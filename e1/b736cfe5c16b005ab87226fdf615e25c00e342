@@ -1,0 +1,49 @@
+build.py
+  s_0959213551d6d4::t_2c4dbe51963531 13,203-216,233,236-266,286
+CONTRIBUTING.md
+  s_0959213551d6d4::t_b0861a0e35930e 29-32
+README.md
+  s_0959213551d6d4::t_144ab6b1881fc6 10,30,35-50,71-72,74,76,78,109-110,123
+README.zh-CN.md
+  s_0959213551d6d4::t_0ed4fad697e5a2 7,27-28,33-48,69-70,72,74,105
+curation.json
+  s_0959213551d6d4::t_aa7766f4ed5d77 9-12,14-18,81-86
+docs/GAME_WORKFLOW.md
+  s_0959213551d6d4::t_e451e8d6cb8826 1-198
+docs/SOURCES.md
+  s_0959213551d6d4::t_e7828067e6627b 13-14,47
+docs/UPDATES.md
+  s_0959213551d6d4::t_69f13a6695ae82 3-14
+game-workflow.json
+  s_0959213551d6d4::t_64eeb64f5e9057 1-187
+handbook.json
+  s_0959213551d6d4::t_ff4eb6913f69ff 7,18-21,23-27,10734-10839,11425-11499,11592-11779
+index.html
+  s_0959213551d6d4::t_eec997d3e4ca16 1,6-28,30,32,40,44-48,50,69-70,76,78-79,82-101,115-120
+index.template.html
+  s_0959213551d6d4::t_a01b95d5e76f7b 12,16-17,19
+recipes/17.txt
+  s_0959213551d6d4::t_f561138b9ed169 19-21
+recipes/18.txt
+  s_0959213551d6d4::t_ade23a1e2c20f5 19-20
+ui.css
+  s_0959213551d6d4::t_44a1b00cf30512 6-28
+ui.js
+  s_0959213551d6d4::t_c0ec085686f8e9 3,22-23,29,31-32,35-54,68-73
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.1",
+  "base_commit_sha": "e1b736cfe5c16b005ab87226fdf615e25c00e342",
+  "prompts": {},
+  "sessions": {
+    "s_0959213551d6d4": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a16bec-fad3-7c30-bf1b-7b869e62d432",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Kevin <kevinchenkai@126.com>"
+    }
+  }
+}
