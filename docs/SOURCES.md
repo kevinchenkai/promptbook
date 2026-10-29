@@ -1,11 +1,12 @@
 # Sources and editorial decisions / 来源与编辑取舍
 
-Reviewed: **2026-10-24**. PromptBook is an independent project. Names below identify references, not endorsements.
+Open-source references reviewed: **2026-10-24**. User-task edition updated: **2026-10-29**. PromptBook is an independent project. Names below identify references, not endorsements.
 
 ## What the library contains
 
 - **216 existing templates**: editorial rewrites of recurring engineering task scenarios. Public files contain reusable instructions only, without private chat excerpts, session IDs, account details, or assistant replies.
 - **84 additions**: newly authored bilingual templates for security, API/data work, testing/delivery, and agent/tool workflows. Some use the organizational methods below; the remainder are original additions.
+- **60 additions in the 2026-10-29 edition**: 36 dedicated game templates and 24 workflow templates. Recent user instructions were reviewed for October 24–29 (America/Los_Angeles); game coverage also uses earlier GameAI sessions and user-authored requirements. Automatic injections, wrapped model calls, heartbeat messages, and quoted assistant receipts are excluded as instruction sources. See [edition notes](UPDATES.md).
 - Every template includes a goal, named parameters, an action mode, boundaries, and verification requirements. These are writing and execution conventions, not measured model-performance guarantees.
 - `references.json` records the exact file, commit, license, relationship, and mapped prompt IDs for adopted open-source methods. `handbook.json` embeds those references for offline viewing.
 
@@ -41,4 +42,4 @@ No repository was bulk-imported. License decisions apply to the reviewed version
 
 本库不是原始会话导出，也不是上游提示词合集的镜像。新增条目针对实际开发场景重新编写；有明确参考的方法会保留仓库、文件、固定 commit、许可与对应编号。未明确许可的项目只作阅读参考。
 
-“结构检查通过”表示参数、编号和构建一致性通过，不表示已对全部 300 条进行模型 A/B 测试。页面交互检查也不等同于每条任务已经在真实生产环境执行。
+“结构检查通过”表示参数、编号和构建一致性通过，不表示已对全部 360 条进行模型 A/B 测试。页面交互检查也不等同于每条任务已经在真实生产环境执行。

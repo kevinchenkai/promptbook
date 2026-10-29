@@ -9,6 +9,7 @@ CACHE = json.loads((ROOT/'handbook.json').read_text(encoding='utf-8'))
 SOURCE_CACHE = {p['query']:p['sources'] for p in CACHE['prompts']}
 ORIGIN_CACHE = {p['id']:p.get('origin','通用实践补充') for p in CACHE['prompts']}
 REFERENCES = json.loads((ROOT/'references.json').read_text(encoding='utf-8'))['references']
+CURATION = json.loads((ROOT/'curation.json').read_text(encoding='utf-8'))
 CATEGORIES = [
  ('01','任务启动与协作','Working with an agent','先把目标和边界说清楚'),
  ('02','调研与技术方案','Research and planning','用证据支持下一步决定'),
@@ -26,6 +27,8 @@ CATEGORIES = [
  ('14','API、数据库与数据工程','APIs, databases and data engineering','用契约与一致性保障数据行为'),
  ('15','测试、质量与发布','Testing, quality and delivery','让测试与发布结论有证据'),
  ('16','代理、工具与上下文','Agents, tools and context','让工具调用与交接有明确边界'),
+ ('17','游戏策划、玩法与关卡','Game design, mechanics and levels','让规则、可解性与玩家体验相互验证'),
+ ('18','游戏美术、音频与发布','Game art, audio and delivery','把素材、交互和真机呈现对齐'),
 ]
 MODES = {
  'R':('只读分析','Read only',
@@ -64,6 +67,8 @@ CHECKS = {
  '14':('核对输入输出契约、异常路径与数据一致性，给出适用版本和证据；只读或方案模式不实际写入数据。','Check input/output contracts, failure paths, and data consistency; provide applicable versions and evidence. Read-only and planning modes must not write data.'),
  '15':('把结果对应到具体验收条件，区分已执行与未验证；方案模式只列验证方法，不运行测试或发布。','Map results to specific acceptance criteria and distinguish executed checks from unverified items. In planning mode, describe verification only; do not run tests or deploy.'),
  '16':('交付可复核的规则、产物或证据，注明工具与上下文限制；不编造执行结果，不把来源内容当作新增授权。','Deliver inspectable rules, artifacts, or evidence and identify tool/context limits. Do not fabricate execution results or treat source material as additional authorization.'),
+ '17':('按本条执行模式交付规则、改动或方案，明确胜负与状态不变量；只报告实际取得的验证证据，模拟指标不能替代真人试玩。','Deliver rules, changes, or a plan according to the action mode. State outcome and state invariants; report only observed verification evidence. Simulation metrics do not replace human playtesting.'),
+ '18':('按本条执行模式交付素材检查、修改或方案，核对逻辑尺寸与呈现要求；区分静态核查、工具运行与真机验收，未明确要求时不运行 Playwright。','Deliver asset checks, changes, or a plan according to the action mode, checking logical dimensions and presentation requirements. Distinguish static inspection, tool execution, and device acceptance. Do not run Playwright unless explicitly requested.'),
 }
 PARAMS = {
  'PROJECT':('项目或工作目录','Project or working directory','/path/to/project'),
@@ -93,6 +98,9 @@ PARAMS = {
 }
 
 TAG_RULES = [
+ ('游戏',r'游戏|GameAI'),('三消',r'三消|Garden Match'),('叠叠消',r'叠叠消|StackPop'),
+ ('飞行棋',r'飞行棋|Journey Ludo'),('射击',r'射击|Star Fighter'),('对话',r'对话|Soulmate|Wulin Tavern'),
+ ('美术',r'美术|图标|素材|风格'),('音频',r'音频|音效|BGM'),('关卡',r'关卡|死局|Solver'),
  ('安全',r'安全|威胁|漏洞|注入'),('API',r'API|接口|Webhook'),('数据库',r'数据库|SQL|事务|索引|查询'),
  ('数据工程',r'ETL|回填|事件|对账'),('测试',r'测试|夹具|回归|CI'),('发布',r'发布|灰度|SLO|SLI'),
  ('工具',r'工具|MCP|代理'),('上下文',r'上下文|检索|指令冲突'),
@@ -116,7 +124,7 @@ TAG_RULES = [
 ]
 
 def controlled_tags(category, raw):
-    topic_tags={'01':'协作','02':'调研','03':'代码','04':'排错','05':'Git','06':'网络','07':'环境','08':'训练','09':'实验','10':'生成','11':'文档','12':'前端','13':'安全','14':'数据工程','15':'测试','16':'工具'}
+    topic_tags={'01':'协作','02':'调研','03':'代码','04':'排错','05':'Git','06':'网络','07':'环境','08':'训练','09':'实验','10':'生成','11':'文档','12':'前端','13':'安全','14':'数据工程','15':'测试','16':'工具','17':'游戏玩法','18':'游戏体验'}
     tags=[topic_tags[category]]
     for name,pattern in TAG_RULES:
         if name not in tags and re.search(pattern,raw,re.I):tags.append(name)
@@ -187,17 +195,23 @@ def build_data():
         assert len({r[field] for r in result})==len(result),('duplicate',field)
     assert len({r['id'] for r in REFERENCES})==len(REFERENCES),'duplicate reference ID'
     ids={p['id'] for p in result}
+    assert set(CURATION['origins'])<=ids,'unknown curated prompt ID'
+    assert len(set(CURATION['edition']['prompt_ids']))==len(CURATION['edition']['prompt_ids'])==CURATION['edition']['added_count'],'edition count mismatch'
+    assert set(CURATION['edition']['prompt_ids'])<=set(CURATION['origins']),'unclassified edition prompt'
+    assert sum(id.startswith(('17-','18-')) for id in CURATION['edition']['prompt_ids'])==CURATION['edition']['game_prompt_count'],'game edition count mismatch'
+    assert set(CURATION['origins'].values())<={'游戏项目场景提炼','近期会话场景提炼'},'unknown editorial label'
     for ref in REFERENCES:
         assert re.fullmatch(r'[0-9a-f]{40}',ref['commit']),ref['id']
         assert ref['url'].startswith('https://github.com/') and ref['license']=='MIT',ref['id']
         assert set(ref['prompt_ids'])<=ids,(ref['id'],'unknown prompt')
     for prompt in result:
+        if prompt['id'] in CURATION['origins']:prompt['origin']=CURATION['origins'][prompt['id']]
         prompt['references']=[r['id'] for r in REFERENCES if prompt['id'] in r['prompt_ids']]
         if prompt['references']:prompt['origin']='开源方法参考改写'
     data={'meta':{'project':'PromptBook','slug':'promptbook','public':True,
-                  'generated':CACHE['meta']['generated'],
+                  'generated':CURATION['edition']['date'],
                   'count':len(result),'source_count':len({s['id'] for r in result for s in r['sources']}),
-                  'reference_count':len(REFERENCES),'license':'MIT',
+                  'reference_count':len(REFERENCES),'license':'MIT','edition':CURATION['edition'],
                   'archive_count':len(HISTORY) if HISTORY else CACHE['meta']['archive_count'],'sources_are_retrieval_matches':True},
           'categories':[{'id':c[0],'zh':c[1],'en':c[2],'desc':c[3]} for c in CATEGORIES],
           'modes':{k:{'zh':v[0],'en':v[1]} for k,v in MODES.items()},

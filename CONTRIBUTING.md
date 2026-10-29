@@ -15,7 +15,7 @@ Thank you for improving PromptBook. Prefer a useful, distinct scenario over a la
 4. Choose a mode: `R` read-only, `P` plan only, `E` local edits, `M` remote changes, `D` deliverable creation, or `C` an explicitly authorized Git action. Shared boundaries and category checks are added by the builder. A planning template must not require execution; a read-only template must not require changes.
 5. Preserve existing IDs: **append within a category; do not reorder or delete records casually**. IDs are referenced by favorites and workflows. Discuss an ID migration before a structural change.
 6. For a referenced method, verify the exact upstream license and version, record the file/commit/mapping in `references.json`, update `docs/SOURCES.md` and notices, and retain required license text. Public visibility is not permission. Do not import unlicensed prompts or assume a data corpus shares its repository code license. Use `method-reference-original-wording` only when that describes the relationship accurately.
-7. Update documentation counts and the content date (`meta.generated` in `handbook.json`) when appropriate, then rebuild:
+7. Update documentation counts and the content date (`edition.date` in `curation.json`) when appropriate. Preserve previous `origins` mappings; list only this edition’s added IDs in `edition.prompt_ids`, with matching counts. Never include private session IDs or message excerpts. Then rebuild:
 
    ```bash
    python3 build.py

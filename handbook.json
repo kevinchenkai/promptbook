@@ -3,11 +3,85 @@
     "project": "PromptBook",
     "slug": "promptbook",
     "public": true,
-    "generated": "2026-10-24",
-    "count": 300,
+    "generated": "2026-10-29",
+    "count": 360,
     "source_count": 0,
     "reference_count": 5,
     "license": "MIT",
+    "edition": {
+      "date": "2026-10-29",
+      "recent_window": [
+        "2026-10-24",
+        "2026-10-29"
+      ],
+      "timezone": "America/Los_Angeles",
+      "added_count": 60,
+      "game_prompt_count": 36,
+      "scope_zh": "近期用户任务提炼，并补充既有 GameAI 会话与游戏需求；不含助手回复或私人原文。",
+      "scope_en": "Recent user-task rewrites, supplemented by earlier GameAI conversations and game requirements; no assistant replies or private excerpts.",
+      "prompt_ids": [
+        "05-19",
+        "05-20",
+        "05-21",
+        "05-22",
+        "05-23",
+        "07-19",
+        "07-20",
+        "07-21",
+        "08-19",
+        "08-20",
+        "09-19",
+        "09-20",
+        "09-21",
+        "09-22",
+        "09-23",
+        "09-24",
+        "11-19",
+        "11-20",
+        "11-21",
+        "11-22",
+        "11-23",
+        "16-22",
+        "16-23",
+        "16-24",
+        "17-01",
+        "17-02",
+        "17-03",
+        "17-04",
+        "17-05",
+        "17-06",
+        "17-07",
+        "17-08",
+        "17-09",
+        "17-10",
+        "17-11",
+        "17-12",
+        "17-13",
+        "17-14",
+        "17-15",
+        "17-16",
+        "17-17",
+        "17-18",
+        "18-01",
+        "18-02",
+        "18-03",
+        "18-04",
+        "18-05",
+        "18-06",
+        "18-07",
+        "18-08",
+        "18-09",
+        "18-10",
+        "18-11",
+        "18-12",
+        "18-13",
+        "18-14",
+        "18-15",
+        "18-16",
+        "18-17",
+        "18-18"
+      ]
+    },
     "archive_count": 4233,
     "sources_are_retrieval_matches": true
   },
@@ -107,6 +181,18 @@
       "zh": "代理、工具与上下文",
       "en": "Agents, tools and context",
       "desc": "让工具调用与交接有明确边界"
+    },
+    {
+      "id": "17",
+      "zh": "游戏策划、玩法与关卡",
+      "en": "Game design, mechanics and levels",
+      "desc": "让规则、可解性与玩家体验相互验证"
+    },
+    {
+      "id": "18",
+      "zh": "游戏美术、音频与发布",
+      "en": "Game art, audio and delivery",
+      "desc": "把素材、交互和真机呈现对齐"
     }
   ],
   "modes": {
@@ -2951,6 +3037,162 @@
       "references": []
     },
     {
+      "id": "05-19",
+      "category": "05",
+      "title": "先冻结对象存储备份的包含与排除清单",
+      "title_en": "Freeze an object-storage backup inclusion manifest",
+      "mode": "P",
+      "tags": [
+        "Git",
+        "范围控制",
+        "同步归档"
+      ],
+      "keywords": [
+        "备份",
+        "对象存储",
+        "范围控制"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：为 {{INPUTS}} 指定的源与目标，按 {{SCOPE}} 区分最终产物、可重下模型、训练中间 checkpoint、临时文件和日志。列出包含、排除、未知用途及预计大小，明确恢复依赖与版本；本轮只生成方案，不上传、不删除源文件，也不把“可重新下载”当作未经核实的事实。\n\n执行边界：本轮只调研和给方案，不实施、不改代码或环境；如指定方案文件，只写该文件。\n\n验收与交付：列出源、目标、实际变更和核验结果；镜像更新不能视为远端生效。",
+      "en": "Working directory: {{PROJECT}}\nTask: For source and destination in {{INPUTS}}, classify final artifacts, re-downloadable models, intermediate checkpoints, temporary files, and logs under {{SCOPE}}. List included, excluded, unknown-purpose items and estimated sizes, with recovery dependencies and versions. Plan only: do not upload or delete source data, and verify rather than assume re-downloadability.\n\nExecution boundaries: Research and propose a plan only. Do not implement or change code or environments. If a plan file is requested, write only that file.\n\nVerification and delivery: Report source, destination, actual changes, and verification. A mirror update does not establish remote activation.",
+      "task_zh": "为 {{INPUTS}} 指定的源与目标，按 {{SCOPE}} 区分最终产物、可重下模型、训练中间 checkpoint、临时文件和日志。列出包含、排除、未知用途及预计大小，明确恢复依赖与版本；本轮只生成方案，不上传、不删除源文件，也不把“可重新下载”当作未经核实的事实。",
+      "task_en": "For source and destination in {{INPUTS}}, classify final artifacts, re-downloadable models, intermediate checkpoints, temporary files, and logs under {{SCOPE}}. List included, excluded, unknown-purpose items and estimated sizes, with recovery dependencies and versions. Plan only: do not upload or delete source data, and verify rather than assume re-downloadability.",
+      "params": [
+        "PROJECT",
+        "INPUTS",
+        "SCOPE"
+      ],
+      "sources": [],
+      "query": "备份,过滤清单",
+      "origin": "近期会话场景提炼",
+      "references": []
+    },
+    {
+      "id": "05-20",
+      "category": "05",
+      "title": "按同一份清单恢复中断的备份",
+      "title_en": "Resume an interrupted backup using the same manifest",
+      "mode": "M",
+      "tags": [
+        "Git",
+        "回退恢复",
+        "同步归档",
+        "服务"
+      ],
+      "keywords": [
+        "备份",
+        "对象存储",
+        "恢复",
+        "tmux"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：使用 {{SSH}} 在 {{SCOPE}} 明确授权的备份任务中核对已有进程、检查点与 {{INPUTS}} 的冻结清单，按 {{LIMIT}} 恢复未完成传输。保持排除规则和目标路径不变，必要时沿用既有 tmux；记录恢复位置、失败对象和重试上限，不重复启动任务或覆盖无关对象。\n\n执行边界：先记录目标现状与占用资源，只修改本任务明确授权的对象；不影响其他任务和共享环境，不扩大权限或操作范围。 网络访问仅使用给定 SSH 命令直连；失败即反馈原始错误并停止，禁止跳板、替代地址或改写 SSH 配置。\n\n验收与交付：列出源、目标、实际变更和核验结果；镜像更新不能视为远端生效。",
+      "en": "Working directory: {{PROJECT}}\nTask: Using {{SSH}}, inspect existing processes, checkpoints, and the frozen manifest in {{INPUTS}} for the backup authorized by {{SCOPE}}. Resume unfinished transfers within {{LIMIT}}, preserving exclusions and destination paths, and reuse existing tmux sessions where appropriate. Record resume position, failed objects, and retry bounds; do not launch duplicates or overwrite unrelated objects.\n\nExecution boundaries: Record the target state and occupied resources first. Modify only explicitly authorized targets; preserve other workloads and shared environments, without expanding privileges or scope. Use only the supplied SSH command to connect directly. On failure, report the original error and stop; do not use jump hosts, alternate addresses, or SSH configuration changes.\n\nVerification and delivery: Report source, destination, actual changes, and verification. A mirror update does not establish remote activation.",
+      "task_zh": "使用 {{SSH}} 在 {{SCOPE}} 明确授权的备份任务中核对已有进程、检查点与 {{INPUTS}} 的冻结清单，按 {{LIMIT}} 恢复未完成传输。保持排除规则和目标路径不变，必要时沿用既有 tmux；记录恢复位置、失败对象和重试上限，不重复启动任务或覆盖无关对象。",
+      "task_en": "Using {{SSH}}, inspect existing processes, checkpoints, and the frozen manifest in {{INPUTS}} for the backup authorized by {{SCOPE}}. Resume unfinished transfers within {{LIMIT}}, preserving exclusions and destination paths, and reuse existing tmux sessions where appropriate. Record resume position, failed objects, and retry bounds; do not launch duplicates or overwrite unrelated objects.",
+      "params": [
+        "PROJECT",
+        "SSH",
+        "INPUTS",
+        "LIMIT",
+        "SCOPE"
+      ],
+      "sources": [],
+      "query": "备份,恢复",
+      "origin": "近期会话场景提炼",
+      "references": []
+    },
+    {
+      "id": "05-21",
+      "category": "05",
+      "title": "按备份清单核对远端完整性",
+      "title_en": "Verify remote backup completeness against the manifest",
+      "mode": "R",
+      "tags": [
+        "Git",
+        "验收",
+        "同步归档"
+      ],
+      "keywords": [
+        "备份",
+        "对象存储",
+        "验收"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：通过 {{SSH}} 对 {{INPUTS}} 的源清单与远端对象清单做只读对账，核对相对路径、数量、大小和可用校验字段。区分遗漏、传输失败、排除项及校验算法不同导致的不可比；说明恢复仍需哪些依赖。不要默认对象 ETag 等同文件 MD5，也不把上传进程结束当作备份完整。\n\n执行边界：仅做只读检查，直接回复结论；不主动修改文件、配置、数据或服务。 网络访问仅使用给定 SSH 命令直连；失败即反馈原始错误并停止，禁止跳板、替代地址或改写 SSH 配置。\n\n验收与交付：列出源、目标、实际变更和核验结果；镜像更新不能视为远端生效。",
+      "en": "Working directory: {{PROJECT}}\nTask: Using {{SSH}}, reconcile the source manifest and remote object inventory in {{INPUTS}} read-only. Compare relative paths, counts, sizes, and available checksum fields. Separate omissions, failed transfers, exclusions, and incomparable checksum schemes, and identify recovery dependencies. Do not assume object ETags equal file MD5 or that process completion establishes a complete backup.\n\nExecution boundaries: Inspect read-only and reply with findings. Do not intentionally modify files, configuration, data, or services. Use only the supplied SSH command to connect directly. On failure, report the original error and stop; do not use jump hosts, alternate addresses, or SSH configuration changes.\n\nVerification and delivery: Report source, destination, actual changes, and verification. A mirror update does not establish remote activation.",
+      "task_zh": "通过 {{SSH}} 对 {{INPUTS}} 的源清单与远端对象清单做只读对账，核对相对路径、数量、大小和可用校验字段。区分遗漏、传输失败、排除项及校验算法不同导致的不可比；说明恢复仍需哪些依赖。不要默认对象 ETag 等同文件 MD5，也不把上传进程结束当作备份完整。",
+      "task_en": "Using {{SSH}}, reconcile the source manifest and remote object inventory in {{INPUTS}} read-only. Compare relative paths, counts, sizes, and available checksum fields. Separate omissions, failed transfers, exclusions, and incomparable checksum schemes, and identify recovery dependencies. Do not assume object ETags equal file MD5 or that process completion establishes a complete backup.",
+      "params": [
+        "PROJECT",
+        "SSH",
+        "INPUTS"
+      ],
+      "sources": [],
+      "query": "备份,完整性",
+      "origin": "近期会话场景提炼",
+      "references": []
+    },
+    {
+      "id": "05-22",
+      "category": "05",
+      "title": "规划有对照的上传提速实验",
+      "title_en": "Plan a controlled upload-throughput experiment",
+      "mode": "P",
+      "tags": [
+        "Git",
+        "性能",
+        "同步归档",
+        "网络"
+      ],
+      "keywords": [
+        "备份",
+        "性能",
+        "网络"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：基于 {{INPUTS}} 的上传日志与配置，为 {{GOAL}} 设计上限为 {{LIMIT}} 的小范围对照实验。分别考虑实际端点与网络路径、大小文件分布、并发、分片、磁盘读取和限流，固定清单后一次只改少量因素。给出吞吐与错误率的计算口径及停止条件；本轮不换端点、不发流量，也不降低校验要求。\n\n执行边界：本轮只调研和给方案，不实施、不改代码或环境；如指定方案文件，只写该文件。\n\n验收与交付：列出源、目标、实际变更和核验结果；镜像更新不能视为远端生效。",
+      "en": "Working directory: {{PROJECT}}\nTask: Using upload logs and configuration in {{INPUTS}}, design a bounded controlled experiment for {{GOAL}} within {{LIMIT}}. Consider the actual endpoint/path, file-size distribution, concurrency, multipart sizing, disk reads, and throttling. Freeze the manifest and vary few factors at a time. Define throughput, error-rate measurement, and stop conditions. Do not change endpoints, generate traffic, or weaken verification in this turn.\n\nExecution boundaries: Research and propose a plan only. Do not implement or change code or environments. If a plan file is requested, write only that file.\n\nVerification and delivery: Report source, destination, actual changes, and verification. A mirror update does not establish remote activation.",
+      "task_zh": "基于 {{INPUTS}} 的上传日志与配置，为 {{GOAL}} 设计上限为 {{LIMIT}} 的小范围对照实验。分别考虑实际端点与网络路径、大小文件分布、并发、分片、磁盘读取和限流，固定清单后一次只改少量因素。给出吞吐与错误率的计算口径及停止条件；本轮不换端点、不发流量，也不降低校验要求。",
+      "task_en": "Using upload logs and configuration in {{INPUTS}}, design a bounded controlled experiment for {{GOAL}} within {{LIMIT}}. Consider the actual endpoint/path, file-size distribution, concurrency, multipart sizing, disk reads, and throttling. Freeze the manifest and vary few factors at a time. Define throughput, error-rate measurement, and stop conditions. Do not change endpoints, generate traffic, or weaken verification in this turn.",
+      "params": [
+        "PROJECT",
+        "GOAL",
+        "INPUTS",
+        "LIMIT"
+      ],
+      "sources": [],
+      "query": "上传,提速",
+      "origin": "近期会话场景提炼",
+      "references": []
+    },
+    {
+      "id": "05-23",
+      "category": "05",
+      "title": "用有效完成量估计备份剩余时间",
+      "title_en": "Estimate backup ETA from verified completed work",
+      "mode": "R",
+      "tags": [
+        "Git",
+        "证据",
+        "同步归档"
+      ],
+      "keywords": [
+        "备份",
+        "ETA",
+        "证据"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：根据 {{INPUTS}} 与窗口 {{PERIOD}} 计算新增成功字节、对象数和近期有效吞吐，给出剩余量与 ETA 区间。剔除重试重复计数，区分扫描、排队、传输及校验阶段，注明样本窗口和速度波动；清单或网络条件变化后重新估计，不承诺固定完成时刻。\n\n执行边界：仅做只读检查，直接回复结论；不主动修改文件、配置、数据或服务。\n\n验收与交付：列出源、目标、实际变更和核验结果；镜像更新不能视为远端生效。",
+      "en": "Working directory: {{PROJECT}}\nTask: Use {{INPUTS}} and window {{PERIOD}} to calculate newly completed bytes, objects, and recent effective throughput, then estimate remaining work and an ETA range. Remove duplicate retry counts and distinguish scanning, queueing, transfer, and verification. State the observation window and variability; re-estimate after manifest or network changes rather than promise a fixed completion time.\n\nExecution boundaries: Inspect read-only and reply with findings. Do not intentionally modify files, configuration, data, or services.\n\nVerification and delivery: Report source, destination, actual changes, and verification. A mirror update does not establish remote activation.",
+      "task_zh": "根据 {{INPUTS}} 与窗口 {{PERIOD}} 计算新增成功字节、对象数和近期有效吞吐，给出剩余量与 ETA 区间。剔除重试重复计数，区分扫描、排队、传输及校验阶段，注明样本窗口和速度波动；清单或网络条件变化后重新估计，不承诺固定完成时刻。",
+      "task_en": "Use {{INPUTS}} and window {{PERIOD}} to calculate newly completed bytes, objects, and recent effective throughput, then estimate remaining work and an ETA range. Remove duplicate retry counts and distinguish scanning, queueing, transfer, and verification. State the observation window and variability; re-estimate after manifest or network changes rather than promise a fixed completion time.",
+      "params": [
+        "PROJECT",
+        "INPUTS",
+        "PERIOD"
+      ],
+      "sources": [],
+      "query": "备份,预计时间",
+      "origin": "近期会话场景提炼",
+      "references": []
+    },
+    {
       "id": "06-01",
       "category": "06",
       "title": "按给定地址直连并核对目标",
@@ -4040,6 +4282,103 @@
       "references": []
     },
     {
+      "id": "07-19",
+      "category": "07",
+      "title": "显式选择环境并拦截不支持的 CUDA 组合",
+      "title_en": "Select environments explicitly and reject unsupported CUDA combinations",
+      "mode": "E",
+      "tags": [
+        "环境",
+        "配置",
+        "版本兼容",
+        "GPU"
+      ],
+      "keywords": [
+        "环境",
+        "配置",
+        "CUDA",
+        "版本兼容"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：依据 {{INPUTS}} 的已批准兼容矩阵，在 {{FILES}} 实现 {{CHANGE}}：分别识别驱动能力、环境构建版本与用户明确选择，支持的组合正常激活，不支持或未知的组合在启动前清楚报错。避免静默切换环境或全局改 PATH；按 {{TESTS}} 验证所有允许和禁止的组合。\n\n执行边界：修改前读取适用项目规则并查看 git status，保留已有改动。只改本任务内容；未明确授权时不提交、推送或部署。\n\n验收与交付：报告本任务涉及的路径、版本、资源或端口归属和功能检查结果；不以进程存在代替验收。",
+      "en": "Working directory: {{PROJECT}}\nTask: Implement {{CHANGE}} in {{FILES}} using the approved compatibility matrix in {{INPUTS}}. Distinguish driver capability, environment build version, and explicit user selection. Activate supported combinations and fail clearly before launch for unsupported or unknown ones. Avoid silent environment substitution or global PATH changes; verify allowed and rejected combinations against {{TESTS}}.\n\nExecution boundaries: Before editing, read applicable project rules and git status; preserve existing work. Change only this task’s scope. Do not commit, push, or deploy unless explicitly authorized.\n\nVerification and delivery: Report paths, versions, resource or port ownership, and functional checks relevant to this task; process existence alone is not acceptance.",
+      "task_zh": "依据 {{INPUTS}} 的已批准兼容矩阵，在 {{FILES}} 实现 {{CHANGE}}：分别识别驱动能力、环境构建版本与用户明确选择，支持的组合正常激活，不支持或未知的组合在启动前清楚报错。避免静默切换环境或全局改 PATH；按 {{TESTS}} 验证所有允许和禁止的组合。",
+      "task_en": "Implement {{CHANGE}} in {{FILES}} using the approved compatibility matrix in {{INPUTS}}. Distinguish driver capability, environment build version, and explicit user selection. Activate supported combinations and fail clearly before launch for unsupported or unknown ones. Avoid silent environment substitution or global PATH changes; verify allowed and rejected combinations against {{TESTS}}.",
+      "params": [
+        "PROJECT",
+        "FILES",
+        "INPUTS",
+        "CHANGE",
+        "TESTS"
+      ],
+      "sources": [],
+      "query": "环境选择,兼容矩阵",
+      "origin": "近期会话场景提炼",
+      "references": []
+    },
+    {
+      "id": "07-20",
+      "category": "07",
+      "title": "盘点共享环境的版本与验证状态",
+      "title_en": "Inventory shared environments and compatibility evidence",
+      "mode": "R",
+      "tags": [
+        "环境",
+        "证据",
+        "GPU"
+      ],
+      "keywords": [
+        "环境",
+        "CUDA",
+        "证据",
+        "共享目录"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：使用 {{SSH}} 只读检查 {{FILES}} 的共享环境，依据 {{INPUTS}} 按框架、构建版本、目标平台和激活入口归类。将存在、可激活、能识别设备、业务 smoke 通过分成不同状态并附证据日期；不因目录名含版本号就认定兼容，也不把旧验证结果当作本轮已运行。\n\n执行边界：仅做只读检查，直接回复结论；不主动修改文件、配置、数据或服务。 网络访问仅使用给定 SSH 命令直连；失败即反馈原始错误并停止，禁止跳板、替代地址或改写 SSH 配置。\n\n验收与交付：报告本任务涉及的路径、版本、资源或端口归属和功能检查结果；不以进程存在代替验收。",
+      "en": "Working directory: {{PROJECT}}\nTask: Using {{SSH}}, inspect shared environments in {{FILES}} read-only and classify framework, build version, target platform, and activation entry from {{INPUTS}}. Distinguish existence, activation, device visibility, and successful application smoke tests, with evidence dates. Directory names do not prove compatibility, and previous checks must not be reported as newly executed.\n\nExecution boundaries: Inspect read-only and reply with findings. Do not intentionally modify files, configuration, data, or services. Use only the supplied SSH command to connect directly. On failure, report the original error and stop; do not use jump hosts, alternate addresses, or SSH configuration changes.\n\nVerification and delivery: Report paths, versions, resource or port ownership, and functional checks relevant to this task; process existence alone is not acceptance.",
+      "task_zh": "使用 {{SSH}} 只读检查 {{FILES}} 的共享环境，依据 {{INPUTS}} 按框架、构建版本、目标平台和激活入口归类。将存在、可激活、能识别设备、业务 smoke 通过分成不同状态并附证据日期；不因目录名含版本号就认定兼容，也不把旧验证结果当作本轮已运行。",
+      "task_en": "Using {{SSH}}, inspect shared environments in {{FILES}} read-only and classify framework, build version, target platform, and activation entry from {{INPUTS}}. Distinguish existence, activation, device visibility, and successful application smoke tests, with evidence dates. Directory names do not prove compatibility, and previous checks must not be reported as newly executed.",
+      "params": [
+        "PROJECT",
+        "SSH",
+        "FILES",
+        "INPUTS"
+      ],
+      "sources": [],
+      "query": "共享环境,版本",
+      "origin": "近期会话场景提炼",
+      "references": []
+    },
+    {
+      "id": "07-21",
+      "category": "07",
+      "title": "让 GPU 任务能在授权机器间恢复",
+      "title_en": "Plan portable GPU jobs across authorized hosts",
+      "mode": "P",
+      "tags": [
+        "环境",
+        "回退恢复",
+        "GPU"
+      ],
+      "keywords": [
+        "环境",
+        "GPU",
+        "恢复",
+        "规划"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：为 {{GOAL}} 和 {{INPUTS}} 中的授权机器规划环境、项目、模型、输出与启动状态的存放方式。区分共享盘与机器本地依赖，定义激活、挂载检查、资源占用、停止点和恢复流程；给出最小验证及迁移限制。不实际搬迁、停止服务或占用其他任务的 GPU。\n\n执行边界：本轮只调研和给方案，不实施、不改代码或环境；如指定方案文件，只写该文件。\n\n验收与交付：报告本任务涉及的路径、版本、资源或端口归属和功能检查结果；不以进程存在代替验收。",
+      "en": "Working directory: {{PROJECT}}\nTask: Plan storage and launch-state placement for environments, projects, models, and outputs supporting {{GOAL}} across authorized hosts in {{INPUTS}}. Distinguish shared storage from host-local dependencies and define activation, mount checks, resource ownership, stop points, and recovery. Specify minimal verification and migration limits without moving jobs, stopping services, or occupying other workloads' GPUs.\n\nExecution boundaries: Research and propose a plan only. Do not implement or change code or environments. If a plan file is requested, write only that file.\n\nVerification and delivery: Report paths, versions, resource or port ownership, and functional checks relevant to this task; process existence alone is not acceptance.",
+      "task_zh": "为 {{GOAL}} 和 {{INPUTS}} 中的授权机器规划环境、项目、模型、输出与启动状态的存放方式。区分共享盘与机器本地依赖，定义激活、挂载检查、资源占用、停止点和恢复流程；给出最小验证及迁移限制。不实际搬迁、停止服务或占用其他任务的 GPU。",
+      "task_en": "Plan storage and launch-state placement for environments, projects, models, and outputs supporting {{GOAL}} across authorized hosts in {{INPUTS}}. Distinguish shared storage from host-local dependencies and define activation, mount checks, resource ownership, stop points, and recovery. Specify minimal verification and migration limits without moving jobs, stopping services, or occupying other workloads' GPUs.",
+      "params": [
+        "PROJECT",
+        "GOAL",
+        "INPUTS"
+      ],
+      "sources": [],
+      "query": "共享存储,可迁移任务",
+      "origin": "近期会话场景提炼",
+      "references": []
+    },
+    {
       "id": "08-01",
       "category": "08",
       "title": "例行检查训练是否正常推进",
@@ -4594,6 +4933,72 @@
       "references": []
     },
     {
+      "id": "08-19",
+      "category": "08",
+      "title": "按 GPU 逐卡执行有上限的功能验收",
+      "title_en": "Run bounded functional checks one GPU at a time",
+      "mode": "M",
+      "tags": [
+        "训练",
+        "验收",
+        "稳定性",
+        "GPU"
+      ],
+      "keywords": [
+        "GPU",
+        "验收",
+        "隔离",
+        "稳定性"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：通过 {{SSH}} 先确认 {{GPU}} 的授权与空闲状态，再依据 {{INPUTS}} 和 {{TESTS}} 在 {{LIMIT}} 内逐卡运行同一轻量功能用例。记录设备标识、实际绑定、加载与推理结果，逐个清理本任务进程；遇到错误停止该卡并保留证据，不并发占满机器或重启驱动。\n\n执行边界：先记录目标现状与占用资源，只修改本任务明确授权的对象；不影响其他任务和共享环境，不扩大权限或操作范围。 网络访问仅使用给定 SSH 命令直连；失败即反馈原始错误并停止，禁止跳板、替代地址或改写 SSH 配置。\n\n验收与交付：交付检查窗口、run/step 标识、日志证据和状态结论，不把启动成功当作训练成功。",
+      "en": "Working directory: {{PROJECT}}\nTask: Using {{SSH}}, confirm authorization and availability of {{GPU}}, then run the same lightweight functional case sequentially under {{INPUTS}}, {{TESTS}}, and {{LIMIT}}. Record device identifiers, actual binding, load and inference results, and clean up this task's processes. Stop a failing device check and preserve evidence; do not saturate the host concurrently or restart drivers.\n\nExecution boundaries: Record the target state and occupied resources first. Modify only explicitly authorized targets; preserve other workloads and shared environments, without expanding privileges or scope. Use only the supplied SSH command to connect directly. On failure, report the original error and stop; do not use jump hosts, alternate addresses, or SSH configuration changes.\n\nVerification and delivery: Report the observation window, run/step identifiers, log evidence, and status. A successful launch is not successful training.",
+      "task_zh": "通过 {{SSH}} 先确认 {{GPU}} 的授权与空闲状态，再依据 {{INPUTS}} 和 {{TESTS}} 在 {{LIMIT}} 内逐卡运行同一轻量功能用例。记录设备标识、实际绑定、加载与推理结果，逐个清理本任务进程；遇到错误停止该卡并保留证据，不并发占满机器或重启驱动。",
+      "task_en": "Using {{SSH}}, confirm authorization and availability of {{GPU}}, then run the same lightweight functional case sequentially under {{INPUTS}}, {{TESTS}}, and {{LIMIT}}. Record device identifiers, actual binding, load and inference results, and clean up this task's processes. Stop a failing device check and preserve evidence; do not saturate the host concurrently or restart drivers.",
+      "params": [
+        "PROJECT",
+        "SSH",
+        "INPUTS",
+        "GPU",
+        "LIMIT",
+        "TESTS"
+      ],
+      "sources": [],
+      "query": "逐卡验收,GPU",
+      "origin": "近期会话场景提炼",
+      "references": []
+    },
+    {
+      "id": "08-20",
+      "category": "08",
+      "title": "规划训练结束后的 CPU 评测交接",
+      "title_en": "Plan CPU evaluation after GPU training completes",
+      "mode": "P",
+      "tags": [
+        "训练",
+        "评测"
+      ],
+      "keywords": [
+        "训练",
+        "评测",
+        "资源",
+        "规划"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：针对 {{RUN}}，根据 {{INPUTS}} 核对评测能否脱离训练 GPU，列出最终产物、依赖、数据位置、结果口径与目标 CPU 机器。估计 {{LIMIT}} 内的耗时和资源，说明迁移验证、进度接续及 GPU 可归还的必要条件；不在完整性未确认时删除产物、停止评测或释放资源。\n\n执行边界：本轮只调研和给方案，不实施、不改代码或环境；如指定方案文件，只写该文件。\n\n验收与交付：交付检查窗口、run/step 标识、日志证据和状态结论，不把启动成功当作训练成功。",
+      "en": "Working directory: {{PROJECT}}\nTask: For {{RUN}}, use {{INPUTS}} to assess whether evaluation can run without the training GPUs. Identify final artifacts, dependencies, data, result semantics, and the target CPU host. Estimate time and resources within {{LIMIT}}, defining migration checks, progress continuation, and prerequisites for returning GPUs. Do not delete artifacts, stop evaluation, or release resources before completeness is established.\n\nExecution boundaries: Research and propose a plan only. Do not implement or change code or environments. If a plan file is requested, write only that file.\n\nVerification and delivery: Report the observation window, run/step identifiers, log evidence, and status. A successful launch is not successful training.",
+      "task_zh": "针对 {{RUN}}，根据 {{INPUTS}} 核对评测能否脱离训练 GPU，列出最终产物、依赖、数据位置、结果口径与目标 CPU 机器。估计 {{LIMIT}} 内的耗时和资源，说明迁移验证、进度接续及 GPU 可归还的必要条件；不在完整性未确认时删除产物、停止评测或释放资源。",
+      "task_en": "For {{RUN}}, use {{INPUTS}} to assess whether evaluation can run without the training GPUs. Identify final artifacts, dependencies, data, result semantics, and the target CPU host. Estimate time and resources within {{LIMIT}}, defining migration checks, progress continuation, and prerequisites for returning GPUs. Do not delete artifacts, stop evaluation, or release resources before completeness is established.",
+      "params": [
+        "PROJECT",
+        "RUN",
+        "INPUTS",
+        "LIMIT"
+      ],
+      "sources": [],
+      "query": "CPU评测,资源交接",
+      "origin": "近期会话场景提炼",
+      "references": []
+    },
+    {
       "id": "09-01",
       "category": "09",
       "title": "复现论文或官方基线",
@@ -5142,6 +5547,201 @@
       "references": []
     },
     {
+      "id": "09-19",
+      "category": "09",
+      "title": "核对训练与评测的实际提示词是否一致",
+      "title_en": "Compare the actual training and evaluation prompts",
+      "mode": "R",
+      "tags": [
+        "实验",
+        "评测",
+        "证据",
+        "训练"
+      ],
+      "keywords": [
+        "训练",
+        "评测",
+        "提示词",
+        "证据"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：从 {{FILES}} 的真实数据流和 {{INPUTS}} 中追踪同一类样本的 system、user、历史消息、模板与截断处理。比较模型最终接收的字段及必要时可获取的 token 序列，而不只比较配置文件名；列出有意差异、潜在偏差和不可复核项，输出脱敏样本，不回显业务敏感内容。\n\n执行边界：仅做只读检查，直接回复结论；不主动修改文件、配置、数据或服务。\n\n验收与交付：记录数据版本、样本数、配置与计算口径；保留失败样本，说明不确定性。",
+      "en": "Working directory: {{PROJECT}}\nTask: Trace system, user, history, templates, and truncation for comparable samples through the actual data flow in {{FILES}} and {{INPUTS}}. Compare what reaches the model, including token sequences where available, rather than configuration filenames alone. Identify intended differences, possible mismatches, and unverifiable items, using redacted examples without exposing sensitive business content.\n\nExecution boundaries: Inspect read-only and reply with findings. Do not intentionally modify files, configuration, data, or services.\n\nVerification and delivery: Record data version, sample counts, configuration, and metric definitions. Preserve failed cases and state uncertainty.",
+      "task_zh": "从 {{FILES}} 的真实数据流和 {{INPUTS}} 中追踪同一类样本的 system、user、历史消息、模板与截断处理。比较模型最终接收的字段及必要时可获取的 token 序列，而不只比较配置文件名；列出有意差异、潜在偏差和不可复核项，输出脱敏样本，不回显业务敏感内容。",
+      "task_en": "Trace system, user, history, templates, and truncation for comparable samples through the actual data flow in {{FILES}} and {{INPUTS}}. Compare what reaches the model, including token sequences where available, rather than configuration filenames alone. Identify intended differences, possible mismatches, and unverifiable items, using redacted examples without exposing sensitive business content.",
+      "params": [
+        "PROJECT",
+        "FILES",
+        "INPUTS"
+      ],
+      "sources": [],
+      "query": "训练,评测,prompt一致性",
+      "origin": "近期会话场景提炼",
+      "references": []
+    },
+    {
+      "id": "09-20",
+      "category": "09",
+      "title": "在训练前拦截角色消息被静默丢弃",
+      "title_en": "Fail before training when role messages are silently dropped",
+      "mode": "E",
+      "tags": [
+        "实验",
+        "测试",
+        "验收",
+        "配置"
+      ],
+      "keywords": [
+        "训练",
+        "预处理",
+        "测试",
+        "配置"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：针对 {{CHANGE}} 在 {{FILES}} 的数据预处理入口增加校验，基于 {{INPUTS}} 明确允许的消息角色、模板能力和丢弃策略。必要的 system 或历史消息不能在无提示时丢失；错误需带脱敏样本位置和配置项，并在昂贵训练开始前失败。按 {{TESTS}} 覆盖正常、缺字段、未知角色和明确允许丢弃的情况。\n\n执行边界：修改前读取适用项目规则并查看 git status，保留已有改动。只改本任务内容；未明确授权时不提交、推送或部署。\n\n验收与交付：记录数据版本、样本数、配置与计算口径；保留失败样本，说明不确定性。",
+      "en": "Working directory: {{PROJECT}}\nTask: Add preprocessing checks for {{CHANGE}} in {{FILES}}, using {{INPUTS}} to define supported roles, template capabilities, and discard policies. Required system or history messages must not disappear silently. Report redacted sample locations and configuration keys, failing before expensive training starts. Cover valid inputs, missing fields, unknown roles, and explicitly allowed discards in {{TESTS}}.\n\nExecution boundaries: Before editing, read applicable project rules and git status; preserve existing work. Change only this task’s scope. Do not commit, push, or deploy unless explicitly authorized.\n\nVerification and delivery: Record data version, sample counts, configuration, and metric definitions. Preserve failed cases and state uncertainty.",
+      "task_zh": "针对 {{CHANGE}} 在 {{FILES}} 的数据预处理入口增加校验，基于 {{INPUTS}} 明确允许的消息角色、模板能力和丢弃策略。必要的 system 或历史消息不能在无提示时丢失；错误需带脱敏样本位置和配置项，并在昂贵训练开始前失败。按 {{TESTS}} 覆盖正常、缺字段、未知角色和明确允许丢弃的情况。",
+      "task_en": "Add preprocessing checks for {{CHANGE}} in {{FILES}}, using {{INPUTS}} to define supported roles, template capabilities, and discard policies. Required system or history messages must not disappear silently. Report redacted sample locations and configuration keys, failing before expensive training starts. Cover valid inputs, missing fields, unknown roles, and explicitly allowed discards in {{TESTS}}.",
+      "params": [
+        "PROJECT",
+        "FILES",
+        "INPUTS",
+        "CHANGE",
+        "TESTS"
+      ],
+      "sources": [],
+      "query": "system prompt,预处理",
+      "origin": "近期会话场景提炼",
+      "references": []
+    },
+    {
+      "id": "09-21",
+      "category": "09",
+      "title": "在同一批预测上比较不同评分口径",
+      "title_en": "Compare scoring definitions on the same predictions",
+      "mode": "R",
+      "tags": [
+        "实验",
+        "数据",
+        "评测",
+        "证据"
+      ],
+      "keywords": [
+        "评测",
+        "指标",
+        "证据",
+        "对照"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：对 {{INPUTS}} 的同一批预测与标签按 {{BASELINE}} 和新口径分别复算。固定样本集合，说明分母、缺失值、忽略字段和聚合规则，并列出导致分数变化的具体样本类型；如果同时改变数据或模型，明确无法把差异全部归因于评分规则。\n\n执行边界：仅做只读检查，直接回复结论；不主动修改文件、配置、数据或服务。\n\n验收与交付：记录数据版本、样本数、配置与计算口径；保留失败样本，说明不确定性。",
+      "en": "Working directory: {{PROJECT}}\nTask: Rescore the same predictions and labels in {{INPUTS}} under {{BASELINE}} and the new definition. Hold samples fixed and explain denominators, missing values, ignored fields, and aggregation. Identify sample types driving score changes. If data or model also changed, do not attribute the full difference to the scoring rule.\n\nExecution boundaries: Inspect read-only and reply with findings. Do not intentionally modify files, configuration, data, or services.\n\nVerification and delivery: Record data version, sample counts, configuration, and metric definitions. Preserve failed cases and state uncertainty.",
+      "task_zh": "对 {{INPUTS}} 的同一批预测与标签按 {{BASELINE}} 和新口径分别复算。固定样本集合，说明分母、缺失值、忽略字段和聚合规则，并列出导致分数变化的具体样本类型；如果同时改变数据或模型，明确无法把差异全部归因于评分规则。",
+      "task_en": "Rescore the same predictions and labels in {{INPUTS}} under {{BASELINE}} and the new definition. Hold samples fixed and explain denominators, missing values, ignored fields, and aggregation. Identify sample types driving score changes. If data or model also changed, do not attribute the full difference to the scoring rule.",
+      "params": [
+        "PROJECT",
+        "INPUTS",
+        "BASELINE"
+      ],
+      "sources": [],
+      "query": "评分口径,同批预测",
+      "origin": "近期会话场景提炼",
+      "references": []
+    },
+    {
+      "id": "09-22",
+      "category": "09",
+      "title": "先用 pass@k 摸清可提升空间",
+      "title_en": "Probe improvement headroom with a pass-at-k plan",
+      "mode": "P",
+      "tags": [
+        "实验",
+        "评测"
+      ],
+      "keywords": [
+        "评测",
+        "实验",
+        "pass@k",
+        "预算"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：为 {{MODEL}} 和 {{DATASET}} 设计上限为 {{LIMIT}} 的多次采样评测，明确单次成功判据、采样设置、k 值、每题样本数与统计方法。区分一次命中率、可重试收益、格式合规和真实任务正确性，说明有限样本与相关采样的限制；本轮不运行付费推理或训练。\n\n执行边界：本轮只调研和给方案，不实施、不改代码或环境；如指定方案文件，只写该文件。\n\n验收与交付：记录数据版本、样本数、配置与计算口径；保留失败样本，说明不确定性。",
+      "en": "Working directory: {{PROJECT}}\nTask: Plan repeated-sampling evaluation for {{MODEL}} and {{DATASET}} within {{LIMIT}}. Define per-attempt success, sampling settings, k values, samples per item, and estimation method. Distinguish single-attempt accuracy, retry gains, format validity, and actual task correctness, noting finite-sample and correlated-sampling limits. Do not run paid inference or training in this turn.\n\nExecution boundaries: Research and propose a plan only. Do not implement or change code or environments. If a plan file is requested, write only that file.\n\nVerification and delivery: Record data version, sample counts, configuration, and metric definitions. Preserve failed cases and state uncertainty.",
+      "task_zh": "为 {{MODEL}} 和 {{DATASET}} 设计上限为 {{LIMIT}} 的多次采样评测，明确单次成功判据、采样设置、k 值、每题样本数与统计方法。区分一次命中率、可重试收益、格式合规和真实任务正确性，说明有限样本与相关采样的限制；本轮不运行付费推理或训练。",
+      "task_en": "Plan repeated-sampling evaluation for {{MODEL}} and {{DATASET}} within {{LIMIT}}. Define per-attempt success, sampling settings, k values, samples per item, and estimation method. Distinguish single-attempt accuracy, retry gains, format validity, and actual task correctness, noting finite-sample and correlated-sampling limits. Do not run paid inference or training in this turn.",
+      "params": [
+        "PROJECT",
+        "MODEL",
+        "DATASET",
+        "LIMIT"
+      ],
+      "sources": [],
+      "query": "pass@k,能力上限",
+      "origin": "近期会话场景提炼",
+      "references": []
+    },
+    {
+      "id": "09-23",
+      "category": "09",
+      "title": "判断多轴输出能否精简而不破坏下游",
+      "title_en": "Assess whether output axes can be simplified safely",
+      "mode": "P",
+      "tags": [
+        "实验",
+        "API",
+        "数据",
+        "模型"
+      ],
+      "keywords": [
+        "模型",
+        "数据",
+        "API",
+        "规划"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：针对 {{GOAL}}，从 {{FILES}} 和 {{INPUTS}} 梳理每个输出字段的定义、取值、训练来源、评测分布及真实消费者。区分必需、可推导、仅兼容和无人使用的候选，给出缺字段行为、迁移顺序与对照评测；没有代码或数据证据时标记未知，不凭表面重复直接删轴。\n\n执行边界：本轮只调研和给方案，不实施、不改代码或环境；如指定方案文件，只写该文件。\n\n验收与交付：记录数据版本、样本数、配置与计算口径；保留失败样本，说明不确定性。",
+      "en": "Working directory: {{PROJECT}}\nTask: For {{GOAL}}, map each output field's meaning, values, training source, evaluation distribution, and actual consumers using {{FILES}} and {{INPUTS}}. Distinguish required, derivable, compatibility-only, and unused candidates. Plan missing-field behavior, migration order, and comparative evaluation. Mark absent evidence unknown rather than remove superficially redundant axes.\n\nExecution boundaries: Research and propose a plan only. Do not implement or change code or environments. If a plan file is requested, write only that file.\n\nVerification and delivery: Record data version, sample counts, configuration, and metric definitions. Preserve failed cases and state uncertainty.",
+      "task_zh": "针对 {{GOAL}}，从 {{FILES}} 和 {{INPUTS}} 梳理每个输出字段的定义、取值、训练来源、评测分布及真实消费者。区分必需、可推导、仅兼容和无人使用的候选，给出缺字段行为、迁移顺序与对照评测；没有代码或数据证据时标记未知，不凭表面重复直接删轴。",
+      "task_en": "For {{GOAL}}, map each output field's meaning, values, training source, evaluation distribution, and actual consumers using {{FILES}} and {{INPUTS}}. Distinguish required, derivable, compatibility-only, and unused candidates. Plan missing-field behavior, migration order, and comparative evaluation. Mark absent evidence unknown rather than remove superficially redundant axes.",
+      "params": [
+        "PROJECT",
+        "GOAL",
+        "FILES",
+        "INPUTS"
+      ],
+      "sources": [],
+      "query": "输出轴,字段精简",
+      "origin": "近期会话场景提炼",
+      "references": []
+    },
+    {
+      "id": "09-24",
+      "category": "09",
+      "title": "同时比较模型质量与推理延迟",
+      "title_en": "Compare model quality and inference latency together",
+      "mode": "R",
+      "tags": [
+        "实验",
+        "性能",
+        "评测",
+        "模型"
+      ],
+      "keywords": [
+        "模型",
+        "评测",
+        "性能",
+        "对照"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：用 {{INPUTS}} 的实测记录对比 {{MODEL}} 和 {{BASELINE}}，在相同数据、硬件、批量、并发及输出长度条件下列质量、延迟分位数和吞吐。区分冷启动与稳态、首 token 与完整响应、含预处理与纯模型耗时；条件不一致时限制结论，不只报告平均速度或单一质量分数。\n\n执行边界：仅做只读检查，直接回复结论；不主动修改文件、配置、数据或服务。\n\n验收与交付：记录数据版本、样本数、配置与计算口径；保留失败样本，说明不确定性。",
+      "en": "Working directory: {{PROJECT}}\nTask: Compare {{MODEL}} with {{BASELINE}} using measurements in {{INPUTS}}. Under matched data, hardware, batching, concurrency, and output length, report quality, latency percentiles, and throughput. Separate cold start from steady state, first-token from full-response time, and end-to-end from model-only time. Limit conclusions when conditions differ; do not report only mean speed or one quality score.\n\nExecution boundaries: Inspect read-only and reply with findings. Do not intentionally modify files, configuration, data, or services.\n\nVerification and delivery: Record data version, sample counts, configuration, and metric definitions. Preserve failed cases and state uncertainty.",
+      "task_zh": "用 {{INPUTS}} 的实测记录对比 {{MODEL}} 和 {{BASELINE}}，在相同数据、硬件、批量、并发及输出长度条件下列质量、延迟分位数和吞吐。区分冷启动与稳态、首 token 与完整响应、含预处理与纯模型耗时；条件不一致时限制结论，不只报告平均速度或单一质量分数。",
+      "task_en": "Compare {{MODEL}} with {{BASELINE}} using measurements in {{INPUTS}}. Under matched data, hardware, batching, concurrency, and output length, report quality, latency percentiles, and throughput. Separate cold start from steady state, first-token from full-response time, and end-to-end from model-only time. Limit conclusions when conditions differ; do not report only mean speed or one quality score.",
+      "params": [
+        "PROJECT",
+        "INPUTS",
+        "MODEL",
+        "BASELINE"
+      ],
+      "sources": [],
+      "query": "推理速度,质量对齐",
+      "origin": "近期会话场景提炼",
+      "references": []
+    },
+    {
       "id": "10-01",
       "category": "10",
       "title": "把创意整理为可生成的画面描述",
@@ -5550,6 +6150,7 @@
       "mode": "R",
       "tags": [
         "生成",
+        "美术",
         "图像"
       ],
       "keywords": [
@@ -5579,6 +6180,7 @@
       "mode": "D",
       "tags": [
         "生成",
+        "美术",
         "图像"
       ],
       "keywords": [
@@ -5610,6 +6212,7 @@
       "mode": "R",
       "tags": [
         "生成",
+        "美术",
         "图像"
       ],
       "keywords": [
@@ -6227,6 +6830,161 @@
       "references": []
     },
     {
+      "id": "11-19",
+      "category": "11",
+      "title": "把本周增量合入已有周报草稿",
+      "title_en": "Merge weekly updates into an existing report draft",
+      "mode": "D",
+      "tags": [
+        "文档",
+        "证据"
+      ],
+      "keywords": [
+        "文档",
+        "周报",
+        "增量",
+        "来源"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：按 {{PERIOD}} 将 {{INPUTS}} 中的本周材料整理为 {{OUTPUT}}，沿用指定人员顺序与原有章节结构。先核对时间和来源，保留已确认内容，合并重复事项，区分完成、推进与下周计划；缺席材料标为缺失，不补造进展。只生成可审阅更新稿，不向同事发送消息或改写云端原稿。\n\n执行边界：只在指定位置生成交付物，保留原始资料，不改源系统或运行服务；未明确授权时不提交、推送或发布。\n\n验收与交付：给出可打开的交付物或可定位的检查结论，核对适用的内容完整性、来源和排版项目。",
+      "en": "Working directory: {{PROJECT}}\nTask: Merge this week's material from {{INPUTS}} into {{OUTPUT}} for {{PERIOD}}, preserving the specified contributor order and section structure. Check dates and sources, retain confirmed content, deduplicate items, and distinguish completed work, ongoing work, and next plans. Mark missing contributions rather than invent progress. Create a reviewable draft without messaging colleagues or modifying the cloud original.\n\nExecution boundaries: Create deliverables only at the specified destination; preserve source material and running systems. Do not commit, push, or publish unless explicitly authorized.\n\nVerification and delivery: Provide an openable deliverable or locatable inspection findings; check applicable content completeness, source, and layout requirements.",
+      "task_zh": "按 {{PERIOD}} 将 {{INPUTS}} 中的本周材料整理为 {{OUTPUT}}，沿用指定人员顺序与原有章节结构。先核对时间和来源，保留已确认内容，合并重复事项，区分完成、推进与下周计划；缺席材料标为缺失，不补造进展。只生成可审阅更新稿，不向同事发送消息或改写云端原稿。",
+      "task_en": "Merge this week's material from {{INPUTS}} into {{OUTPUT}} for {{PERIOD}}, preserving the specified contributor order and section structure. Check dates and sources, retain confirmed content, deduplicate items, and distinguish completed work, ongoing work, and next plans. Mark missing contributions rather than invent progress. Create a reviewable draft without messaging colleagues or modifying the cloud original.",
+      "params": [
+        "PROJECT",
+        "INPUTS",
+        "PERIOD",
+        "OUTPUT"
+      ],
+      "sources": [],
+      "query": "周报,增量",
+      "origin": "近期会话场景提炼",
+      "references": []
+    },
+    {
+      "id": "11-20",
+      "category": "11",
+      "title": "更新文档内容并保留人类负责的标题",
+      "title_en": "Update document content while preserving the human-owned title",
+      "mode": "D",
+      "tags": [
+        "文档",
+        "范围控制"
+      ],
+      "keywords": [
+        "文档",
+        "协作",
+        "范围控制"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：依据 {{INPUTS}} 为 {{GOAL}} 在 {{OUTPUT}} 生成更新稿，保留人类维护的标题、明确冻结的章节与手工备注。只更新已授权内容及其过期事实，单列结构调整与仍待核实的地方；本次约定只适用于这份文档，不扩展成所有文档的永久偏好。\n\n执行边界：只在指定位置生成交付物，保留原始资料，不改源系统或运行服务；未明确授权时不提交、推送或发布。\n\n验收与交付：给出可打开的交付物或可定位的检查结论，核对适用的内容完整性、来源和排版项目。",
+      "en": "Working directory: {{PROJECT}}\nTask: Using {{INPUTS}}, create an updated draft for {{GOAL}} in {{OUTPUT}}, preserving the human-maintained title, explicitly frozen sections, and manual notes. Update only authorized content and stale facts, listing structural changes and unresolved items. Apply this ownership arrangement to this document only, not as a permanent preference for all documents.\n\nExecution boundaries: Create deliverables only at the specified destination; preserve source material and running systems. Do not commit, push, or publish unless explicitly authorized.\n\nVerification and delivery: Provide an openable deliverable or locatable inspection findings; check applicable content completeness, source, and layout requirements.",
+      "task_zh": "依据 {{INPUTS}} 为 {{GOAL}} 在 {{OUTPUT}} 生成更新稿，保留人类维护的标题、明确冻结的章节与手工备注。只更新已授权内容及其过期事实，单列结构调整与仍待核实的地方；本次约定只适用于这份文档，不扩展成所有文档的永久偏好。",
+      "task_en": "Using {{INPUTS}}, create an updated draft for {{GOAL}} in {{OUTPUT}}, preserving the human-maintained title, explicitly frozen sections, and manual notes. Update only authorized content and stale facts, listing structural changes and unresolved items. Apply this ownership arrangement to this document only, not as a permanent preference for all documents.",
+      "params": [
+        "PROJECT",
+        "GOAL",
+        "INPUTS",
+        "OUTPUT"
+      ],
+      "sources": [],
+      "query": "标题归属,内容更新",
+      "origin": "近期会话场景提炼",
+      "references": []
+    },
+    {
+      "id": "11-21",
+      "category": "11",
+      "title": "为上游贡献准备可审阅的补丁计划",
+      "title_en": "Prepare a reviewable upstream patch plan",
+      "mode": "P",
+      "tags": [
+        "文档",
+        "Git"
+      ],
+      "keywords": [
+        "文档",
+        "Git",
+        "补丁",
+        "规划"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：针对 {{CHANGE}}，只读检查 {{FILES}} 的当前版本、已有本地补丁和 {{INPUTS}} 的上游约定，在 {{OUTPUT}} 写补丁计划。说明最小改动、兼容性、失败行为、测试矩阵与计划提交边界；区分本地定制和可上游化部分。本轮只写计划文件，不改代码、不创建 PR 或提交。\n\n执行边界：本轮只调研和给方案，不实施、不改代码或环境；如指定方案文件，只写该文件。\n\n验收与交付：给出可打开的交付物或可定位的检查结论，核对适用的内容完整性、来源和排版项目。",
+      "en": "Working directory: {{PROJECT}}\nTask: For {{CHANGE}}, inspect the current version, existing local patches in {{FILES}}, and upstream conventions in {{INPUTS}} read-only, then write a patch plan in {{OUTPUT}}. Define minimal changes, compatibility, failure behavior, test cases, and proposed commit scope. Separate local customization from upstreamable work. Write only the plan; do not change code, open a PR, or commit.\n\nExecution boundaries: Research and propose a plan only. Do not implement or change code or environments. If a plan file is requested, write only that file.\n\nVerification and delivery: Provide an openable deliverable or locatable inspection findings; check applicable content completeness, source, and layout requirements.",
+      "task_zh": "针对 {{CHANGE}}，只读检查 {{FILES}} 的当前版本、已有本地补丁和 {{INPUTS}} 的上游约定，在 {{OUTPUT}} 写补丁计划。说明最小改动、兼容性、失败行为、测试矩阵与计划提交边界；区分本地定制和可上游化部分。本轮只写计划文件，不改代码、不创建 PR 或提交。",
+      "task_en": "For {{CHANGE}}, inspect the current version, existing local patches in {{FILES}}, and upstream conventions in {{INPUTS}} read-only, then write a patch plan in {{OUTPUT}}. Define minimal changes, compatibility, failure behavior, test cases, and proposed commit scope. Separate local customization from upstreamable work. Write only the plan; do not change code, open a PR, or commit.",
+      "params": [
+        "PROJECT",
+        "FILES",
+        "INPUTS",
+        "CHANGE",
+        "OUTPUT"
+      ],
+      "sources": [],
+      "query": "上游补丁,计划",
+      "origin": "近期会话场景提炼",
+      "references": []
+    },
+    {
+      "id": "11-22",
+      "category": "11",
+      "title": "只补充自己负责的项目总结章节",
+      "title_en": "Complete only the assigned retrospective sections",
+      "mode": "D",
+      "tags": [
+        "文档",
+        "游戏"
+      ],
+      "keywords": [
+        "文档",
+        "协作",
+        "游戏",
+        "GameAI"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：在 {{OUTPUT}} 的现有项目总结中，依据 {{INPUTS}} 补充范围 {{SCOPE}} 内属于本执行方的章节。记录设计演进、实现、验证、返工与经验，保留他方已写内容；发现数字或版本冲突时单列证据与待决事项，不擅自改写他方叙述，也不把另一工具的工作归为自己。\n\n执行边界：只在指定位置生成交付物，保留原始资料，不改源系统或运行服务；未明确授权时不提交、推送或发布。\n\n验收与交付：给出可打开的交付物或可定位的检查结论，核对适用的内容完整性、来源和排版项目。",
+      "en": "Working directory: {{PROJECT}}\nTask: Use {{INPUTS}} to complete this contributor's sections within {{SCOPE}} in the existing retrospective at {{OUTPUT}}. Record design evolution, implementation, verification, rework, and lessons while preserving other contributors' text. List numerical or version conflicts with evidence and open decisions rather than silently rewriting others' accounts or claiming their work.\n\nExecution boundaries: Create deliverables only at the specified destination; preserve source material and running systems. Do not commit, push, or publish unless explicitly authorized.\n\nVerification and delivery: Provide an openable deliverable or locatable inspection findings; check applicable content completeness, source, and layout requirements.",
+      "task_zh": "在 {{OUTPUT}} 的现有项目总结中，依据 {{INPUTS}} 补充范围 {{SCOPE}} 内属于本执行方的章节。记录设计演进、实现、验证、返工与经验，保留他方已写内容；发现数字或版本冲突时单列证据与待决事项，不擅自改写他方叙述，也不把另一工具的工作归为自己。",
+      "task_en": "Use {{INPUTS}} to complete this contributor's sections within {{SCOPE}} in the existing retrospective at {{OUTPUT}}. Record design evolution, implementation, verification, rework, and lessons while preserving other contributors' text. List numerical or version conflicts with evidence and open decisions rather than silently rewriting others' accounts or claiming their work.",
+      "params": [
+        "PROJECT",
+        "INPUTS",
+        "SCOPE",
+        "OUTPUT"
+      ],
+      "sources": [],
+      "query": "项目总结,章节归属",
+      "origin": "游戏项目场景提炼",
+      "references": []
+    },
+    {
+      "id": "11-23",
+      "category": "11",
+      "title": "生成按平台区分的环境激活速查表",
+      "title_en": "Create a platform-specific environment activation reference",
+      "mode": "D",
+      "tags": [
+        "文档",
+        "GPU",
+        "环境"
+      ],
+      "keywords": [
+        "文档",
+        "环境",
+        "CUDA",
+        "命令"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：根据 {{INPUTS}} 中实际核验的环境信息，在 {{OUTPUT}} 列出各平台可用环境、完整激活命令、限制与验证日期。区分已试验、仅存在和不支持的组合，未知命令使用明确占位符，不猜路径；不含密码或令牌，不因生成速查表而执行激活或改共享配置。\n\n执行边界：只在指定位置生成交付物，保留原始资料，不改源系统或运行服务；未明确授权时不提交、推送或发布。\n\n验收与交付：给出可打开的交付物或可定位的检查结论，核对适用的内容完整性、来源和排版项目。",
+      "en": "Working directory: {{PROJECT}}\nTask: Using environment evidence in {{INPUTS}}, write a reference in {{OUTPUT}} listing available environments, full activation commands, limits, and verification dates by platform. Distinguish tested, merely present, and unsupported combinations, using explicit placeholders instead of guessed paths. Exclude secrets and do not activate environments or change shared configuration while producing the reference.\n\nExecution boundaries: Create deliverables only at the specified destination; preserve source material and running systems. Do not commit, push, or publish unless explicitly authorized.\n\nVerification and delivery: Provide an openable deliverable or locatable inspection findings; check applicable content completeness, source, and layout requirements.",
+      "task_zh": "根据 {{INPUTS}} 中实际核验的环境信息，在 {{OUTPUT}} 列出各平台可用环境、完整激活命令、限制与验证日期。区分已试验、仅存在和不支持的组合，未知命令使用明确占位符，不猜路径；不含密码或令牌，不因生成速查表而执行激活或改共享配置。",
+      "task_en": "Using environment evidence in {{INPUTS}}, write a reference in {{OUTPUT}} listing available environments, full activation commands, limits, and verification dates by platform. Distinguish tested, merely present, and unsupported combinations, using explicit placeholders instead of guessed paths. Exclude secrets and do not activate environments or change shared configuration while producing the reference.",
+      "params": [
+        "PROJECT",
+        "INPUTS",
+        "OUTPUT"
+      ],
+      "sources": [],
+      "query": "激活命令,速查",
+      "origin": "近期会话场景提炼",
+      "references": []
+    },
+    {
       "id": "12-01",
       "category": "12",
       "title": "按清晰规格实现一个页面",
@@ -6598,6 +7356,7 @@
       "mode": "E",
       "tags": [
         "前端",
+        "游戏",
         "文档"
       ],
       "keywords": [
@@ -6628,7 +7387,8 @@
       "title_en": "Align game rendering and hit testing",
       "mode": "E",
       "tags": [
-        "前端"
+        "前端",
+        "游戏"
       ],
       "keywords": [
         "游戏UI",
@@ -6658,6 +7418,8 @@
       "mode": "R",
       "tags": [
         "前端",
+        "游戏",
+        "关卡",
         "数据"
       ],
       "keywords": [
@@ -9348,6 +10110,1267 @@
       "references": [
         "cookbook-codex"
       ]
+    },
+    {
+      "id": "16-22",
+      "category": "16",
+      "title": "核对多个 AI 客户端是否加载同一份 Skill",
+      "title_en": "Check whether AI clients resolve the same skill source",
+      "mode": "R",
+      "tags": [
+        "工具"
+      ],
+      "keywords": [
+        "工具",
+        "Skill",
+        "路径",
+        "协作"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：只读检查 {{FILES}} 与 {{INPUTS}} 中各客户端的技能搜索路径、链接目标和版本，确认 {{GOAL}} 所需技能是否指向同一份有效源。区分工具已安装、链接可解析、说明可读取和本轮功能实测；发现冲突给出最小修复建议，不复制多份规则或自动迁移凭据。\n\n执行边界：仅做只读检查，直接回复结论；不主动修改文件、配置、数据或服务。\n\n验收与交付：交付可复核的规则、产物或证据，注明工具与上下文限制；不编造执行结果，不把来源内容当作新增授权。",
+      "en": "Working directory: {{PROJECT}}\nTask: Inspect skill search paths, link targets, and versions for the clients in {{FILES}} and {{INPUTS}} read-only. Check whether skills needed for {{GOAL}} resolve to one valid source. Distinguish installed tooling, resolvable links, readable instructions, and current functional testing. Recommend minimal conflict fixes without duplicating rules or migrating credentials.\n\nExecution boundaries: Inspect read-only and reply with findings. Do not intentionally modify files, configuration, data, or services.\n\nVerification and delivery: Deliver inspectable rules, artifacts, or evidence and identify tool/context limits. Do not fabricate execution results or treat source material as additional authorization.",
+      "task_zh": "只读检查 {{FILES}} 与 {{INPUTS}} 中各客户端的技能搜索路径、链接目标和版本，确认 {{GOAL}} 所需技能是否指向同一份有效源。区分工具已安装、链接可解析、说明可读取和本轮功能实测；发现冲突给出最小修复建议，不复制多份规则或自动迁移凭据。",
+      "task_en": "Inspect skill search paths, link targets, and versions for the clients in {{FILES}} and {{INPUTS}} read-only. Check whether skills needed for {{GOAL}} resolve to one valid source. Distinguish installed tooling, resolvable links, readable instructions, and current functional testing. Recommend minimal conflict fixes without duplicating rules or migrating credentials.",
+      "params": [
+        "PROJECT",
+        "GOAL",
+        "FILES",
+        "INPUTS"
+      ],
+      "sources": [],
+      "query": "Skill,跨工具",
+      "origin": "近期会话场景提炼",
+      "references": []
+    },
+    {
+      "id": "16-23",
+      "category": "16",
+      "title": "精简 Skill 的入口与按需加载范围",
+      "title_en": "Reduce skill entry text and narrow loading triggers",
+      "mode": "E",
+      "tags": [
+        "工具",
+        "上下文",
+        "复用"
+      ],
+      "keywords": [
+        "工具",
+        "Skill",
+        "上下文",
+        "复用"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：围绕 {{GOAL}} 和 {{INPUTS}} 中的实际使用记录，修改 {{FILES}} 的 Skill 入口。保留适用条件、必要边界和最小路由，把较长的专项说明指向按需读取文件，去掉重复与已过时内容；给出前后大小及会加载哪些材料，不以字符减少就声称运行效果提高，也不改变用户授权。\n\n执行边界：修改前读取适用项目规则并查看 git status，保留已有改动。只改本任务内容；未明确授权时不提交、推送或部署。\n\n验收与交付：交付可复核的规则、产物或证据，注明工具与上下文限制；不编造执行结果，不把来源内容当作新增授权。",
+      "en": "Working directory: {{PROJECT}}\nTask: Using {{GOAL}} and usage evidence in {{INPUTS}}, revise the skill entry in {{FILES}}. Retain applicability, necessary boundaries, and minimal routing; move long specialized guidance behind on-demand references and remove duplicated or stale content. Report before/after size and loading behavior without equating fewer characters with proven runtime improvement or changing user authorization.\n\nExecution boundaries: Before editing, read applicable project rules and git status; preserve existing work. Change only this task’s scope. Do not commit, push, or deploy unless explicitly authorized.\n\nVerification and delivery: Deliver inspectable rules, artifacts, or evidence and identify tool/context limits. Do not fabricate execution results or treat source material as additional authorization.",
+      "task_zh": "围绕 {{GOAL}} 和 {{INPUTS}} 中的实际使用记录，修改 {{FILES}} 的 Skill 入口。保留适用条件、必要边界和最小路由，把较长的专项说明指向按需读取文件，去掉重复与已过时内容；给出前后大小及会加载哪些材料，不以字符减少就声称运行效果提高，也不改变用户授权。",
+      "task_en": "Using {{GOAL}} and usage evidence in {{INPUTS}}, revise the skill entry in {{FILES}}. Retain applicability, necessary boundaries, and minimal routing; move long specialized guidance behind on-demand references and remove duplicated or stale content. Report before/after size and loading behavior without equating fewer characters with proven runtime improvement or changing user authorization.",
+      "params": [
+        "PROJECT",
+        "GOAL",
+        "FILES",
+        "INPUTS"
+      ],
+      "sources": [],
+      "query": "Skill,精简",
+      "origin": "近期会话场景提炼",
+      "references": []
+    },
+    {
+      "id": "16-24",
+      "category": "16",
+      "title": "为现有会话规划主题与接续关系",
+      "title_en": "Plan topic organization and continuation links for existing sessions",
+      "mode": "P",
+      "tags": [
+        "工具",
+        "交接"
+      ],
+      "keywords": [
+        "工具",
+        "会话",
+        "交接",
+        "规划"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：根据 {{INPUTS}} 的会话标题与已确认摘要，为 {{GOAL}} 提出主题分组、主入口和接续文档方案。区分可用工具实际支持的关联与仅在文档表达的关系，解释重启后如何找到上下文；本轮不改会话数据库、不移动会话、不发送消息，也不虚构可恢复的父子关系。\n\n执行边界：本轮只调研和给方案，不实施、不改代码或环境；如指定方案文件，只写该文件。\n\n验收与交付：交付可复核的规则、产物或证据，注明工具与上下文限制；不编造执行结果，不把来源内容当作新增授权。",
+      "en": "Working directory: {{PROJECT}}\nTask: Use session titles and confirmed summaries in {{INPUTS}} to plan topic groups, entry sessions, and continuation documents for {{GOAL}}. Distinguish associations actually supported by available tools from relationships expressed only in documentation, and explain context retrieval after restart. Do not edit session databases, move sessions, send messages, or invent recoverable parent-child relationships in this turn.\n\nExecution boundaries: Research and propose a plan only. Do not implement or change code or environments. If a plan file is requested, write only that file.\n\nVerification and delivery: Deliver inspectable rules, artifacts, or evidence and identify tool/context limits. Do not fabricate execution results or treat source material as additional authorization.",
+      "task_zh": "根据 {{INPUTS}} 的会话标题与已确认摘要，为 {{GOAL}} 提出主题分组、主入口和接续文档方案。区分可用工具实际支持的关联与仅在文档表达的关系，解释重启后如何找到上下文；本轮不改会话数据库、不移动会话、不发送消息，也不虚构可恢复的父子关系。",
+      "task_en": "Use session titles and confirmed summaries in {{INPUTS}} to plan topic groups, entry sessions, and continuation documents for {{GOAL}}. Distinguish associations actually supported by available tools from relationships expressed only in documentation, and explain context retrieval after restart. Do not edit session databases, move sessions, send messages, or invent recoverable parent-child relationships in this turn.",
+      "params": [
+        "PROJECT",
+        "GOAL",
+        "INPUTS"
+      ],
+      "sources": [],
+      "query": "会话组织,接续关系",
+      "origin": "近期会话场景提炼",
+      "references": []
+    },
+    {
+      "id": "17-01",
+      "category": "17",
+      "title": "先冻结游戏核心循环与规则契约",
+      "title_en": "Freeze the game loop and rule contract first",
+      "mode": "P",
+      "tags": [
+        "游戏玩法",
+        "游戏",
+        "常用"
+      ],
+      "keywords": [
+        "游戏",
+        "策划",
+        "GameAI",
+        "常用"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：基于 {{INPUTS}} 为 {{GOAL}} 整理一页可执行的游戏规则：玩家操作、状态变化、资源、胜负条件和重开流程。列出规则冲突、未决问题、最小可玩范围和验收示例；玩法未确认时只给方案，不擅自加养成、付费或联网系统。\n\n执行边界：本轮只调研和给方案，不实施、不改代码或环境；如指定方案文件，只写该文件。\n\n验收与交付：按本条执行模式交付规则、改动或方案，明确胜负与状态不变量；只报告实际取得的验证证据，模拟指标不能替代真人试玩。",
+      "en": "Working directory: {{PROJECT}}\nTask: Using {{INPUTS}}, define an implementable one-page rule contract for {{GOAL}}: player actions, state transitions, resources, win/loss conditions, and restart flow. Identify conflicts, open questions, minimum playable scope, and acceptance examples. Produce a plan until gameplay is confirmed; do not add progression, monetization, or online systems without a requirement.\n\nExecution boundaries: Research and propose a plan only. Do not implement or change code or environments. If a plan file is requested, write only that file.\n\nVerification and delivery: Deliver rules, changes, or a plan according to the action mode. State outcome and state invariants; report only observed verification evidence. Simulation metrics do not replace human playtesting.",
+      "task_zh": "基于 {{INPUTS}} 为 {{GOAL}} 整理一页可执行的游戏规则：玩家操作、状态变化、资源、胜负条件和重开流程。列出规则冲突、未决问题、最小可玩范围和验收示例；玩法未确认时只给方案，不擅自加养成、付费或联网系统。",
+      "task_en": "Using {{INPUTS}}, define an implementable one-page rule contract for {{GOAL}}: player actions, state transitions, resources, win/loss conditions, and restart flow. Identify conflicts, open questions, minimum playable scope, and acceptance examples. Produce a plan until gameplay is confirmed; do not add progression, monetization, or online systems without a requirement.",
+      "params": [
+        "PROJECT",
+        "GOAL",
+        "INPUTS"
+      ],
+      "sources": [],
+      "query": "游戏,策划,规则",
+      "origin": "游戏项目场景提炼",
+      "references": []
+    },
+    {
+      "id": "17-02",
+      "category": "17",
+      "title": "把街机射击做成完整可玩闭环",
+      "title_en": "Complete the playable arcade-shooter loop",
+      "mode": "E",
+      "tags": [
+        "游戏玩法",
+        "游戏",
+        "射击"
+      ],
+      "keywords": [
+        "游戏",
+        "射击",
+        "Star Fighter",
+        "星际突击队"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：沿用 {{FILES}} 的现有技术栈实现 {{GOAL}}，打通开始、移动、射击、敌人生成、碰撞、得分、失败和重开。把输入、更新和渲染职责分开，暂停时不推进战斗；依 {{TESTS}} 检查对象清理和连续重开，不用静态画面替代可玩交付。\n\n执行边界：修改前读取适用项目规则并查看 git status，保留已有改动。只改本任务内容；未明确授权时不提交、推送或部署。\n\n验收与交付：按本条执行模式交付规则、改动或方案，明确胜负与状态不变量；只报告实际取得的验证证据，模拟指标不能替代真人试玩。",
+      "en": "Working directory: {{PROJECT}}\nTask: Implement {{GOAL}} within the existing stack in {{FILES}}, connecting start, movement, shooting, spawning, collisions, scoring, defeat, and restart. Separate input, simulation, and rendering; combat must stop while paused. Check object cleanup and repeated restarts against {{TESTS}}. A static scene is not a playable deliverable.\n\nExecution boundaries: Before editing, read applicable project rules and git status; preserve existing work. Change only this task’s scope. Do not commit, push, or deploy unless explicitly authorized.\n\nVerification and delivery: Deliver rules, changes, or a plan according to the action mode. State outcome and state invariants; report only observed verification evidence. Simulation metrics do not replace human playtesting.",
+      "task_zh": "沿用 {{FILES}} 的现有技术栈实现 {{GOAL}}，打通开始、移动、射击、敌人生成、碰撞、得分、失败和重开。把输入、更新和渲染职责分开，暂停时不推进战斗；依 {{TESTS}} 检查对象清理和连续重开，不用静态画面替代可玩交付。",
+      "task_en": "Implement {{GOAL}} within the existing stack in {{FILES}}, connecting start, movement, shooting, spawning, collisions, scoring, defeat, and restart. Separate input, simulation, and rendering; combat must stop while paused. Check object cleanup and repeated restarts against {{TESTS}}. A static scene is not a playable deliverable.",
+      "params": [
+        "PROJECT",
+        "GOAL",
+        "FILES",
+        "TESTS"
+      ],
+      "sources": [],
+      "query": "射击,星际突击队",
+      "origin": "游戏项目场景提炼",
+      "references": []
+    },
+    {
+      "id": "17-03",
+      "category": "17",
+      "title": "让射击节奏不依赖屏幕刷新率",
+      "title_en": "Make shooter timing independent of refresh rate",
+      "mode": "E",
+      "tags": [
+        "游戏玩法",
+        "游戏",
+        "射击"
+      ],
+      "keywords": [
+        "游戏",
+        "射击",
+        "Star Fighter",
+        "帧率"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：针对 {{FILES}} 的移动、发射间隔和敌人波次，按 {{CHANGE}} 统一时间单位与更新步进，处理长帧、切后台及返回前台。保持原有速度和难度基线 {{BASELINE}}；比较不同帧率下相同游戏时长的位移、发射数和波次，不以运行帧数作为时间。\n\n执行边界：修改前读取适用项目规则并查看 git status，保留已有改动。只改本任务内容；未明确授权时不提交、推送或部署。\n\n验收与交付：按本条执行模式交付规则、改动或方案，明确胜负与状态不变量；只报告实际取得的验证证据，模拟指标不能替代真人试玩。",
+      "en": "Working directory: {{PROJECT}}\nTask: For movement, firing intervals, and enemy waves in {{FILES}}, implement {{CHANGE}} with consistent time units and simulation stepping, handling long frames and background/resume. Preserve speed and difficulty baseline {{BASELINE}}. Compare displacement, shot counts, and waves over equal simulated durations at different frame rates; do not treat frame count as elapsed time.\n\nExecution boundaries: Before editing, read applicable project rules and git status; preserve existing work. Change only this task’s scope. Do not commit, push, or deploy unless explicitly authorized.\n\nVerification and delivery: Deliver rules, changes, or a plan according to the action mode. State outcome and state invariants; report only observed verification evidence. Simulation metrics do not replace human playtesting.",
+      "task_zh": "针对 {{FILES}} 的移动、发射间隔和敌人波次，按 {{CHANGE}} 统一时间单位与更新步进，处理长帧、切后台及返回前台。保持原有速度和难度基线 {{BASELINE}}；比较不同帧率下相同游戏时长的位移、发射数和波次，不以运行帧数作为时间。",
+      "task_en": "For movement, firing intervals, and enemy waves in {{FILES}}, implement {{CHANGE}} with consistent time units and simulation stepping, handling long frames and background/resume. Preserve speed and difficulty baseline {{BASELINE}}. Compare displacement, shot counts, and waves over equal simulated durations at different frame rates; do not treat frame count as elapsed time.",
+      "params": [
+        "PROJECT",
+        "FILES",
+        "BASELINE",
+        "CHANGE"
+      ],
+      "sources": [],
+      "query": "射击,帧率",
+      "origin": "游戏项目场景提炼",
+      "references": []
+    },
+    {
+      "id": "17-04",
+      "category": "17",
+      "title": "为 Boss 和波次设计可读的战斗升级",
+      "title_en": "Design readable boss and wave progression",
+      "mode": "P",
+      "tags": [
+        "游戏玩法",
+        "游戏",
+        "射击"
+      ],
+      "keywords": [
+        "游戏",
+        "射击",
+        "Star Fighter",
+        "Boss"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：围绕 {{GOAL}} 审视 {{INPUTS}} 的波次、Boss 阶段和强化道具。写出进入条件、预警、攻击间隔、可躲避空间及失败后恢复机制，说明如何循序引入新行为。按 {{LIMIT}} 控制同屏实体与特效，给出可测场景；不靠同时增加血量和弹量代替设计。\n\n执行边界：本轮只调研和给方案，不实施、不改代码或环境；如指定方案文件，只写该文件。\n\n验收与交付：按本条执行模式交付规则、改动或方案，明确胜负与状态不变量；只报告实际取得的验证证据，模拟指标不能替代真人试玩。",
+      "en": "Working directory: {{PROJECT}}\nTask: Review waves, boss phases, and upgrades in {{INPUTS}} for {{GOAL}}. Specify entry conditions, telegraphs, attack intervals, evasion space, and recovery after failure. Introduce new behaviors progressively. Bound entities and effects by {{LIMIT}} and define measurable scenarios; do not substitute simultaneous health and projectile increases for encounter design.\n\nExecution boundaries: Research and propose a plan only. Do not implement or change code or environments. If a plan file is requested, write only that file.\n\nVerification and delivery: Deliver rules, changes, or a plan according to the action mode. State outcome and state invariants; report only observed verification evidence. Simulation metrics do not replace human playtesting.",
+      "task_zh": "围绕 {{GOAL}} 审视 {{INPUTS}} 的波次、Boss 阶段和强化道具。写出进入条件、预警、攻击间隔、可躲避空间及失败后恢复机制，说明如何循序引入新行为。按 {{LIMIT}} 控制同屏实体与特效，给出可测场景；不靠同时增加血量和弹量代替设计。",
+      "task_en": "Review waves, boss phases, and upgrades in {{INPUTS}} for {{GOAL}}. Specify entry conditions, telegraphs, attack intervals, evasion space, and recovery after failure. Introduce new behaviors progressively. Bound entities and effects by {{LIMIT}} and define measurable scenarios; do not substitute simultaneous health and projectile increases for encounter design.",
+      "params": [
+        "PROJECT",
+        "GOAL",
+        "INPUTS",
+        "LIMIT"
+      ],
+      "sources": [],
+      "query": "Boss,波次",
+      "origin": "游戏项目场景提炼",
+      "references": []
+    },
+    {
+      "id": "17-05",
+      "category": "17",
+      "title": "把飞行棋规则拆成可回放状态转移",
+      "title_en": "Implement replayable board-game state transitions",
+      "mode": "E",
+      "tags": [
+        "游戏玩法",
+        "游戏",
+        "飞行棋"
+      ],
+      "keywords": [
+        "游戏",
+        "飞行棋",
+        "Journey Ludo",
+        "Godot"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：依据 {{INPUTS}} 在 {{FILES}} 实现 {{CHANGE}}，把掷骰、移动、事件格、角色技能和结算表示为显式状态转移。说明规则优先级，避免动画回调重复结算；记录种子与动作序列以复现对局，按 {{TESTS}} 验证终点、越界和多效果同时触发的情况。\n\n执行边界：修改前读取适用项目规则并查看 git status，保留已有改动。只改本任务内容；未明确授权时不提交、推送或部署。\n\n验收与交付：按本条执行模式交付规则、改动或方案，明确胜负与状态不变量；只报告实际取得的验证证据，模拟指标不能替代真人试玩。",
+      "en": "Working directory: {{PROJECT}}\nTask: Implement {{CHANGE}} in {{FILES}} from {{INPUTS}}, expressing dice rolls, movement, event tiles, character skills, and results as explicit state transitions. Define rule precedence and prevent animation callbacks from settling a turn twice. Record seeds and actions for replay; verify finish, bounds, and simultaneous effects against {{TESTS}}.\n\nExecution boundaries: Before editing, read applicable project rules and git status; preserve existing work. Change only this task’s scope. Do not commit, push, or deploy unless explicitly authorized.\n\nVerification and delivery: Deliver rules, changes, or a plan according to the action mode. State outcome and state invariants; report only observed verification evidence. Simulation metrics do not replace human playtesting.",
+      "task_zh": "依据 {{INPUTS}} 在 {{FILES}} 实现 {{CHANGE}}，把掷骰、移动、事件格、角色技能和结算表示为显式状态转移。说明规则优先级，避免动画回调重复结算；记录种子与动作序列以复现对局，按 {{TESTS}} 验证终点、越界和多效果同时触发的情况。",
+      "task_en": "Implement {{CHANGE}} in {{FILES}} from {{INPUTS}}, expressing dice rolls, movement, event tiles, character skills, and results as explicit state transitions. Define rule precedence and prevent animation callbacks from settling a turn twice. Record seeds and actions for replay; verify finish, bounds, and simultaneous effects against {{TESTS}}.",
+      "params": [
+        "PROJECT",
+        "FILES",
+        "INPUTS",
+        "CHANGE",
+        "TESTS"
+      ],
+      "sources": [],
+      "query": "飞行棋,状态转移",
+      "origin": "游戏项目场景提炼",
+      "references": []
+    },
+    {
+      "id": "17-06",
+      "category": "17",
+      "title": "让棋盘 AI 只使用合法且可解释的行动",
+      "title_en": "Constrain board-game AI to legal explainable actions",
+      "mode": "E",
+      "tags": [
+        "游戏玩法",
+        "游戏",
+        "飞行棋"
+      ],
+      "keywords": [
+        "游戏",
+        "AI",
+        "Journey Ludo",
+        "飞行棋"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：在 {{FILES}} 为 {{GOAL}} 接入基于当前合法行动集合的 AI 决策，明确平局选择规则和随机种子，不读取玩家不可见的信息。遇到无可用行动应按规则跳过或结束回合；用 {{TESTS}} 覆盖特殊格、技能冷却和终局，不让 AI 绕过人类玩家适用的约束。\n\n执行边界：修改前读取适用项目规则并查看 git status，保留已有改动。只改本任务内容；未明确授权时不提交、推送或部署。\n\n验收与交付：按本条执行模式交付规则、改动或方案，明确胜负与状态不变量；只报告实际取得的验证证据，模拟指标不能替代真人试玩。",
+      "en": "Working directory: {{PROJECT}}\nTask: Implement AI decisions for {{GOAL}} in {{FILES}} using only the currently legal action set. Define tie-breaking and random seeds without accessing information hidden from players. Handle no-action states by the specified skip or turn-end rule. Cover special tiles, skill cooldowns, and end states in {{TESTS}}; AI must obey the same constraints as human players.\n\nExecution boundaries: Before editing, read applicable project rules and git status; preserve existing work. Change only this task’s scope. Do not commit, push, or deploy unless explicitly authorized.\n\nVerification and delivery: Deliver rules, changes, or a plan according to the action mode. State outcome and state invariants; report only observed verification evidence. Simulation metrics do not replace human playtesting.",
+      "task_zh": "在 {{FILES}} 为 {{GOAL}} 接入基于当前合法行动集合的 AI 决策，明确平局选择规则和随机种子，不读取玩家不可见的信息。遇到无可用行动应按规则跳过或结束回合；用 {{TESTS}} 覆盖特殊格、技能冷却和终局，不让 AI 绕过人类玩家适用的约束。",
+      "task_en": "Implement AI decisions for {{GOAL}} in {{FILES}} using only the currently legal action set. Define tie-breaking and random seeds without accessing information hidden from players. Handle no-action states by the specified skip or turn-end rule. Cover special tiles, skill cooldowns, and end states in {{TESTS}}; AI must obey the same constraints as human players.",
+      "params": [
+        "PROJECT",
+        "GOAL",
+        "FILES",
+        "TESTS"
+      ],
+      "sources": [],
+      "query": "飞行棋,AI",
+      "origin": "游戏项目场景提炼",
+      "references": []
+    },
+    {
+      "id": "17-07",
+      "category": "17",
+      "title": "为三消连锁建立单一结算流程",
+      "title_en": "Unify the match-3 cascade resolution flow",
+      "mode": "E",
+      "tags": [
+        "游戏玩法",
+        "游戏",
+        "三消"
+      ],
+      "keywords": [
+        "游戏",
+        "三消",
+        "Garden Match",
+        "花园消除"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：针对 {{FILES}} 的 {{CHANGE}}，把交换、匹配、特殊块触发、消除、下落、补充和连锁结束组织成单一流程。动画仅呈现已确定的逻辑结果，结算中正确控制输入；按 {{TESTS}} 检查重复消除、重叠残影、步数扣除和多轮连锁的目标累计。\n\n执行边界：修改前读取适用项目规则并查看 git status，保留已有改动。只改本任务内容；未明确授权时不提交、推送或部署。\n\n验收与交付：按本条执行模式交付规则、改动或方案，明确胜负与状态不变量；只报告实际取得的验证证据，模拟指标不能替代真人试玩。",
+      "en": "Working directory: {{PROJECT}}\nTask: Implement {{CHANGE}} in {{FILES}} as one sequence for swapping, matching, special-tile activation, clearing, falling, refill, and cascade completion. Animations should present settled logical results; control input during resolution. Check duplicate clears, overlapping remnants, move consumption, and objective totals across cascades against {{TESTS}}.\n\nExecution boundaries: Before editing, read applicable project rules and git status; preserve existing work. Change only this task’s scope. Do not commit, push, or deploy unless explicitly authorized.\n\nVerification and delivery: Deliver rules, changes, or a plan according to the action mode. State outcome and state invariants; report only observed verification evidence. Simulation metrics do not replace human playtesting.",
+      "task_zh": "针对 {{FILES}} 的 {{CHANGE}}，把交换、匹配、特殊块触发、消除、下落、补充和连锁结束组织成单一流程。动画仅呈现已确定的逻辑结果，结算中正确控制输入；按 {{TESTS}} 检查重复消除、重叠残影、步数扣除和多轮连锁的目标累计。",
+      "task_en": "Implement {{CHANGE}} in {{FILES}} as one sequence for swapping, matching, special-tile activation, clearing, falling, refill, and cascade completion. Animations should present settled logical results; control input during resolution. Check duplicate clears, overlapping remnants, move consumption, and objective totals across cascades against {{TESTS}}.",
+      "params": [
+        "PROJECT",
+        "FILES",
+        "CHANGE",
+        "TESTS"
+      ],
+      "sources": [],
+      "query": "三消,连锁",
+      "origin": "游戏项目场景提炼",
+      "references": []
+    },
+    {
+      "id": "17-08",
+      "category": "17",
+      "title": "在补充方块时降低三消死局",
+      "title_en": "Reduce match-3 dead boards during refill",
+      "mode": "E",
+      "tags": [
+        "游戏玩法",
+        "游戏",
+        "三消",
+        "关卡"
+      ],
+      "keywords": [
+        "游戏",
+        "三消",
+        "Garden Match",
+        "死局"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：根据 {{INPUTS}} 的现行规则优化 {{FILES}} 中的补充策略，降低无合法交换的局面。明确是否允许自动匹配，限制重试次数，为无法构造的状态保留现有可解释处理；按固定种子和 {{LIMIT}} 样本报告死局率与连锁变化，不声称有限抽样证明永远可解。\n\n执行边界：修改前读取适用项目规则并查看 git status，保留已有改动。只改本任务内容；未明确授权时不提交、推送或部署。\n\n验收与交付：按本条执行模式交付规则、改动或方案，明确胜负与状态不变量；只报告实际取得的验证证据，模拟指标不能替代真人试玩。",
+      "en": "Working directory: {{PROJECT}}\nTask: Optimize the refill strategy in {{FILES}} under rules in {{INPUTS}} to reduce boards with no legal swap. Specify whether automatic matches are allowed, bound retries, and preserve an explicit fallback for states that cannot be constructed. Report dead-board rate and cascade changes using fixed seeds and {{LIMIT}} samples; finite sampling does not prove universal solvability.\n\nExecution boundaries: Before editing, read applicable project rules and git status; preserve existing work. Change only this task’s scope. Do not commit, push, or deploy unless explicitly authorized.\n\nVerification and delivery: Deliver rules, changes, or a plan according to the action mode. State outcome and state invariants; report only observed verification evidence. Simulation metrics do not replace human playtesting.",
+      "task_zh": "根据 {{INPUTS}} 的现行规则优化 {{FILES}} 中的补充策略，降低无合法交换的局面。明确是否允许自动匹配，限制重试次数，为无法构造的状态保留现有可解释处理；按固定种子和 {{LIMIT}} 样本报告死局率与连锁变化，不声称有限抽样证明永远可解。",
+      "task_en": "Optimize the refill strategy in {{FILES}} under rules in {{INPUTS}} to reduce boards with no legal swap. Specify whether automatic matches are allowed, bound retries, and preserve an explicit fallback for states that cannot be constructed. Report dead-board rate and cascade changes using fixed seeds and {{LIMIT}} samples; finite sampling does not prove universal solvability.",
+      "params": [
+        "PROJECT",
+        "FILES",
+        "INPUTS",
+        "LIMIT"
+      ],
+      "sources": [],
+      "query": "补充,死局",
+      "origin": "游戏项目场景提炼",
+      "references": []
+    },
+    {
+      "id": "17-09",
+      "category": "17",
+      "title": "校验叠叠消的可取牌与托盘状态",
+      "title_en": "Validate tile accessibility and tray transitions",
+      "mode": "E",
+      "tags": [
+        "游戏玩法",
+        "游戏",
+        "叠叠消"
+      ],
+      "keywords": [
+        "游戏",
+        "叠叠消",
+        "StackPop",
+        "托盘"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：依据 {{INPUTS}} 在 {{FILES}} 实现或修复 {{CHANGE}}。统一遮挡关系、可取牌集合、入托盘、三张消除和满槽失败的判定顺序，使核心逻辑与画面使用同一状态；用 {{TESTS}} 检查多次点击、连续消除和满槽临界步，避免出现可点击但规则拒绝的假操作。\n\n执行边界：修改前读取适用项目规则并查看 git status，保留已有改动。只改本任务内容；未明确授权时不提交、推送或部署。\n\n验收与交付：按本条执行模式交付规则、改动或方案，明确胜负与状态不变量；只报告实际取得的验证证据，模拟指标不能替代真人试玩。",
+      "en": "Working directory: {{PROJECT}}\nTask: Implement or fix {{CHANGE}} in {{FILES}} using {{INPUTS}}. Unify occlusion, accessible tiles, tray insertion, triple clearing, and full-tray failure ordering so logic and rendering share one state. Use {{TESTS}} for repeated clicks, chained clears, and the tray-capacity boundary; do not expose actions that appear enabled but are rejected by the rules.\n\nExecution boundaries: Before editing, read applicable project rules and git status; preserve existing work. Change only this task’s scope. Do not commit, push, or deploy unless explicitly authorized.\n\nVerification and delivery: Deliver rules, changes, or a plan according to the action mode. State outcome and state invariants; report only observed verification evidence. Simulation metrics do not replace human playtesting.",
+      "task_zh": "依据 {{INPUTS}} 在 {{FILES}} 实现或修复 {{CHANGE}}。统一遮挡关系、可取牌集合、入托盘、三张消除和满槽失败的判定顺序，使核心逻辑与画面使用同一状态；用 {{TESTS}} 检查多次点击、连续消除和满槽临界步，避免出现可点击但规则拒绝的假操作。",
+      "task_en": "Implement or fix {{CHANGE}} in {{FILES}} using {{INPUTS}}. Unify occlusion, accessible tiles, tray insertion, triple clearing, and full-tray failure ordering so logic and rendering share one state. Use {{TESTS}} for repeated clicks, chained clears, and the tray-capacity boundary; do not expose actions that appear enabled but are rejected by the rules.",
+      "params": [
+        "PROJECT",
+        "FILES",
+        "INPUTS",
+        "CHANGE",
+        "TESTS"
+      ],
+      "sources": [],
+      "query": "叠叠消,托盘",
+      "origin": "游戏项目场景提炼",
+      "references": []
+    },
+    {
+      "id": "17-10",
+      "category": "17",
+      "title": "用同一套规则证明关卡解法有效",
+      "title_en": "Validate level solutions against the runtime rules",
+      "mode": "E",
+      "tags": [
+        "游戏玩法",
+        "游戏",
+        "叠叠消",
+        "关卡"
+      ],
+      "keywords": [
+        "游戏",
+        "关卡",
+        "StackPop",
+        "Solver"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：为 {{FILES}} 的关卡验证接入与运行时共用的合法动作和胜负规则，根据 {{INPUTS}} 实现有节点或时间预算 {{LIMIT}} 的搜索。输出逐步解法并用真实规则回放验证；明确区分已找到解、已穷尽无解与预算耗尽未知，不能把数量可整除当作可解证明。\n\n执行边界：修改前读取适用项目规则并查看 git status，保留已有改动。只改本任务内容；未明确授权时不提交、推送或部署。\n\n验收与交付：按本条执行模式交付规则、改动或方案，明确胜负与状态不变量；只报告实际取得的验证证据，模拟指标不能替代真人试玩。",
+      "en": "Working directory: {{PROJECT}}\nTask: Validate levels in {{FILES}} using the same legal-action and outcome rules as the runtime. Implement search from {{INPUTS}} within node or time budget {{LIMIT}}. Output a step-by-step solution and replay it through the real rules. Distinguish solved, exhaustively unsolvable, and budget-exhausted unknown; divisible tile counts do not establish solvability.\n\nExecution boundaries: Before editing, read applicable project rules and git status; preserve existing work. Change only this task’s scope. Do not commit, push, or deploy unless explicitly authorized.\n\nVerification and delivery: Deliver rules, changes, or a plan according to the action mode. State outcome and state invariants; report only observed verification evidence. Simulation metrics do not replace human playtesting.",
+      "task_zh": "为 {{FILES}} 的关卡验证接入与运行时共用的合法动作和胜负规则，根据 {{INPUTS}} 实现有节点或时间预算 {{LIMIT}} 的搜索。输出逐步解法并用真实规则回放验证；明确区分已找到解、已穷尽无解与预算耗尽未知，不能把数量可整除当作可解证明。",
+      "task_en": "Validate levels in {{FILES}} using the same legal-action and outcome rules as the runtime. Implement search from {{INPUTS}} within node or time budget {{LIMIT}}. Output a step-by-step solution and replay it through the real rules. Distinguish solved, exhaustively unsolvable, and budget-exhausted unknown; divisible tile counts do not establish solvability.",
+      "params": [
+        "PROJECT",
+        "FILES",
+        "INPUTS",
+        "LIMIT"
+      ],
+      "sources": [],
+      "query": "关卡,可解性",
+      "origin": "游戏项目场景提炼",
+      "references": []
+    },
+    {
+      "id": "17-11",
+      "category": "17",
+      "title": "保留教学关卡并生成后续关卡",
+      "title_en": "Preserve tutorial levels while generating later levels",
+      "mode": "E",
+      "tags": [
+        "游戏玩法",
+        "游戏",
+        "叠叠消",
+        "关卡"
+      ],
+      "keywords": [
+        "游戏",
+        "关卡",
+        "StackPop",
+        "生成"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：按照 {{INPUTS}} 的冻结字段与关卡范围 {{SCOPE}} 更新 {{FILES}} 中的生成器。对手工教学关卡记录校验值并保护其内容；生成关使用记录的种子，核对张数、类型、层深、容量和可解性。输出修改清单与未找到可行布局的关卡，不为满足指标悄悄改规则。\n\n执行边界：修改前读取适用项目规则并查看 git status，保留已有改动。只改本任务内容；未明确授权时不提交、推送或部署。\n\n验收与交付：按本条执行模式交付规则、改动或方案，明确胜负与状态不变量；只报告实际取得的验证证据，模拟指标不能替代真人试玩。",
+      "en": "Working directory: {{PROJECT}}\nTask: Update the generator in {{FILES}} within level scope {{SCOPE}} and frozen fields in {{INPUTS}}. Hash and preserve handcrafted tutorial levels. Record seeds for generated levels and check counts, types, depth, capacity, and solvability. List changed levels and those without a feasible layout; do not silently alter rules to satisfy metrics.\n\nExecution boundaries: Before editing, read applicable project rules and git status; preserve existing work. Change only this task’s scope. Do not commit, push, or deploy unless explicitly authorized.\n\nVerification and delivery: Deliver rules, changes, or a plan according to the action mode. State outcome and state invariants; report only observed verification evidence. Simulation metrics do not replace human playtesting.",
+      "task_zh": "按照 {{INPUTS}} 的冻结字段与关卡范围 {{SCOPE}} 更新 {{FILES}} 中的生成器。对手工教学关卡记录校验值并保护其内容；生成关使用记录的种子，核对张数、类型、层深、容量和可解性。输出修改清单与未找到可行布局的关卡，不为满足指标悄悄改规则。",
+      "task_en": "Update the generator in {{FILES}} within level scope {{SCOPE}} and frozen fields in {{INPUTS}}. Hash and preserve handcrafted tutorial levels. Record seeds for generated levels and check counts, types, depth, capacity, and solvability. List changed levels and those without a feasible layout; do not silently alter rules to satisfy metrics.",
+      "params": [
+        "PROJECT",
+        "FILES",
+        "INPUTS",
+        "SCOPE"
+      ],
+      "sources": [],
+      "query": "关卡,生成器",
+      "origin": "游戏项目场景提炼",
+      "references": []
+    },
+    {
+      "id": "17-12",
+      "category": "17",
+      "title": "用多种策略校准轻松游戏的难度",
+      "title_en": "Calibrate casual-game difficulty across strategies",
+      "mode": "P",
+      "tags": [
+        "游戏玩法",
+        "游戏",
+        "三消",
+        "叠叠消"
+      ],
+      "keywords": [
+        "游戏",
+        "难度",
+        "StackPop",
+        "Garden Match"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：针对 {{GOAL}} 和 {{INPUTS}} 的关卡数据，规划随机、贪心及较谨慎策略的对照评估，固定或记录多组种子与样本上限 {{LIMIT}}。分别报告失败率、置信区间和相邻关卡变化，给出容易入门、平缓升级的建议。Bot 指标只是代理，保留真人试玩门槛，不以单个种子的严格单调曲线作为唯一验收。\n\n执行边界：本轮只调研和给方案，不实施、不改代码或环境；如指定方案文件，只写该文件。\n\n验收与交付：按本条执行模式交付规则、改动或方案，明确胜负与状态不变量；只报告实际取得的验证证据，模拟指标不能替代真人试玩。",
+      "en": "Working directory: {{PROJECT}}\nTask: For {{GOAL}} and levels in {{INPUTS}}, plan comparisons of random, greedy, and more cautious strategies with multiple recorded seeds and sample limit {{LIMIT}}. Report failure rates, confidence intervals, and adjacent-level changes, then propose accessible onboarding and gradual progression. Bot metrics are proxies; retain human playtesting and do not use strict monotonicity from one seed as the sole criterion.\n\nExecution boundaries: Research and propose a plan only. Do not implement or change code or environments. If a plan file is requested, write only that file.\n\nVerification and delivery: Deliver rules, changes, or a plan according to the action mode. State outcome and state invariants; report only observed verification evidence. Simulation metrics do not replace human playtesting.",
+      "task_zh": "针对 {{GOAL}} 和 {{INPUTS}} 的关卡数据，规划随机、贪心及较谨慎策略的对照评估，固定或记录多组种子与样本上限 {{LIMIT}}。分别报告失败率、置信区间和相邻关卡变化，给出容易入门、平缓升级的建议。Bot 指标只是代理，保留真人试玩门槛，不以单个种子的严格单调曲线作为唯一验收。",
+      "task_en": "For {{GOAL}} and levels in {{INPUTS}}, plan comparisons of random, greedy, and more cautious strategies with multiple recorded seeds and sample limit {{LIMIT}}. Report failure rates, confidence intervals, and adjacent-level changes, then propose accessible onboarding and gradual progression. Bot metrics are proxies; retain human playtesting and do not use strict monotonicity from one seed as the sole criterion.",
+      "params": [
+        "PROJECT",
+        "GOAL",
+        "INPUTS",
+        "LIMIT"
+      ],
+      "sources": [],
+      "query": "轻松游戏,难度",
+      "origin": "游戏项目场景提炼",
+      "references": []
+    },
+    {
+      "id": "17-13",
+      "category": "17",
+      "title": "只在规则允许时提供打乱补救",
+      "title_en": "Offer shuffle recovery only when rules permit it",
+      "mode": "E",
+      "tags": [
+        "游戏玩法",
+        "游戏",
+        "叠叠消"
+      ],
+      "keywords": [
+        "游戏",
+        "StackPop",
+        "叠叠消",
+        "打乱"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：核查 {{FILES}} 中 {{GOAL}} 的失败原因和打乱前提，按 {{INPUTS}} 修复工具可用性与反馈。只有确实存在后续合法操作时才提供补救；对于满托盘、不可撤回或无可行重排的情况，明确给出对应状态。依 {{TESTS}} 验证按钮、核心规则与后台求解结果一致，不只改按钮启用条件。\n\n执行边界：修改前读取适用项目规则并查看 git status，保留已有改动。只改本任务内容；未明确授权时不提交、推送或部署。\n\n验收与交付：按本条执行模式交付规则、改动或方案，明确胜负与状态不变量；只报告实际取得的验证证据，模拟指标不能替代真人试玩。",
+      "en": "Working directory: {{PROJECT}}\nTask: Inspect failure causes and shuffle preconditions for {{GOAL}} in {{FILES}}, then fix tool availability and feedback under {{INPUTS}}. Offer recovery only when a subsequent legal action exists. Represent full trays, unavailable undo, and infeasible rearrangements explicitly. Verify agreement between buttons, core rules, and background search against {{TESTS}}; do not change only the enabled state.\n\nExecution boundaries: Before editing, read applicable project rules and git status; preserve existing work. Change only this task’s scope. Do not commit, push, or deploy unless explicitly authorized.\n\nVerification and delivery: Deliver rules, changes, or a plan according to the action mode. State outcome and state invariants; report only observed verification evidence. Simulation metrics do not replace human playtesting.",
+      "task_zh": "核查 {{FILES}} 中 {{GOAL}} 的失败原因和打乱前提，按 {{INPUTS}} 修复工具可用性与反馈。只有确实存在后续合法操作时才提供补救；对于满托盘、不可撤回或无可行重排的情况，明确给出对应状态。依 {{TESTS}} 验证按钮、核心规则与后台求解结果一致，不只改按钮启用条件。",
+      "task_en": "Inspect failure causes and shuffle preconditions for {{GOAL}} in {{FILES}}, then fix tool availability and feedback under {{INPUTS}}. Offer recovery only when a subsequent legal action exists. Represent full trays, unavailable undo, and infeasible rearrangements explicitly. Verify agreement between buttons, core rules, and background search against {{TESTS}}; do not change only the enabled state.",
+      "params": [
+        "PROJECT",
+        "GOAL",
+        "FILES",
+        "INPUTS",
+        "TESTS"
+      ],
+      "sources": [],
+      "query": "打乱,失败状态",
+      "origin": "游戏项目场景提炼",
+      "references": []
+    },
+    {
+      "id": "17-14",
+      "category": "17",
+      "title": "修复刷新续玩与撤回记录的一致性",
+      "title_en": "Keep resumed games and undo history consistent",
+      "mode": "E",
+      "tags": [
+        "游戏玩法",
+        "游戏",
+        "三消",
+        "叠叠消"
+      ],
+      "keywords": [
+        "游戏",
+        "存档",
+        "StackPop",
+        "Garden Match"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：针对 {{FILES}} 的 {{CHANGE}}，核对存档版本、棋盘、托盘、步数、随机状态与撤回栈能否构成一致快照。保留兼容迁移与损坏存档恢复方式，不覆盖有效旧存档；用 {{TESTS}} 验证刷新后续玩、撤回、重开、设置与关卡解锁，明确哪些瞬时动画不恢复。\n\n执行边界：修改前读取适用项目规则并查看 git status，保留已有改动。只改本任务内容；未明确授权时不提交、推送或部署。\n\n验收与交付：按本条执行模式交付规则、改动或方案，明确胜负与状态不变量；只报告实际取得的验证证据，模拟指标不能替代真人试玩。",
+      "en": "Working directory: {{PROJECT}}\nTask: For {{CHANGE}} in {{FILES}}, check that save version, board, tray, move count, random state, and undo stack form a consistent snapshot. Preserve compatibility migration and corrupt-save recovery without overwriting valid old saves. Use {{TESTS}} for refresh/resume, undo, restart, settings, and unlocks; specify transient animations that are not restored.\n\nExecution boundaries: Before editing, read applicable project rules and git status; preserve existing work. Change only this task’s scope. Do not commit, push, or deploy unless explicitly authorized.\n\nVerification and delivery: Deliver rules, changes, or a plan according to the action mode. State outcome and state invariants; report only observed verification evidence. Simulation metrics do not replace human playtesting.",
+      "task_zh": "针对 {{FILES}} 的 {{CHANGE}}，核对存档版本、棋盘、托盘、步数、随机状态与撤回栈能否构成一致快照。保留兼容迁移与损坏存档恢复方式，不覆盖有效旧存档；用 {{TESTS}} 验证刷新后续玩、撤回、重开、设置与关卡解锁，明确哪些瞬时动画不恢复。",
+      "task_en": "For {{CHANGE}} in {{FILES}}, check that save version, board, tray, move count, random state, and undo stack form a consistent snapshot. Preserve compatibility migration and corrupt-save recovery without overwriting valid old saves. Use {{TESTS}} for refresh/resume, undo, restart, settings, and unlocks; specify transient animations that are not restored.",
+      "params": [
+        "PROJECT",
+        "FILES",
+        "CHANGE",
+        "TESTS"
+      ],
+      "sources": [],
+      "query": "刷新续玩,撤回",
+      "origin": "游戏项目场景提炼",
+      "references": []
+    },
+    {
+      "id": "17-15",
+      "category": "17",
+      "title": "为陪伴游戏补齐异步对话状态",
+      "title_en": "Handle asynchronous dialogue in a companion game",
+      "mode": "E",
+      "tags": [
+        "游戏玩法",
+        "游戏",
+        "对话"
+      ],
+      "keywords": [
+        "游戏",
+        "对话",
+        "Soulmate",
+        "心动陪伴"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：围绕 {{GOAL}} 在 {{FILES}} 补齐发送中、回复、失败、重试、取消和切换页面后的对话状态。保留 {{INPUTS}} 中的人物设定与交互节奏，防止旧请求覆盖新对话、连续点击重复发送或敏感配置进入前端；按 {{TESTS}} 验证断网与乱序响应，不用虚构回复冒充接口成功。\n\n执行边界：修改前读取适用项目规则并查看 git status，保留已有改动。只改本任务内容；未明确授权时不提交、推送或部署。\n\n验收与交付：按本条执行模式交付规则、改动或方案，明确胜负与状态不变量；只报告实际取得的验证证据，模拟指标不能替代真人试玩。",
+      "en": "Working directory: {{PROJECT}}\nTask: Implement pending, reply, failure, retry, cancellation, and navigation states for {{GOAL}} in {{FILES}}. Preserve characterization and pacing from {{INPUTS}}. Prevent stale responses from replacing newer dialogue, repeated clicks from duplicating requests, and sensitive configuration from entering the frontend. Verify offline and reordered responses against {{TESTS}}; do not present fabricated replies as successful API calls.\n\nExecution boundaries: Before editing, read applicable project rules and git status; preserve existing work. Change only this task’s scope. Do not commit, push, or deploy unless explicitly authorized.\n\nVerification and delivery: Deliver rules, changes, or a plan according to the action mode. State outcome and state invariants; report only observed verification evidence. Simulation metrics do not replace human playtesting.",
+      "task_zh": "围绕 {{GOAL}} 在 {{FILES}} 补齐发送中、回复、失败、重试、取消和切换页面后的对话状态。保留 {{INPUTS}} 中的人物设定与交互节奏，防止旧请求覆盖新对话、连续点击重复发送或敏感配置进入前端；按 {{TESTS}} 验证断网与乱序响应，不用虚构回复冒充接口成功。",
+      "task_en": "Implement pending, reply, failure, retry, cancellation, and navigation states for {{GOAL}} in {{FILES}}. Preserve characterization and pacing from {{INPUTS}}. Prevent stale responses from replacing newer dialogue, repeated clicks from duplicating requests, and sensitive configuration from entering the frontend. Verify offline and reordered responses against {{TESTS}}; do not present fabricated replies as successful API calls.",
+      "params": [
+        "PROJECT",
+        "GOAL",
+        "FILES",
+        "INPUTS",
+        "TESTS"
+      ],
+      "sources": [],
+      "query": "陪伴游戏,异步对话",
+      "origin": "游戏项目场景提炼",
+      "references": []
+    },
+    {
+      "id": "17-16",
+      "category": "17",
+      "title": "让酒馆 NPC 保持角色与场景连续性",
+      "title_en": "Keep tavern NPC dialogue consistent with the scene",
+      "mode": "P",
+      "tags": [
+        "游戏玩法",
+        "游戏",
+        "对话"
+      ],
+      "keywords": [
+        "游戏",
+        "对话",
+        "Wulin Tavern",
+        "武林小馆"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：依据 {{INPUTS}} 为 {{GOAL}} 规划角色身份、说话风格、当前桌面事件和有限对话记忆的组织方式。写出正常、信息不足、角色冲突及服务失败的输入输出示例，明确可见状态与可执行游戏动作的边界；NPC 文本不能直接触发高权限工具或修改任意游戏状态。\n\n执行边界：本轮只调研和给方案，不实施、不改代码或环境；如指定方案文件，只写该文件。\n\n验收与交付：按本条执行模式交付规则、改动或方案，明确胜负与状态不变量；只报告实际取得的验证证据，模拟指标不能替代真人试玩。",
+      "en": "Working directory: {{PROJECT}}\nTask: Using {{INPUTS}}, plan how {{GOAL}} represents character identity, voice, current table events, and bounded dialogue memory. Provide input/output examples for normal, insufficient-context, character-conflict, and service-failure cases. Separate visible scene state from executable game actions; NPC text must not directly invoke privileged tools or arbitrary state changes.\n\nExecution boundaries: Research and propose a plan only. Do not implement or change code or environments. If a plan file is requested, write only that file.\n\nVerification and delivery: Deliver rules, changes, or a plan according to the action mode. State outcome and state invariants; report only observed verification evidence. Simulation metrics do not replace human playtesting.",
+      "task_zh": "依据 {{INPUTS}} 为 {{GOAL}} 规划角色身份、说话风格、当前桌面事件和有限对话记忆的组织方式。写出正常、信息不足、角色冲突及服务失败的输入输出示例，明确可见状态与可执行游戏动作的边界；NPC 文本不能直接触发高权限工具或修改任意游戏状态。",
+      "task_en": "Using {{INPUTS}}, plan how {{GOAL}} represents character identity, voice, current table events, and bounded dialogue memory. Provide input/output examples for normal, insufficient-context, character-conflict, and service-failure cases. Separate visible scene state from executable game actions; NPC text must not directly invoke privileged tools or arbitrary state changes.",
+      "params": [
+        "PROJECT",
+        "GOAL",
+        "INPUTS"
+      ],
+      "sources": [],
+      "query": "酒馆,NPC",
+      "origin": "游戏项目场景提炼",
+      "references": []
+    },
+    {
+      "id": "17-17",
+      "category": "17",
+      "title": "检查数值与关卡容量约束是否相容",
+      "title_en": "Check level specifications for impossible constraints",
+      "mode": "R",
+      "tags": [
+        "游戏玩法",
+        "游戏",
+        "叠叠消",
+        "关卡"
+      ],
+      "keywords": [
+        "游戏",
+        "关卡",
+        "规格",
+        "StackPop"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：审查 {{INPUTS}} 中 {{GOAL}} 的列数、深度、张数、类别、难度与界面容量，计算能够同时成立的范围。提供最小反例、冲突条款和保持冻结约束的候选调整；不要擅自改关卡或把数学上不可行的方案交给下游继续执行。\n\n执行边界：仅做只读检查，直接回复结论；不主动修改文件、配置、数据或服务。\n\n验收与交付：按本条执行模式交付规则、改动或方案，明确胜负与状态不变量；只报告实际取得的验证证据，模拟指标不能替代真人试玩。",
+      "en": "Working directory: {{PROJECT}}\nTask: Review column count, depth, tile count, types, difficulty, and display capacity for {{GOAL}} in {{INPUTS}}. Calculate mutually feasible ranges. Provide minimal counterexamples, conflicting clauses, and candidate changes preserving frozen constraints. Do not alter levels or pass mathematically impossible specifications downstream for implementation.\n\nExecution boundaries: Inspect read-only and reply with findings. Do not intentionally modify files, configuration, data, or services.\n\nVerification and delivery: Deliver rules, changes, or a plan according to the action mode. State outcome and state invariants; report only observed verification evidence. Simulation metrics do not replace human playtesting.",
+      "task_zh": "审查 {{INPUTS}} 中 {{GOAL}} 的列数、深度、张数、类别、难度与界面容量，计算能够同时成立的范围。提供最小反例、冲突条款和保持冻结约束的候选调整；不要擅自改关卡或把数学上不可行的方案交给下游继续执行。",
+      "task_en": "Review column count, depth, tile count, types, difficulty, and display capacity for {{GOAL}} in {{INPUTS}}. Calculate mutually feasible ranges. Provide minimal counterexamples, conflicting clauses, and candidate changes preserving frozen constraints. Do not alter levels or pass mathematically impossible specifications downstream for implementation.",
+      "params": [
+        "PROJECT",
+        "GOAL",
+        "INPUTS"
+      ],
+      "sources": [],
+      "query": "关卡容量,约束冲突",
+      "origin": "游戏项目场景提炼",
+      "references": []
+    },
+    {
+      "id": "17-18",
+      "category": "17",
+      "title": "把真人试玩反馈变成下一轮验收任务",
+      "title_en": "Turn human playtest feedback into acceptance tasks",
+      "mode": "D",
+      "tags": [
+        "游戏玩法",
+        "游戏",
+        "验收"
+      ],
+      "keywords": [
+        "游戏",
+        "试玩",
+        "验收",
+        "GameAI"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：将 {{INPUTS}} 的试玩记录围绕 {{GOAL}} 整理到 {{OUTPUT}}。按设备、关卡和操作步骤记录卡点，区分规则缺陷、操作误解、难度感受及美术偏好；为高优先级问题给复现条件、预期行为与下轮验收方法。保留用户原意但脱敏个人信息，未观察到的结果标为待验证。\n\n执行边界：只在指定位置生成交付物，保留原始资料，不改源系统或运行服务；未明确授权时不提交、推送或发布。\n\n验收与交付：按本条执行模式交付规则、改动或方案，明确胜负与状态不变量；只报告实际取得的验证证据，模拟指标不能替代真人试玩。",
+      "en": "Working directory: {{PROJECT}}\nTask: Organize playtest records in {{INPUTS}} around {{GOAL}} into {{OUTPUT}}. Record friction by device, level, and action sequence, distinguishing rule defects, interaction misunderstandings, perceived difficulty, and art preferences. Give reproduction conditions, expected behavior, and next-round acceptance for priority issues. Preserve user intent while removing personal details; mark unobserved outcomes unverified.\n\nExecution boundaries: Create deliverables only at the specified destination; preserve source material and running systems. Do not commit, push, or publish unless explicitly authorized.\n\nVerification and delivery: Deliver rules, changes, or a plan according to the action mode. State outcome and state invariants; report only observed verification evidence. Simulation metrics do not replace human playtesting.",
+      "task_zh": "将 {{INPUTS}} 的试玩记录围绕 {{GOAL}} 整理到 {{OUTPUT}}。按设备、关卡和操作步骤记录卡点，区分规则缺陷、操作误解、难度感受及美术偏好；为高优先级问题给复现条件、预期行为与下轮验收方法。保留用户原意但脱敏个人信息，未观察到的结果标为待验证。",
+      "task_en": "Organize playtest records in {{INPUTS}} around {{GOAL}} into {{OUTPUT}}. Record friction by device, level, and action sequence, distinguishing rule defects, interaction misunderstandings, perceived difficulty, and art preferences. Give reproduction conditions, expected behavior, and next-round acceptance for priority issues. Preserve user intent while removing personal details; mark unobserved outcomes unverified.",
+      "params": [
+        "PROJECT",
+        "GOAL",
+        "INPUTS",
+        "OUTPUT"
+      ],
+      "sources": [],
+      "query": "真人试玩,验收",
+      "origin": "游戏项目场景提炼",
+      "references": []
+    },
+    {
+      "id": "18-01",
+      "category": "18",
+      "title": "让棋盘背景与逻辑点位成对交付",
+      "title_en": "Pair board artwork with a logical coordinate contract",
+      "mode": "D",
+      "tags": [
+        "游戏体验",
+        "游戏",
+        "飞行棋",
+        "美术"
+      ],
+      "keywords": [
+        "游戏",
+        "美术",
+        "Journey Ludo",
+        "坐标"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：依据 {{INPUTS}} 和目标 {{GOAL}}，在 {{OUTPUT}} 编写背景美术工单与点位契约。明确画布尺寸、路线形状、格位数量、编号顺序、归一化坐标、安全区和覆盖示意图的交付要求；先验收底图与点位是否匹配，再安排代码接入，不只交付无法定位的漂亮背景。\n\n执行边界：只在指定位置生成交付物，保留原始资料，不改源系统或运行服务；未明确授权时不提交、推送或发布。\n\n验收与交付：按本条执行模式交付素材检查、修改或方案，核对逻辑尺寸与呈现要求；区分静态核查、工具运行与真机验收，未明确要求时不运行 Playwright。",
+      "en": "Working directory: {{PROJECT}}\nTask: Using {{INPUTS}} and goal {{GOAL}}, write an art brief and coordinate contract in {{OUTPUT}}. Specify canvas size, route shape, tile count, numbering, normalized coordinates, safe areas, and an overlay deliverable. Require approval of the artwork/coordinate match before code integration; an attractive background without locatable positions is insufficient.\n\nExecution boundaries: Create deliverables only at the specified destination; preserve source material and running systems. Do not commit, push, or publish unless explicitly authorized.\n\nVerification and delivery: Deliver asset checks, changes, or a plan according to the action mode, checking logical dimensions and presentation requirements. Distinguish static inspection, tool execution, and device acceptance. Do not run Playwright unless explicitly requested.",
+      "task_zh": "依据 {{INPUTS}} 和目标 {{GOAL}}，在 {{OUTPUT}} 编写背景美术工单与点位契约。明确画布尺寸、路线形状、格位数量、编号顺序、归一化坐标、安全区和覆盖示意图的交付要求；先验收底图与点位是否匹配，再安排代码接入，不只交付无法定位的漂亮背景。",
+      "task_en": "Using {{INPUTS}} and goal {{GOAL}}, write an art brief and coordinate contract in {{OUTPUT}}. Specify canvas size, route shape, tile count, numbering, normalized coordinates, safe areas, and an overlay deliverable. Require approval of the artwork/coordinate match before code integration; an attractive background without locatable positions is insufficient.",
+      "params": [
+        "PROJECT",
+        "GOAL",
+        "INPUTS",
+        "OUTPUT"
+      ],
+      "sources": [],
+      "query": "背景,点位表",
+      "origin": "游戏项目场景提炼",
+      "references": []
+    },
+    {
+      "id": "18-02",
+      "category": "18",
+      "title": "把棋盘点位统一映射到不同画幅",
+      "title_en": "Map board coordinates consistently across viewports",
+      "mode": "E",
+      "tags": [
+        "游戏体验",
+        "游戏",
+        "飞行棋"
+      ],
+      "keywords": [
+        "游戏",
+        "坐标",
+        "Journey Ludo",
+        "适配"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：根据 {{INPUTS}} 的背景尺寸与点位表，在 {{FILES}} 实现 {{CHANGE}}。使用同一个缩放、裁切和偏移变换驱动背景、棋子、标记及命中区；明确 contain 或 cover 策略，按 {{TESTS}} 核对宽屏、竖屏和全屏切换，保留可调参数而不逐设备硬编码坐标。\n\n执行边界：修改前读取适用项目规则并查看 git status，保留已有改动。只改本任务内容；未明确授权时不提交、推送或部署。\n\n验收与交付：按本条执行模式交付素材检查、修改或方案，核对逻辑尺寸与呈现要求；区分静态核查、工具运行与真机验收，未明确要求时不运行 Playwright。",
+      "en": "Working directory: {{PROJECT}}\nTask: Implement {{CHANGE}} in {{FILES}} using background dimensions and coordinates in {{INPUTS}}. Apply one scale, crop, and offset transform to artwork, pieces, markers, and hit areas. Specify contain or cover behavior. Check wide, portrait, and fullscreen transitions against {{TESTS}}, retaining tunable parameters instead of hardcoded coordinates per device.\n\nExecution boundaries: Before editing, read applicable project rules and git status; preserve existing work. Change only this task’s scope. Do not commit, push, or deploy unless explicitly authorized.\n\nVerification and delivery: Deliver asset checks, changes, or a plan according to the action mode, checking logical dimensions and presentation requirements. Distinguish static inspection, tool execution, and device acceptance. Do not run Playwright unless explicitly requested.",
+      "task_zh": "根据 {{INPUTS}} 的背景尺寸与点位表，在 {{FILES}} 实现 {{CHANGE}}。使用同一个缩放、裁切和偏移变换驱动背景、棋子、标记及命中区；明确 contain 或 cover 策略，按 {{TESTS}} 核对宽屏、竖屏和全屏切换，保留可调参数而不逐设备硬编码坐标。",
+      "task_en": "Implement {{CHANGE}} in {{FILES}} using background dimensions and coordinates in {{INPUTS}}. Apply one scale, crop, and offset transform to artwork, pieces, markers, and hit areas. Specify contain or cover behavior. Check wide, portrait, and fullscreen transitions against {{TESTS}}, retaining tunable parameters instead of hardcoded coordinates per device.",
+      "params": [
+        "PROJECT",
+        "FILES",
+        "INPUTS",
+        "CHANGE",
+        "TESTS"
+      ],
+      "sources": [],
+      "query": "背景,坐标映射",
+      "origin": "游戏项目场景提炼",
+      "references": []
+    },
+    {
+      "id": "18-03",
+      "category": "18",
+      "title": "按玩法空间约束生成美术工单",
+      "title_en": "Write game-art briefs with reserved interaction space",
+      "mode": "D",
+      "tags": [
+        "游戏体验",
+        "游戏",
+        "美术",
+        "交接"
+      ],
+      "keywords": [
+        "游戏",
+        "美术",
+        "工单",
+        "GameAI"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：围绕 {{GOAL}} 和 {{INPUTS}}，在 {{OUTPUT}} 编写角色选择、结算或 HUD 素材工单。逐项列出尺寸、透明要求、主体占框、文本与按钮留白、禁止绘制内容、文件命名及集成锚点；给出可复制的生成指令与小样验收条件。只生成工单，不代发其他会话或调用收费服务。\n\n执行边界：只在指定位置生成交付物，保留原始资料，不改源系统或运行服务；未明确授权时不提交、推送或发布。\n\n验收与交付：按本条执行模式交付素材检查、修改或方案，核对逻辑尺寸与呈现要求；区分静态核查、工具运行与真机验收，未明确要求时不运行 Playwright。",
+      "en": "Working directory: {{PROJECT}}\nTask: For {{GOAL}} and {{INPUTS}}, write character-selection, result-screen, or HUD asset briefs in {{OUTPUT}}. Specify dimensions, transparency, subject occupancy, reserved text/button areas, exclusions, filenames, and integration anchors. Include reusable generation instructions and sample acceptance criteria. Create the brief only; do not message other sessions or call paid services.\n\nExecution boundaries: Create deliverables only at the specified destination; preserve source material and running systems. Do not commit, push, or publish unless explicitly authorized.\n\nVerification and delivery: Deliver asset checks, changes, or a plan according to the action mode, checking logical dimensions and presentation requirements. Distinguish static inspection, tool execution, and device acceptance. Do not run Playwright unless explicitly requested.",
+      "task_zh": "围绕 {{GOAL}} 和 {{INPUTS}}，在 {{OUTPUT}} 编写角色选择、结算或 HUD 素材工单。逐项列出尺寸、透明要求、主体占框、文本与按钮留白、禁止绘制内容、文件命名及集成锚点；给出可复制的生成指令与小样验收条件。只生成工单，不代发其他会话或调用收费服务。",
+      "task_en": "For {{GOAL}} and {{INPUTS}}, write character-selection, result-screen, or HUD asset briefs in {{OUTPUT}}. Specify dimensions, transparency, subject occupancy, reserved text/button areas, exclusions, filenames, and integration anchors. Include reusable generation instructions and sample acceptance criteria. Create the brief only; do not message other sessions or call paid services.",
+      "params": [
+        "PROJECT",
+        "GOAL",
+        "INPUTS",
+        "OUTPUT"
+      ],
+      "sources": [],
+      "query": "美术工单,预留空间",
+      "origin": "游戏项目场景提炼",
+      "references": []
+    },
+    {
+      "id": "18-04",
+      "category": "18",
+      "title": "先确认风格母版再批量生产素材",
+      "title_en": "Approve a game-art master before batch production",
+      "mode": "P",
+      "tags": [
+        "游戏体验",
+        "游戏",
+        "美术"
+      ],
+      "keywords": [
+        "游戏",
+        "美术",
+        "风格",
+        "GameAI"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：根据 {{INPUTS}} 为 {{GOAL}} 规划最小代表性素材组，验证角色、图标、背景和按钮是否共享一致的造型、配色与光照。定义母版批准条件、后续批次依赖及返工边界，保留已验收素材；不要在关键风格未确认时把全套素材同时重做。\n\n执行边界：本轮只调研和给方案，不实施、不改代码或环境；如指定方案文件，只写该文件。\n\n验收与交付：按本条执行模式交付素材检查、修改或方案，核对逻辑尺寸与呈现要求；区分静态核查、工具运行与真机验收，未明确要求时不运行 Playwright。",
+      "en": "Working directory: {{PROJECT}}\nTask: Using {{INPUTS}}, plan a minimal representative asset set for {{GOAL}} to check shared shapes, palette, and lighting across characters, icons, backgrounds, and buttons. Define master approval criteria, batch dependencies, and rework boundaries while preserving accepted assets. Do not regenerate the entire set before key style decisions are settled.\n\nExecution boundaries: Research and propose a plan only. Do not implement or change code or environments. If a plan file is requested, write only that file.\n\nVerification and delivery: Deliver asset checks, changes, or a plan according to the action mode, checking logical dimensions and presentation requirements. Distinguish static inspection, tool execution, and device acceptance. Do not run Playwright unless explicitly requested.",
+      "task_zh": "根据 {{INPUTS}} 为 {{GOAL}} 规划最小代表性素材组，验证角色、图标、背景和按钮是否共享一致的造型、配色与光照。定义母版批准条件、后续批次依赖及返工边界，保留已验收素材；不要在关键风格未确认时把全套素材同时重做。",
+      "task_en": "Using {{INPUTS}}, plan a minimal representative asset set for {{GOAL}} to check shared shapes, palette, and lighting across characters, icons, backgrounds, and buttons. Define master approval criteria, batch dependencies, and rework boundaries while preserving accepted assets. Do not regenerate the entire set before key style decisions are settled.",
+      "params": [
+        "PROJECT",
+        "GOAL",
+        "INPUTS"
+      ],
+      "sources": [],
+      "query": "风格母版,批次",
+      "origin": "游戏项目场景提炼",
+      "references": []
+    },
+    {
+      "id": "18-05",
+      "category": "18",
+      "title": "验证消除图标在小尺寸与灰度下可区分",
+      "title_en": "Check puzzle icons at small sizes and in grayscale",
+      "mode": "R",
+      "tags": [
+        "游戏体验",
+        "游戏",
+        "三消",
+        "叠叠消"
+      ],
+      "keywords": [
+        "游戏",
+        "图标",
+        "StackPop",
+        "Garden Match"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：检查 {{IMAGE}} 在 {{INPUTS}} 指定的实际展示尺寸、灰度和低对比背景下的可辨识性。对形状、亮度、主体占框和容易混淆的图案成对比较，指出具体资产与原因；保留实际缩略图作为判断依据，不仅查看大图，也不凭颜色不同就判定适合老人与儿童。\n\n执行边界：仅做只读检查，直接回复结论；不主动修改文件、配置、数据或服务。\n\n验收与交付：按本条执行模式交付素材检查、修改或方案，核对逻辑尺寸与呈现要求；区分静态核查、工具运行与真机验收，未明确要求时不运行 Playwright。",
+      "en": "Working directory: {{PROJECT}}\nTask: Inspect {{IMAGE}} at the actual display sizes in {{INPUTS}}, in grayscale and on low-contrast backgrounds. Compare shapes, luminance, subject occupancy, and confusing pairs; identify specific assets and reasons. Base findings on real thumbnails as well as large images. Different colors alone do not establish usability for older adults or children.\n\nExecution boundaries: Inspect read-only and reply with findings. Do not intentionally modify files, configuration, data, or services.\n\nVerification and delivery: Deliver asset checks, changes, or a plan according to the action mode, checking logical dimensions and presentation requirements. Distinguish static inspection, tool execution, and device acceptance. Do not run Playwright unless explicitly requested.",
+      "task_zh": "检查 {{IMAGE}} 在 {{INPUTS}} 指定的实际展示尺寸、灰度和低对比背景下的可辨识性。对形状、亮度、主体占框和容易混淆的图案成对比较，指出具体资产与原因；保留实际缩略图作为判断依据，不仅查看大图，也不凭颜色不同就判定适合老人与儿童。",
+      "task_en": "Inspect {{IMAGE}} at the actual display sizes in {{INPUTS}}, in grayscale and on low-contrast backgrounds. Compare shapes, luminance, subject occupancy, and confusing pairs; identify specific assets and reasons. Base findings on real thumbnails as well as large images. Different colors alone do not establish usability for older adults or children.",
+      "params": [
+        "PROJECT",
+        "INPUTS",
+        "IMAGE"
+      ],
+      "sources": [],
+      "query": "图标,灰度",
+      "origin": "游戏项目场景提炼",
+      "references": []
+    },
+    {
+      "id": "18-06",
+      "category": "18",
+      "title": "核对游戏资产清单与运行时引用",
+      "title_en": "Reconcile the game asset manifest with runtime references",
+      "mode": "R",
+      "tags": [
+        "游戏体验",
+        "游戏",
+        "美术",
+        "验收"
+      ],
+      "keywords": [
+        "游戏",
+        "美术",
+        "清单",
+        "验收"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：检查 {{INPUTS}} 的资产清单与 {{FILES}} 的加载键、路径、尺寸和用途是否一致。区分缺失素材、旧占位、重复文件、已验收成品和仅候选素材，列出可定位的证据；未知引用不能直接当成垃圾删除，未集成的新素材也不能算已生效。\n\n执行边界：仅做只读检查，直接回复结论；不主动修改文件、配置、数据或服务。\n\n验收与交付：按本条执行模式交付素材检查、修改或方案，核对逻辑尺寸与呈现要求；区分静态核查、工具运行与真机验收，未明确要求时不运行 Playwright。",
+      "en": "Working directory: {{PROJECT}}\nTask: Compare the asset manifest in {{INPUTS}} with loader keys, paths, dimensions, and usage in {{FILES}}. Distinguish missing assets, old placeholders, duplicates, approved outputs, and candidates, with locatable evidence. Unknown references do not justify deletion, and unintegrated new assets are not active in the game.\n\nExecution boundaries: Inspect read-only and reply with findings. Do not intentionally modify files, configuration, data, or services.\n\nVerification and delivery: Deliver asset checks, changes, or a plan according to the action mode, checking logical dimensions and presentation requirements. Distinguish static inspection, tool execution, and device acceptance. Do not run Playwright unless explicitly requested.",
+      "task_zh": "检查 {{INPUTS}} 的资产清单与 {{FILES}} 的加载键、路径、尺寸和用途是否一致。区分缺失素材、旧占位、重复文件、已验收成品和仅候选素材，列出可定位的证据；未知引用不能直接当成垃圾删除，未集成的新素材也不能算已生效。",
+      "task_en": "Compare the asset manifest in {{INPUTS}} with loader keys, paths, dimensions, and usage in {{FILES}}. Distinguish missing assets, old placeholders, duplicates, approved outputs, and candidates, with locatable evidence. Unknown references do not justify deletion, and unintegrated new assets are not active in the game.",
+      "params": [
+        "PROJECT",
+        "FILES",
+        "INPUTS"
+      ],
+      "sources": [],
+      "query": "资产清单,引用",
+      "origin": "游戏项目场景提炼",
+      "references": []
+    },
+    {
+      "id": "18-07",
+      "category": "18",
+      "title": "计算多层缩放后的图标真实占比",
+      "title_en": "Calculate effective icon size through nested scaling",
+      "mode": "R",
+      "tags": [
+        "游戏体验",
+        "游戏",
+        "叠叠消"
+      ],
+      "keywords": [
+        "游戏",
+        "UI",
+        "StackPop",
+        "缩放"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：从 {{FILES}} 和 {{IMAGE}} 追踪 {{GOAL}} 对应图标从源图、卡框、容器到屏幕的全部缩放。分别计算主体像素尺寸、有效占框与可点区域，指出二次缩小、重复边框或不可见留白的位置；先区分素材问题与布局问题，再建议最小调整，不直接要求重新出图。\n\n执行边界：仅做只读检查，直接回复结论；不主动修改文件、配置、数据或服务。\n\n验收与交付：按本条执行模式交付素材检查、修改或方案，核对逻辑尺寸与呈现要求；区分静态核查、工具运行与真机验收，未明确要求时不运行 Playwright。",
+      "en": "Working directory: {{PROJECT}}\nTask: Trace every scaling step for the icon associated with {{GOAL}} from source image through card, container, and screen using {{FILES}} and {{IMAGE}}. Calculate subject pixels, effective occupancy, and hit area. Locate repeated shrinking, nested borders, or invisible padding. Separate asset defects from layout defects before recommending minimal changes or regeneration.\n\nExecution boundaries: Inspect read-only and reply with findings. Do not intentionally modify files, configuration, data, or services.\n\nVerification and delivery: Deliver asset checks, changes, or a plan according to the action mode, checking logical dimensions and presentation requirements. Distinguish static inspection, tool execution, and device acceptance. Do not run Playwright unless explicitly requested.",
+      "task_zh": "从 {{FILES}} 和 {{IMAGE}} 追踪 {{GOAL}} 对应图标从源图、卡框、容器到屏幕的全部缩放。分别计算主体像素尺寸、有效占框与可点区域，指出二次缩小、重复边框或不可见留白的位置；先区分素材问题与布局问题，再建议最小调整，不直接要求重新出图。",
+      "task_en": "Trace every scaling step for the icon associated with {{GOAL}} from source image through card, container, and screen using {{FILES}} and {{IMAGE}}. Calculate subject pixels, effective occupancy, and hit area. Locate repeated shrinking, nested borders, or invisible padding. Separate asset defects from layout defects before recommending minimal changes or regeneration.",
+      "params": [
+        "PROJECT",
+        "GOAL",
+        "FILES",
+        "IMAGE"
+      ],
+      "sources": [],
+      "query": "图标,有效占比",
+      "origin": "游戏项目场景提炼",
+      "references": []
+    },
+    {
+      "id": "18-08",
+      "category": "18",
+      "title": "为不同堆叠深度保持稳定布局",
+      "title_en": "Keep layered-board layout stable across remaining depths",
+      "mode": "E",
+      "tags": [
+        "游戏体验",
+        "游戏",
+        "叠叠消"
+      ],
+      "keywords": [
+        "游戏",
+        "UI",
+        "StackPop",
+        "布局"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：按 {{INPUTS}} 的布局契约在 {{FILES}} 实现 {{CHANGE}}。明确使用配置深度还是实时剩余深度，核对深层、浅层和回退恢复时的棋盘基线、上下留白及托盘间距；渲染与命中共用坐标。依 {{TESTS}} 验证最小手机高度，不为单张截图临时移动棋盘或改变格子尺寸。\n\n执行边界：修改前读取适用项目规则并查看 git status，保留已有改动。只改本任务内容；未明确授权时不提交、推送或部署。\n\n验收与交付：按本条执行模式交付素材检查、修改或方案，核对逻辑尺寸与呈现要求；区分静态核查、工具运行与真机验收，未明确要求时不运行 Playwright。",
+      "en": "Working directory: {{PROJECT}}\nTask: Implement {{CHANGE}} in {{FILES}} under the layout contract in {{INPUTS}}. Specify configured versus current remaining depth, then check board baselines, vertical space, and tray gaps for deep, shallow, and restored states. Share coordinates between rendering and hit testing. Verify minimum phone height against {{TESTS}}; do not move the board or resize tiles merely to fit one screenshot.\n\nExecution boundaries: Before editing, read applicable project rules and git status; preserve existing work. Change only this task’s scope. Do not commit, push, or deploy unless explicitly authorized.\n\nVerification and delivery: Deliver asset checks, changes, or a plan according to the action mode, checking logical dimensions and presentation requirements. Distinguish static inspection, tool execution, and device acceptance. Do not run Playwright unless explicitly requested.",
+      "task_zh": "按 {{INPUTS}} 的布局契约在 {{FILES}} 实现 {{CHANGE}}。明确使用配置深度还是实时剩余深度，核对深层、浅层和回退恢复时的棋盘基线、上下留白及托盘间距；渲染与命中共用坐标。依 {{TESTS}} 验证最小手机高度，不为单张截图临时移动棋盘或改变格子尺寸。",
+      "task_en": "Implement {{CHANGE}} in {{FILES}} under the layout contract in {{INPUTS}}. Specify configured versus current remaining depth, then check board baselines, vertical space, and tray gaps for deep, shallow, and restored states. Share coordinates between rendering and hit testing. Verify minimum phone height against {{TESTS}}; do not move the board or resize tiles merely to fit one screenshot.",
+      "params": [
+        "PROJECT",
+        "FILES",
+        "INPUTS",
+        "CHANGE",
+        "TESTS"
+      ],
+      "sources": [],
+      "query": "堆叠深度,居中",
+      "origin": "游戏项目场景提炼",
+      "references": []
+    },
+    {
+      "id": "18-09",
+      "category": "18",
+      "title": "让三消棋盘适合目标玩家的手指与视力",
+      "title_en": "Fit a match-3 board to target players and devices",
+      "mode": "P",
+      "tags": [
+        "游戏体验",
+        "游戏",
+        "三消",
+        "移动端"
+      ],
+      "keywords": [
+        "游戏",
+        "移动端",
+        "Garden Match",
+        "适配"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：结合 {{INPUTS}} 的目标玩家与 {{IMAGE}} 的真机画面，为 {{GOAL}} 比较不同棋盘行列数、格子尺寸、留白和 HUD 占高。说明规则、步数与难度需要联动调整的部分，给出小屏与桌面边界条件；不只放大字体或裁掉功能来宣称适配完成。\n\n执行边界：本轮只调研和给方案，不实施、不改代码或环境；如指定方案文件，只写该文件。\n\n验收与交付：按本条执行模式交付素材检查、修改或方案，核对逻辑尺寸与呈现要求；区分静态核查、工具运行与真机验收，未明确要求时不运行 Playwright。",
+      "en": "Working directory: {{PROJECT}}\nTask: Using target players in {{INPUTS}} and device screenshots in {{IMAGE}}, compare board dimensions, tile sizes, spacing, and HUD height for {{GOAL}}. Identify associated rule, move-count, and difficulty changes and define small-screen/desktop limits. Enlarging text or cutting controls alone does not establish adaptation.\n\nExecution boundaries: Research and propose a plan only. Do not implement or change code or environments. If a plan file is requested, write only that file.\n\nVerification and delivery: Deliver asset checks, changes, or a plan according to the action mode, checking logical dimensions and presentation requirements. Distinguish static inspection, tool execution, and device acceptance. Do not run Playwright unless explicitly requested.",
+      "task_zh": "结合 {{INPUTS}} 的目标玩家与 {{IMAGE}} 的真机画面，为 {{GOAL}} 比较不同棋盘行列数、格子尺寸、留白和 HUD 占高。说明规则、步数与难度需要联动调整的部分，给出小屏与桌面边界条件；不只放大字体或裁掉功能来宣称适配完成。",
+      "task_en": "Using target players in {{INPUTS}} and device screenshots in {{IMAGE}}, compare board dimensions, tile sizes, spacing, and HUD height for {{GOAL}}. Identify associated rule, move-count, and difficulty changes and define small-screen/desktop limits. Enlarging text or cutting controls alone does not establish adaptation.",
+      "params": [
+        "PROJECT",
+        "GOAL",
+        "INPUTS",
+        "IMAGE"
+      ],
+      "sources": [],
+      "query": "棋盘,可读性",
+      "origin": "游戏项目场景提炼",
+      "references": []
+    },
+    {
+      "id": "18-10",
+      "category": "18",
+      "title": "修复游戏引擎纹理与文字的像素密度链",
+      "title_en": "Fix the engine texture and text pixel-density chain",
+      "mode": "E",
+      "tags": [
+        "游戏体验",
+        "游戏",
+        "移动端"
+      ],
+      "keywords": [
+        "游戏",
+        "移动端",
+        "Phaser",
+        "像素密度"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：针对 {{FILES}} 中 {{CHANGE}} 的模糊问题，从 CSS 尺寸、Canvas 实际尺寸、引擎分辨率、文字纹理生成和缩放链逐层核对。按 {{INPUTS}} 的设备限制修复并限制渲染成本，比较设置面板与棋盘的最终像素尺寸；不要只放大 Canvas 而保留低分辨率缓存纹理。\n\n执行边界：修改前读取适用项目规则并查看 git status，保留已有改动。只改本任务内容；未明确授权时不提交、推送或部署。\n\n验收与交付：按本条执行模式交付素材检查、修改或方案，核对逻辑尺寸与呈现要求；区分静态核查、工具运行与真机验收，未明确要求时不运行 Playwright。",
+      "en": "Working directory: {{PROJECT}}\nTask: For blur described by {{CHANGE}} in {{FILES}}, trace CSS dimensions, canvas backing size, engine resolution, text-texture generation, and scaling. Fix the chain within device limits in {{INPUTS}} and bound rendering cost. Compare final pixel sizes in settings and on the board; enlarging the canvas while retaining low-resolution cached textures is insufficient.\n\nExecution boundaries: Before editing, read applicable project rules and git status; preserve existing work. Change only this task’s scope. Do not commit, push, or deploy unless explicitly authorized.\n\nVerification and delivery: Deliver asset checks, changes, or a plan according to the action mode, checking logical dimensions and presentation requirements. Distinguish static inspection, tool execution, and device acceptance. Do not run Playwright unless explicitly requested.",
+      "task_zh": "针对 {{FILES}} 中 {{CHANGE}} 的模糊问题，从 CSS 尺寸、Canvas 实际尺寸、引擎分辨率、文字纹理生成和缩放链逐层核对。按 {{INPUTS}} 的设备限制修复并限制渲染成本，比较设置面板与棋盘的最终像素尺寸；不要只放大 Canvas 而保留低分辨率缓存纹理。",
+      "task_en": "For blur described by {{CHANGE}} in {{FILES}}, trace CSS dimensions, canvas backing size, engine resolution, text-texture generation, and scaling. Fix the chain within device limits in {{INPUTS}} and bound rendering cost. Compare final pixel sizes in settings and on the board; enlarging the canvas while retaining low-resolution cached textures is insufficient.",
+      "params": [
+        "PROJECT",
+        "FILES",
+        "INPUTS",
+        "CHANGE"
+      ],
+      "sources": [],
+      "query": "手机模糊,纹理密度",
+      "origin": "游戏项目场景提炼",
+      "references": []
+    },
+    {
+      "id": "18-11",
+      "category": "18",
+      "title": "让 iOS 首次手势正确解锁游戏音频",
+      "title_en": "Unlock game audio on the first valid iOS gesture",
+      "mode": "E",
+      "tags": [
+        "游戏体验",
+        "游戏",
+        "三消",
+        "叠叠消"
+      ],
+      "keywords": [
+        "游戏",
+        "音频",
+        "iOS",
+        "Garden Match",
+        "StackPop"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：根据 {{INPUTS}} 修复 {{FILES}} 的 {{CHANGE}}，在实际用户手势内处理音频上下文恢复，复用引擎已有 AudioContext，并覆盖切后台、返回、静音设置和首次进入。不能通过创建第二个上下文或要求用户进入设置绕过问题；按 {{TESTS}} 区分桌面验证与仍需真机确认的行为。\n\n执行边界：修改前读取适用项目规则并查看 git status，保留已有改动。只改本任务内容；未明确授权时不提交、推送或部署。\n\n验收与交付：按本条执行模式交付素材检查、修改或方案，核对逻辑尺寸与呈现要求；区分静态核查、工具运行与真机验收，未明确要求时不运行 Playwright。",
+      "en": "Working directory: {{PROJECT}}\nTask: Fix {{CHANGE}} in {{FILES}} using {{INPUTS}}. Resume audio within a real user gesture, reuse the engine's AudioContext, and handle background/resume, mute settings, and first entry. Do not work around the issue by creating a second context or requiring a settings visit. Distinguish desktop checks from behavior still requiring device confirmation in {{TESTS}}.\n\nExecution boundaries: Before editing, read applicable project rules and git status; preserve existing work. Change only this task’s scope. Do not commit, push, or deploy unless explicitly authorized.\n\nVerification and delivery: Deliver asset checks, changes, or a plan according to the action mode, checking logical dimensions and presentation requirements. Distinguish static inspection, tool execution, and device acceptance. Do not run Playwright unless explicitly requested.",
+      "task_zh": "根据 {{INPUTS}} 修复 {{FILES}} 的 {{CHANGE}}，在实际用户手势内处理音频上下文恢复，复用引擎已有 AudioContext，并覆盖切后台、返回、静音设置和首次进入。不能通过创建第二个上下文或要求用户进入设置绕过问题；按 {{TESTS}} 区分桌面验证与仍需真机确认的行为。",
+      "task_en": "Fix {{CHANGE}} in {{FILES}} using {{INPUTS}}. Resume audio within a real user gesture, reuse the engine's AudioContext, and handle background/resume, mute settings, and first entry. Do not work around the issue by creating a second context or requiring a settings visit. Distinguish desktop checks from behavior still requiring device confirmation in {{TESTS}}.",
+      "params": [
+        "PROJECT",
+        "FILES",
+        "INPUTS",
+        "CHANGE",
+        "TESTS"
+      ],
+      "sources": [],
+      "query": "iOS,音频解锁",
+      "origin": "游戏项目场景提炼",
+      "references": []
+    },
+    {
+      "id": "18-12",
+      "category": "18",
+      "title": "核对每种游戏动作的音效覆盖",
+      "title_en": "Audit sound coverage for game actions",
+      "mode": "R",
+      "tags": [
+        "游戏体验",
+        "游戏",
+        "音频",
+        "验收"
+      ],
+      "keywords": [
+        "游戏",
+        "音频",
+        "验收",
+        "GameAI"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：对照 {{INPUTS}} 的玩法动作与 {{FILES}} 中的音效触发点，列出普通消除、特殊块、连锁、奖励、胜负及按钮反馈的覆盖表。分别标记资源存在、代码接入、触发可达与实际听到的状态，检查音量、静音和同时播放限制；没有听过的声音不能写成已验收。\n\n执行边界：仅做只读检查，直接回复结论；不主动修改文件、配置、数据或服务。\n\n验收与交付：按本条执行模式交付素材检查、修改或方案，核对逻辑尺寸与呈现要求；区分静态核查、工具运行与真机验收，未明确要求时不运行 Playwright。",
+      "en": "Working directory: {{PROJECT}}\nTask: Map gameplay actions in {{INPUTS}} to sound triggers in {{FILES}}, covering normal clears, special tiles, cascades, rewards, outcomes, and controls. Distinguish asset existence, code integration, reachable triggers, and actual audibility. Check gain, mute, and simultaneous playback limits; do not mark unheard audio accepted.\n\nExecution boundaries: Inspect read-only and reply with findings. Do not intentionally modify files, configuration, data, or services.\n\nVerification and delivery: Deliver asset checks, changes, or a plan according to the action mode, checking logical dimensions and presentation requirements. Distinguish static inspection, tool execution, and device acceptance. Do not run Playwright unless explicitly requested.",
+      "task_zh": "对照 {{INPUTS}} 的玩法动作与 {{FILES}} 中的音效触发点，列出普通消除、特殊块、连锁、奖励、胜负及按钮反馈的覆盖表。分别标记资源存在、代码接入、触发可达与实际听到的状态，检查音量、静音和同时播放限制；没有听过的声音不能写成已验收。",
+      "task_en": "Map gameplay actions in {{INPUTS}} to sound triggers in {{FILES}}, covering normal clears, special tiles, cascades, rewards, outcomes, and controls. Distinguish asset existence, code integration, reachable triggers, and actual audibility. Check gain, mute, and simultaneous playback limits; do not mark unheard audio accepted.",
+      "params": [
+        "PROJECT",
+        "FILES",
+        "INPUTS"
+      ],
+      "sources": [],
+      "query": "音效,动作清单",
+      "origin": "游戏项目场景提炼",
+      "references": []
+    },
+    {
+      "id": "18-13",
+      "category": "18",
+      "title": "从音频库挑选可循环的游戏配乐",
+      "title_en": "Select game music with a loop and license plan",
+      "mode": "P",
+      "tags": [
+        "游戏体验",
+        "游戏",
+        "美术",
+        "音频"
+      ],
+      "keywords": [
+        "游戏",
+        "音频",
+        "BGM",
+        "素材"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：围绕 {{GOAL}} 审阅 {{INPUTS}} 中已有音频库及许可记录，提出情绪、节奏和音量合适的候选，标明文件与需核实的授权范围。为选段、淡入淡出、循环接缝和音效避让给出处理方案及听感验收；不下载来源不明音乐，不把文件存在当作可商用许可。\n\n执行边界：本轮只调研和给方案，不实施、不改代码或环境；如指定方案文件，只写该文件。\n\n验收与交付：按本条执行模式交付素材检查、修改或方案，核对逻辑尺寸与呈现要求；区分静态核查、工具运行与真机验收，未明确要求时不运行 Playwright。",
+      "en": "Working directory: {{PROJECT}}\nTask: Review the existing audio library and license records in {{INPUTS}} for {{GOAL}}. Propose candidates with suitable mood, tempo, and level, identifying files and permissions still requiring verification. Plan edits, fades, loop seams, and sound-effect headroom with listening criteria. Do not download unknown-source music or equate file availability with commercial-use permission.\n\nExecution boundaries: Research and propose a plan only. Do not implement or change code or environments. If a plan file is requested, write only that file.\n\nVerification and delivery: Deliver asset checks, changes, or a plan according to the action mode, checking logical dimensions and presentation requirements. Distinguish static inspection, tool execution, and device acceptance. Do not run Playwright unless explicitly requested.",
+      "task_zh": "围绕 {{GOAL}} 审阅 {{INPUTS}} 中已有音频库及许可记录，提出情绪、节奏和音量合适的候选，标明文件与需核实的授权范围。为选段、淡入淡出、循环接缝和音效避让给出处理方案及听感验收；不下载来源不明音乐，不把文件存在当作可商用许可。",
+      "task_en": "Review the existing audio library and license records in {{INPUTS}} for {{GOAL}}. Propose candidates with suitable mood, tempo, and level, identifying files and permissions still requiring verification. Plan edits, fades, loop seams, and sound-effect headroom with listening criteria. Do not download unknown-source music or equate file availability with commercial-use permission.",
+      "params": [
+        "PROJECT",
+        "GOAL",
+        "INPUTS"
+      ],
+      "sources": [],
+      "query": "配乐,循环",
+      "origin": "游戏项目场景提炼",
+      "references": []
+    },
+    {
+      "id": "18-14",
+      "category": "18",
+      "title": "按首局需要拆分游戏资源加载",
+      "title_en": "Load game assets by first-play requirements",
+      "mode": "E",
+      "tags": [
+        "游戏体验",
+        "游戏",
+        "性能"
+      ],
+      "keywords": [
+        "游戏",
+        "性能",
+        "加载",
+        "GameAI"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：根据 {{INPUTS}} 的体验目标，在 {{FILES}} 将启动必需、首关必需和后续关卡资源分开加载。保留加载进度、失败重试和资源版本一致性，结合 {{LIMIT}} 比较冷缓存请求数、传输量与首次可操作时间；不靠缓存命中或隐藏加载界面掩盖初次打开慢。\n\n执行边界：修改前读取适用项目规则并查看 git status，保留已有改动。只改本任务内容；未明确授权时不提交、推送或部署。\n\n验收与交付：按本条执行模式交付素材检查、修改或方案，核对逻辑尺寸与呈现要求；区分静态核查、工具运行与真机验收，未明确要求时不运行 Playwright。",
+      "en": "Working directory: {{PROJECT}}\nTask: In {{FILES}}, separate boot, first-level, and later-level assets using experience goals in {{INPUTS}}. Preserve progress feedback, bounded retry, and asset-version consistency. Under {{LIMIT}}, compare cold-cache requests, transferred bytes, and time to first interaction. Cache hits or a hidden loader must not conceal slow first visits.\n\nExecution boundaries: Before editing, read applicable project rules and git status; preserve existing work. Change only this task’s scope. Do not commit, push, or deploy unless explicitly authorized.\n\nVerification and delivery: Deliver asset checks, changes, or a plan according to the action mode, checking logical dimensions and presentation requirements. Distinguish static inspection, tool execution, and device acceptance. Do not run Playwright unless explicitly requested.",
+      "task_zh": "根据 {{INPUTS}} 的体验目标，在 {{FILES}} 将启动必需、首关必需和后续关卡资源分开加载。保留加载进度、失败重试和资源版本一致性，结合 {{LIMIT}} 比较冷缓存请求数、传输量与首次可操作时间；不靠缓存命中或隐藏加载界面掩盖初次打开慢。",
+      "task_en": "In {{FILES}}, separate boot, first-level, and later-level assets using experience goals in {{INPUTS}}. Preserve progress feedback, bounded retry, and asset-version consistency. Under {{LIMIT}}, compare cold-cache requests, transferred bytes, and time to first interaction. Cache hits or a hidden loader must not conceal slow first visits.",
+      "params": [
+        "PROJECT",
+        "FILES",
+        "INPUTS",
+        "LIMIT"
+      ],
+      "sources": [],
+      "query": "首屏,资源加载",
+      "origin": "游戏项目场景提炼",
+      "references": []
+    },
+    {
+      "id": "18-15",
+      "category": "18",
+      "title": "核对新素材为何仍显示成旧效果",
+      "title_en": "Diagnose stale game artwork after replacement",
+      "mode": "R",
+      "tags": [
+        "游戏体验",
+        "游戏",
+        "美术",
+        "稳定性"
+      ],
+      "keywords": [
+        "游戏",
+        "美术",
+        "缓存",
+        "部署"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：围绕 {{CHANGE}} 检查 {{INPUTS}} 指定版本与 {{FILES}} 中的素材文件、加载键、打包产物和缓存策略。区分未改到真实引用、未重新构建、未发布、同名强缓存及仍走占位绘制的情况，给出能核对的路径或哈希；只列修复建议，不先修改服务器配置或清浏览器全部数据。\n\n执行边界：仅做只读检查，直接回复结论；不主动修改文件、配置、数据或服务。\n\n验收与交付：按本条执行模式交付素材检查、修改或方案，核对逻辑尺寸与呈现要求；区分静态核查、工具运行与真机验收，未明确要求时不运行 Playwright。",
+      "en": "Working directory: {{PROJECT}}\nTask: For {{CHANGE}}, compare the version in {{INPUTS}} with assets, loader keys, build artifacts, and cache rules in {{FILES}}. Distinguish wrong references, missing rebuilds, undeployed outputs, same-name caching, and placeholder rendering. Provide verifiable paths or hashes and recommend fixes without changing server configuration or clearing all browser data.\n\nExecution boundaries: Inspect read-only and reply with findings. Do not intentionally modify files, configuration, data, or services.\n\nVerification and delivery: Deliver asset checks, changes, or a plan according to the action mode, checking logical dimensions and presentation requirements. Distinguish static inspection, tool execution, and device acceptance. Do not run Playwright unless explicitly requested.",
+      "task_zh": "围绕 {{CHANGE}} 检查 {{INPUTS}} 指定版本与 {{FILES}} 中的素材文件、加载键、打包产物和缓存策略。区分未改到真实引用、未重新构建、未发布、同名强缓存及仍走占位绘制的情况，给出能核对的路径或哈希；只列修复建议，不先修改服务器配置或清浏览器全部数据。",
+      "task_en": "For {{CHANGE}}, compare the version in {{INPUTS}} with assets, loader keys, build artifacts, and cache rules in {{FILES}}. Distinguish wrong references, missing rebuilds, undeployed outputs, same-name caching, and placeholder rendering. Provide verifiable paths or hashes and recommend fixes without changing server configuration or clearing all browser data.",
+      "params": [
+        "PROJECT",
+        "FILES",
+        "INPUTS",
+        "CHANGE"
+      ],
+      "sources": [],
+      "query": "旧素材,缓存",
+      "origin": "游戏项目场景提炼",
+      "references": []
+    },
+    {
+      "id": "18-16",
+      "category": "18",
+      "title": "核对 Godot Web 导出的资源与响应",
+      "title_en": "Check Godot web-export assets and responses",
+      "mode": "R",
+      "tags": [
+        "游戏体验",
+        "游戏",
+        "飞行棋"
+      ],
+      "keywords": [
+        "游戏",
+        "Godot",
+        "Journey Ludo",
+        "Web导出"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：依据 {{INPUTS}} 的导出设置检查 {{FILES}} 的入口、资源包、WASM 引用、子路径和压缩文件对应关系。对 {{URL}} 的已授权只读响应核对状态、内容类型与编码，区分导出缺件、服务器回退 HTML 和版本混用；仅在当前导出确有要求时讨论线程相关响应头，不盲目修改站点全局配置。\n\n执行边界：仅做只读检查，直接回复结论；不主动修改文件、配置、数据或服务。\n\n验收与交付：按本条执行模式交付素材检查、修改或方案，核对逻辑尺寸与呈现要求；区分静态核查、工具运行与真机验收，未明确要求时不运行 Playwright。",
+      "en": "Working directory: {{PROJECT}}\nTask: Using export settings in {{INPUTS}}, inspect entry files, resource packs, WASM references, subpaths, and compressed counterparts in {{FILES}}. Check authorized read-only responses at {{URL}} for status, content type, and encoding. Distinguish missing export files, HTML fallback responses, and mixed versions. Discuss thread-related headers only when required by this export; do not change global site configuration blindly.\n\nExecution boundaries: Inspect read-only and reply with findings. Do not intentionally modify files, configuration, data, or services.\n\nVerification and delivery: Deliver asset checks, changes, or a plan according to the action mode, checking logical dimensions and presentation requirements. Distinguish static inspection, tool execution, and device acceptance. Do not run Playwright unless explicitly requested.",
+      "task_zh": "依据 {{INPUTS}} 的导出设置检查 {{FILES}} 的入口、资源包、WASM 引用、子路径和压缩文件对应关系。对 {{URL}} 的已授权只读响应核对状态、内容类型与编码，区分导出缺件、服务器回退 HTML 和版本混用；仅在当前导出确有要求时讨论线程相关响应头，不盲目修改站点全局配置。",
+      "task_en": "Using export settings in {{INPUTS}}, inspect entry files, resource packs, WASM references, subpaths, and compressed counterparts in {{FILES}}. Check authorized read-only responses at {{URL}} for status, content type, and encoding. Distinguish missing export files, HTML fallback responses, and mixed versions. Discuss thread-related headers only when required by this export; do not change global site configuration blindly.",
+      "params": [
+        "PROJECT",
+        "FILES",
+        "INPUTS",
+        "URL"
+      ],
+      "sources": [],
+      "query": "Godot,Web导出",
+      "origin": "游戏项目场景提炼",
+      "references": []
+    },
+    {
+      "id": "18-17",
+      "category": "18",
+      "title": "为多游戏站点生成范围明确的发布脚本",
+      "title_en": "Create a deployment script confined to one game",
+      "mode": "E",
+      "tags": [
+        "游戏体验",
+        "游戏",
+        "发布",
+        "范围控制"
+      ],
+      "keywords": [
+        "游戏",
+        "发布",
+        "GameAI",
+        "范围控制"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：在 {{FILES}} 为 {{GOAL}} 生成或修复部署脚本，使用 {{INPUTS}} 明确给出的主机、源目录与目标游戏子目录。加入路径校验、预览、构建产物检查、失败退出及版本核对，保留恢复方式；拒绝把目标解析为站点根，不触碰其他游戏或共享服务。本轮仅修改脚本，不实际连接或发布。\n\n执行边界：修改前读取适用项目规则并查看 git status，保留已有改动。只改本任务内容；未明确授权时不提交、推送或部署。\n\n验收与交付：按本条执行模式交付素材检查、修改或方案，核对逻辑尺寸与呈现要求；区分静态核查、工具运行与真机验收，未明确要求时不运行 Playwright。",
+      "en": "Working directory: {{PROJECT}}\nTask: Create or fix a deployment script in {{FILES}} for {{GOAL}} using the explicit host, source, and game subdirectory in {{INPUTS}}. Add path validation, dry run, artifact checks, failure exits, version verification, and recovery steps. Reject a destination resolving to the site root and preserve other games and shared services. Edit the script only; do not connect or deploy in this turn.\n\nExecution boundaries: Before editing, read applicable project rules and git status; preserve existing work. Change only this task’s scope. Do not commit, push, or deploy unless explicitly authorized.\n\nVerification and delivery: Deliver asset checks, changes, or a plan according to the action mode, checking logical dimensions and presentation requirements. Distinguish static inspection, tool execution, and device acceptance. Do not run Playwright unless explicitly requested.",
+      "task_zh": "在 {{FILES}} 为 {{GOAL}} 生成或修复部署脚本，使用 {{INPUTS}} 明确给出的主机、源目录与目标游戏子目录。加入路径校验、预览、构建产物检查、失败退出及版本核对，保留恢复方式；拒绝把目标解析为站点根，不触碰其他游戏或共享服务。本轮仅修改脚本，不实际连接或发布。",
+      "task_en": "Create or fix a deployment script in {{FILES}} for {{GOAL}} using the explicit host, source, and game subdirectory in {{INPUTS}}. Add path validation, dry run, artifact checks, failure exits, version verification, and recovery steps. Reject a destination resolving to the site root and preserve other games and shared services. Edit the script only; do not connect or deploy in this turn.",
+      "params": [
+        "PROJECT",
+        "GOAL",
+        "FILES",
+        "INPUTS"
+      ],
+      "sources": [],
+      "query": "多游戏,发布脚本",
+      "origin": "游戏项目场景提炼",
+      "references": []
+    },
+    {
+      "id": "18-18",
+      "category": "18",
+      "title": "为游戏聚合首页增加双语入口",
+      "title_en": "Add bilingual entries to a multi-game hub",
+      "mode": "E",
+      "tags": [
+        "游戏体验",
+        "游戏",
+        "前端"
+      ],
+      "keywords": [
+        "游戏",
+        "前端",
+        "GameAI",
+        "双语"
+      ],
+      "zh": "工作目录：{{PROJECT}}\n任务：依据 {{INPUTS}} 在 {{FILES}} 完成 {{CHANGE}}，核对每款游戏的名称、简介、排序、封面与入口地址，并保证中英文切换保留对应信息。沿用现有首页结构，兼顾移动端与电脑，区分开发中项目与已发布游戏；不编造玩法或把未上线地址当可用入口，按 {{TESTS}} 验证链接与空态。\n\n执行边界：修改前读取适用项目规则并查看 git status，保留已有改动。只改本任务内容；未明确授权时不提交、推送或部署。\n\n验收与交付：按本条执行模式交付素材检查、修改或方案，核对逻辑尺寸与呈现要求；区分静态核查、工具运行与真机验收，未明确要求时不运行 Playwright。",
+      "en": "Working directory: {{PROJECT}}\nTask: Implement {{CHANGE}} in {{FILES}} from {{INPUTS}}, checking each game's name, description, order, cover, and entry URL. Preserve equivalent information across Chinese and English. Follow the existing hub structure on mobile and desktop and distinguish development projects from released games. Do not invent gameplay or present unreleased URLs as available; verify links and empty states against {{TESTS}}.\n\nExecution boundaries: Before editing, read applicable project rules and git status; preserve existing work. Change only this task’s scope. Do not commit, push, or deploy unless explicitly authorized.\n\nVerification and delivery: Deliver asset checks, changes, or a plan according to the action mode, checking logical dimensions and presentation requirements. Distinguish static inspection, tool execution, and device acceptance. Do not run Playwright unless explicitly requested.",
+      "task_zh": "依据 {{INPUTS}} 在 {{FILES}} 完成 {{CHANGE}}，核对每款游戏的名称、简介、排序、封面与入口地址，并保证中英文切换保留对应信息。沿用现有首页结构，兼顾移动端与电脑，区分开发中项目与已发布游戏；不编造玩法或把未上线地址当可用入口，按 {{TESTS}} 验证链接与空态。",
+      "task_en": "Implement {{CHANGE}} in {{FILES}} from {{INPUTS}}, checking each game's name, description, order, cover, and entry URL. Preserve equivalent information across Chinese and English. Follow the existing hub structure on mobile and desktop and distinguish development projects from released games. Do not invent gameplay or present unreleased URLs as available; verify links and empty states against {{TESTS}}.",
+      "params": [
+        "PROJECT",
+        "FILES",
+        "INPUTS",
+        "CHANGE",
+        "TESTS"
+      ],
+      "sources": [],
+      "query": "游戏首页,入口",
+      "origin": "游戏项目场景提炼",
+      "references": []
     }
   ],
   "references": [
