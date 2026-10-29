@@ -10,6 +10,8 @@ Open-source references reviewed: **2026-10-24**. User-task edition updated: **20
 - Every template includes a goal, named parameters, an action mode, boundaries, and verification requirements. These are writing and execution conventions, not measured model-performance guarantees.
 - `references.json` records the exact file, commit, license, relationship, and mapped prompt IDs for adopted open-source methods. `handbook.json` embeds those references for offline viewing.
 
+The five lifecycle prompts added in the follow-up edition are newly authored orchestration instructions requested by the user. They preserve the earlier 360 templates and use the same action modes and verification boundaries; they are not quotations from session replies or upstream collections. See [the full bilingual lifecycle](GAME_WORKFLOW.md).
+
 ## Adopted open-source methods
 
 | Source and pinned version | License checked | What was used | Prompt IDs |
@@ -42,4 +44,4 @@ No repository was bulk-imported. License decisions apply to the reviewed version
 
 本库不是原始会话导出，也不是上游提示词合集的镜像。新增条目针对实际开发场景重新编写；有明确参考的方法会保留仓库、文件、固定 commit、许可与对应编号。未明确许可的项目只作阅读参考。
 
-“结构检查通过”表示参数、编号和构建一致性通过，不表示已对全部 360 条进行模型 A/B 测试。页面交互检查也不等同于每条任务已经在真实生产环境执行。
+“结构检查通过”表示参数、编号和构建一致性通过，不表示已对全部 365 条进行模型 A/B 测试。页面交互检查也不等同于每条任务已经在真实生产环境执行。

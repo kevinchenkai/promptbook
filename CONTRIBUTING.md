@@ -26,6 +26,10 @@ Thank you for improving PromptBook. Prefer a useful, distinct scenario over a la
 
 `--check` validates input shape, unique IDs/titles/bodies, bilingual parameter parity, reference mappings, and generated-file freshness without writing files. It does not judge translation quality or model performance.
 
+## Game lifecycle
+
+`game-workflow.json` defines the five ordered handoffs, shared parameters, stage gates, and game-specific reference routes. Prompt bodies remain in `recipes/17.txt` and `recipes/18.txt`. `build.py` embeds the registry and generates `docs/GAME_WORKFLOW.md` from the same bilingual prompt text. Update these sources together and rebuild; `--check` verifies both the HTML and generated guide. Preserve current template IDs and keep filled workflow values out of favorites exports and persistent storage.
+
 ## UI changes
 
 Use `python3 -m http.server 8000 --bind 127.0.0.1` to preview. Check desktop and mobile, search/filter/empty states, parameter substitution, both languages, copy, favorites, exports, and public references. Filled parameters must remain in memory and must not appear in favorites exports. Keep the existing favorites storage key unless there is an explicit migration.

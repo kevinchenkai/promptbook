@@ -1,5 +1,17 @@
 # PromptBook editions / 版本说明
 
+## 2026-10-29 — Five-stage game collaboration follow-up
+
+**360 → 365 templates · 18 categories · 58 tags · 730 language versions**
+
+Added one complete **Design → Art → Implementation → Acceptance → Release** workflow, alongside the ten existing task chains. Five new stage-specific handoffs (`17-19`, `18-19`, `17-20`, `17-21`, `18-20`) provide full Chinese and English instructions. Each states the suggested owner, required evidence, output files, gate, and rework route. Existing 360 prompt bodies and IDs remain unchanged.
+
+The workflow uses a common OUTPUT directory and explicit file handoffs. The web UI shares six in-memory parameters across these five prompts, keeps evidence and release fields stage-specific, offers direct language-specific copying and complete TXT downloads, and preserves template-only favorites exports. Downloaded workflow packs contain current values and are intended for one-stage-at-a-time use.
+
+`game-workflow.json` defines the ordered stages and six game-specific routes. [docs/GAME_WORKFLOW.md](GAME_WORKFLOW.md) is generated from the same data and exact bilingual prompt bodies as the offline website. No additional private session material is published. Human decisions, art acceptance, independent review, and release authorization remain explicit. Tools do not message other sessions or create agents automatically.
+
+Validation covers registry order/references/modes, bilingual parameters, original-prompt preservation, shared-value isolation/reset, direct-copy target selection, workflow downloads, generated-guide freshness, script syntax, and deployed artifact equality. Playwright is not run for this update.
+
 ## 2026-10-29 — Game development and recent workflows
 
 **300 → 360 templates · 18 categories · 58 tags · 720 language versions · 10 workflows**

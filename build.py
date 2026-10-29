@@ -10,6 +10,7 @@ SOURCE_CACHE = {p['query']:p['sources'] for p in CACHE['prompts']}
 ORIGIN_CACHE = {p['id']:p.get('origin','通用实践补充') for p in CACHE['prompts']}
 REFERENCES = json.loads((ROOT/'references.json').read_text(encoding='utf-8'))['references']
 CURATION = json.loads((ROOT/'curation.json').read_text(encoding='utf-8'))
+GAME_WORKFLOW = json.loads((ROOT/'game-workflow.json').read_text(encoding='utf-8'))
 CATEGORIES = [
  ('01','任务启动与协作','Working with an agent','先把目标和边界说清楚'),
  ('02','调研与技术方案','Research and planning','用证据支持下一步决定'),
@@ -199,7 +200,20 @@ def build_data():
     assert len(set(CURATION['edition']['prompt_ids']))==len(CURATION['edition']['prompt_ids'])==CURATION['edition']['added_count'],'edition count mismatch'
     assert set(CURATION['edition']['prompt_ids'])<=set(CURATION['origins']),'unclassified edition prompt'
     assert sum(id.startswith(('17-','18-')) for id in CURATION['edition']['prompt_ids'])==CURATION['edition']['game_prompt_count'],'game edition count mismatch'
-    assert set(CURATION['origins'].values())<={'游戏项目场景提炼','近期会话场景提炼'},'unknown editorial label'
+    assert set(CURATION['origins'].values())<={'游戏项目场景提炼','近期会话场景提炼','游戏工作流编写'},'unknown editorial label'
+    stages=GAME_WORKFLOW['stages']
+    assert [s['id'] for s in stages]==['design','art','code','accept','release'],'game stage order'
+    assert len({s['prompt_id'] for s in stages})==5,'duplicate game stage prompt'
+    assert set(GAME_WORKFLOW['shared_params'])<=set(PARAMS),'unknown shared parameter'
+    assert len(set(GAME_WORKFLOW['shared_params']))==len(GAME_WORKFLOW['shared_params']),'duplicate shared parameter'
+    by_id={p['id']:p for p in result}
+    for stage,mode in zip(stages,['P','D','E','D','M']):
+        assert stage['prompt_id'] in ids and by_id[stage['prompt_id']]['mode']==mode,stage['id']
+        assert all(stage[k] for k in ('zh','en','role_zh','role_en','input_zh','input_en','outputs','gate_zh','gate_en','return_zh','return_en')),stage['id']
+        assert set(stage['related'])<=ids,stage['id']
+    assert all(set(r['prompt_ids'])<=ids for r in GAME_WORKFLOW['routes']),'unknown game route prompt'
+    for p in result:
+        if p['id'] in {s['prompt_id'] for s in stages}:p['workflow']=GAME_WORKFLOW['id']
     for ref in REFERENCES:
         assert re.fullmatch(r'[0-9a-f]{40}',ref['commit']),ref['id']
         assert ref['url'].startswith('https://github.com/') and ref['license']=='MIT',ref['id']
@@ -216,8 +230,39 @@ def build_data():
           'categories':[{'id':c[0],'zh':c[1],'en':c[2],'desc':c[3]} for c in CATEGORIES],
           'modes':{k:{'zh':v[0],'en':v[1]} for k,v in MODES.items()},
           'params':{k:{'zh':v[0],'en':v[1],'example':v[2]} for k,v in PARAMS.items()},'prompts':result,
-          'references':REFERENCES}
+          'references':REFERENCES,'game_workflow':GAME_WORKFLOW}
     return data
+
+def workflow_markdown(data):
+    """Generate the same five bilingual instructions exposed in the offline UI."""
+    by_id={p['id']:p for p in data['prompts']}
+    lines=['# 游戏开发完整工作流 / Game development lifecycle','',
+           '策划 → 美术 → 编码 → 验收 → 发布 / Design → Art → Implementation → Acceptance → Release','',
+           '本文件由 `game-workflow.json` 与指令正文自动生成；请修改源文件后运行 `python3 build.py`。 / Generated from the workflow registry and prompt sources; edit those and rebuild.','',
+           '网站入口 / Website: [打开五阶段工作流](https://g.ismayday.com/tools/promptbook/#game-workflow)','',
+           '## 使用与分工 / Usage and ownership','',
+           '人类负责产品决策、主观体验和最终发布授权。建议 Claude 做策划与独立验收，Codex 做美术与编码；也可互换，须以当前会话真实工具能力为准。 / The human owns product decisions, experiential acceptance, and release authorization. Suggested roles: Claude for design/independent review and Codex for art/implementation. Roles are interchangeable and depend on actual session tools.','',
+           '每次发送当前阶段的一种语言版本，完成后把交付路径交给下一会话；阶段不会自动执行、派发消息或创建代理。 / Send one language for the current stage, then pass its artifact paths to the next session. Nothing runs, messages another session, or creates agents automatically.','',
+           '`{{OUTPUT}}` 在本流程中必须填写目录，例如 `docs/game-workflow`，并在五阶段保持一致。目录示例是约定结构，不表示文件已经存在。 / Fill `{{OUTPUT}}` with a directory such as `docs/game-workflow` and keep it consistent across stages. Example paths are contracts, not claims of existing files.','',
+           '网页在五阶段间共享 PROJECT、GOAL、FILES、OUTPUT、TESTS、SCOPE；INPUTS 和发布连接参数按阶段填写。值只存在当前打开期间，复制或导出完整流程使用当前填写值；收藏导出仍只含原始模板。 / The UI shares PROJECT, GOAL, FILES, OUTPUT, TESTS, and SCOPE across these five stages. Fill INPUTS and release connection fields per stage. Values are memory-only; copying/downloading the workflow includes current values, while favorites exports retain original templates.','',
+           'SCOPE 在前四阶段写本阶段的允许操作，发布前再明确提交、推送和部署授权。已有策划、素材或验收证据应由人类补充确认；仅出现路径不能证明已批准。 / Use SCOPE for stage-specific allowed work, then explicitly authorize commit, push, and deployment before release. Human confirmation and actual evidence are required; a path alone does not establish approval.','',
+           '| 阶段 / Stage | 指令 / Prompt | 交付 / Handoff |','| --- | --- | --- |']
+    for i,s in enumerate(GAME_WORKFLOW['stages'],1):
+        lines.append(f"| {i}. {s['zh']} / {s['en']} | {s['prompt_id']} | "+', '.join('`'+o+'`' for o in s['outputs'])+' |')
+    for i,s in enumerate(GAME_WORKFLOW['stages'],1):
+        p=by_id[s['prompt_id']]
+        lines += ['',f"## {i}. {s['zh']} / {s['en']} · {p['id']}",'',
+                  '**建议分工 / Suggested owner:** '+s['role_zh']+' / '+s['role_en'],'',
+                  '**输入 / Input:** '+s['input_zh']+' / '+s['input_en'],'',
+                  '**通过条件 / Gate:** '+s['gate_zh']+' / '+s['gate_en'],'',
+                  '**返工 / Rework:** '+s['return_zh']+' / '+s['return_en'],'',
+                  '### 中文指令','', '```text',p['zh'],'```','',
+                  '### English prompt','', '```text',p['en'],'```']
+    lines += ['','## 六款游戏的专题补充 / Game-specific references','']
+    for route in GAME_WORKFLOW['routes']:
+        lines.append('- '+route['name']+': '+', '.join(id+' '+by_id[id]['title']+' / '+by_id[id]['title_en'] for id in route['prompt_ids']))
+    lines += ['','规划或验收失败时，按报告回到对应阶段；涉及规则、素材或代码变更后，重新核验受影响的验收项。发布失败时记录已完成动作，仅在授权内恢复。 / Return failed gates to their owning stage and recheck affected criteria after rule, asset, or code changes. Record reached release state and recover only within authorization.','']
+    return '\n'.join(lines)
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description='Build PromptBook as a self-contained index.html.')
@@ -238,7 +283,7 @@ if __name__=='__main__':
     for token,value in {'PROMPT_COUNT':len(data['prompts']),'CATEGORY_COUNT':len(CATEGORIES),'LANGUAGE_COUNT':len(data['prompts'])*2}.items():
         html=html.replace('__'+token+'__',str(value))
     assert not re.search(r'__[A-Z_]+__',html),'unresolved build token'
-    outputs={'handbook.json':json.dumps(data,ensure_ascii=False,indent=2),'index.html':html}
+    outputs={'handbook.json':json.dumps(data,ensure_ascii=False,indent=2),'index.html':html,'docs/GAME_WORKFLOW.md':workflow_markdown(data)}
     stale=[]
     for name,content in outputs.items():
         path=ROOT/name

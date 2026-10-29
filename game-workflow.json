@@ -1,0 +1,187 @@
+{
+  "id": "game-lifecycle",
+  "title_zh": "游戏开发完整工作流",
+  "title_en": "Game development lifecycle",
+  "shared_params": [
+    "PROJECT",
+    "GOAL",
+    "FILES",
+    "OUTPUT",
+    "TESTS",
+    "SCOPE"
+  ],
+  "stages": [
+    {
+      "id": "design",
+      "zh": "策划",
+      "en": "Design",
+      "prompt_id": "17-19",
+      "role_zh": "建议 Claude；也可由 Codex 负责",
+      "role_en": "Suggested: Claude; Codex can also lead",
+      "input_zh": "玩法想法、目标玩家、设备、参考与现有代码约束",
+      "input_en": "Game idea, players, devices, references, and code constraints",
+      "outputs": [
+        "01-design.md"
+      ],
+      "gate_zh": "规则无硬冲突，最小版本、素材契约与验收标准已由人类确认。",
+      "gate_en": "Human confirmation of feasible rules, minimum scope, art contracts, and acceptance criteria.",
+      "return_zh": "规则或需求冲突留在策划阶段解决。",
+      "return_en": "Resolve rule or requirement conflicts in design.",
+      "related": [
+        "17-01",
+        "17-17",
+        "17-12"
+      ]
+    },
+    {
+      "id": "art",
+      "zh": "美术",
+      "en": "Art",
+      "prompt_id": "18-19",
+      "role_zh": "建议具备生图能力的 Codex；Claude 可整理工单和复核",
+      "role_en": "Suggested: Codex with image tools; Claude may brief and review",
+      "input_zh": "已确认的 01-design.md、风格参考与素材范围",
+      "input_en": "Approved 01-design.md, visual references, and asset scope",
+      "outputs": [
+        "02-art/",
+        "02-art-manifest.json",
+        "02-art-review.md"
+      ],
+      "gate_zh": "所需素材真实存在并通过尺寸、留白、坐标与风格验收；清单区分候选与已接受状态。",
+      "gate_en": "Required assets exist and pass dimensions, reserved-space, coordinate, and style checks; manifest statuses are accurate.",
+      "return_zh": "素材问题返工美术；空间或规则不可行则回策划。",
+      "return_en": "Rework assets in art; return infeasible spatial or rule constraints to design.",
+      "related": [
+        "18-01",
+        "18-03",
+        "18-05",
+        "18-06"
+      ]
+    },
+    {
+      "id": "code",
+      "zh": "编码",
+      "en": "Implementation",
+      "prompt_id": "17-20",
+      "role_zh": "建议 Codex；Claude 可按同一契约实现",
+      "role_en": "Suggested: Codex; Claude may implement the same contract",
+      "input_zh": "已确认策划、已接受素材与清单、当前阶段允许修改的文件",
+      "input_en": "Approved design, accepted assets/manifest, and allowed files",
+      "outputs": [
+        "03-implementation.md"
+      ],
+      "gate_zh": "可玩闭环与本轮验收项有实际证据，候选版本、改动与未验证项已记录。",
+      "gate_en": "Playable loop and stage checks have evidence; revision, changes, and verification gaps are recorded.",
+      "return_zh": "代码问题在本阶段修复；契约缺口分别回策划或美术。",
+      "return_en": "Fix implementation defects here; route contract gaps to design or art.",
+      "related": [
+        "17-02",
+        "17-05",
+        "17-07",
+        "17-09",
+        "17-15"
+      ]
+    },
+    {
+      "id": "accept",
+      "zh": "验收",
+      "en": "Acceptance",
+      "prompt_id": "17-21",
+      "role_zh": "建议由另一会话中的 Claude 独立复核；也可互换",
+      "role_en": "Suggested: Claude in a separate review session; roles may be swapped",
+      "input_zh": "前三阶段交付、候选版本、验收矩阵及人类真机反馈",
+      "input_en": "Earlier handoffs, candidate revision, acceptance matrix, and device feedback",
+      "outputs": [
+        "04-acceptance.md",
+        "04-checks/"
+      ],
+      "gate_zh": "无阻断项；关键未验证项已补证，真机与主观体验由人类确认。",
+      "gate_en": "No blockers; material gaps resolved; human confirmation of device and experiential criteria.",
+      "return_zh": "逐项指派策划 / 美术 / 编码返工，再核验修复后的版本。",
+      "return_en": "Route findings to design/art/implementation and recheck the fixed revision.",
+      "related": [
+        "04-14",
+        "17-10",
+        "17-18",
+        "18-11",
+        "18-12"
+      ]
+    },
+    {
+      "id": "release",
+      "zh": "发布",
+      "en": "Release",
+      "prompt_id": "18-20",
+      "role_zh": "由具备仓库和目标服务器权限的指定会话执行",
+      "role_en": "A designated session with repository and target-host access",
+      "input_zh": "通过的 04-acceptance.md、同一候选版本、精确目标与本轮提交 / 推送 / 部署授权",
+      "input_en": "Passing 04-acceptance.md, matching candidate, exact targets, and explicit commit/push/deploy scope",
+      "outputs": [
+        "05-release.md"
+      ],
+      "gate_zh": "每个授权动作有结果；线上内容和校验值对应目标版本，备份及回退步骤可定位。",
+      "gate_en": "Evidence per authorized action; live content/hashes match the candidate; backup and rollback instructions are locatable.",
+      "return_zh": "失败保留现场并区分已提交、已推送、已部署；按授权处理恢复。",
+      "return_en": "On failure preserve evidence and distinguish committed/pushed/deployed states; recover only within authorization.",
+      "related": [
+        "18-17",
+        "05-15",
+        "05-16",
+        "15-21"
+      ]
+    }
+  ],
+  "routes": [
+    {
+      "name": "Star Fighter · 星际突击队",
+      "prompt_ids": [
+        "17-02",
+        "17-03",
+        "17-04"
+      ]
+    },
+    {
+      "name": "Soulmate · 心动陪伴",
+      "prompt_ids": [
+        "17-15",
+        "18-11"
+      ]
+    },
+    {
+      "name": "Wulin Tavern · 武林小馆",
+      "prompt_ids": [
+        "17-16",
+        "18-03"
+      ]
+    },
+    {
+      "name": "Journey Ludo · 西游飞行棋",
+      "prompt_ids": [
+        "17-05",
+        "17-06",
+        "18-01",
+        "18-16"
+      ]
+    },
+    {
+      "name": "Garden Match · 花园三消",
+      "prompt_ids": [
+        "17-07",
+        "17-08",
+        "18-09",
+        "18-11"
+      ]
+    },
+    {
+      "name": "StackPop · 萌宠叠叠消",
+      "prompt_ids": [
+        "17-09",
+        "17-10",
+        "17-11",
+        "17-12",
+        "17-14",
+        "18-07"
+      ]
+    }
+  ]
+}
