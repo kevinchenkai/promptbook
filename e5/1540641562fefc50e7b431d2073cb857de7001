@@ -1,0 +1,56 @@
+build.py
+  s_0959213551d6d4::t_0558c8a273861f 12,30-31,70-71,101-103,127,198-201
+  s_0959213551d6d4::t_f57d9c7eaba2b4 202,208,212,214
+CONTRIBUTING.md
+  s_0959213551d6d4::t_ef1c2fdf123766 18
+README.md
+  s_0959213551d6d4::t_3d730759ffd1ba 10,30,43,45-47,49,54-56,58-62,89,92,99,105
+README.zh-CN.md
+  s_0959213551d6d4::t_118a0b4e348d0f 7,27-28,41,43-45,47,52-58,81,83,89
+curation.json
+  s_0959213551d6d4::t_5f0edf07e452c4 1-138
+docs/SOURCES.md
+  s_0959213551d6d4::t_4bb62356508ec5 3,9,45
+docs/UPDATES.md
+  s_0959213551d6d4::t_d281cd83e75d74 1-47
+handbook.json
+  s_0959213551d6d4::t_170681733f56b6 6-7,11-84,184-195,3039-3194,4284-4380,4935-5000,5550-5554,5556-5559,5562-5563,5565,5567-5570,5573-5574,5577-5769,6153,6183,6215,6832-6986,7359,7390-7391,7421-7422,10113-11373
+index.html
+  s_0959213551d6d4::t_4c2a88722898b8 1,7,9,17,20-23,25,55,57,68-69
+index.template.html
+  s_0959213551d6d4::t_bac31633f94dbe 12,16-17
+recipes/05.txt
+  s_0959213551d6d4::t_9f4b853498ebec 19-23
+recipes/07.txt
+  s_0959213551d6d4::t_a717eb4d3c93c0 19-21
+recipes/08.txt
+  s_0959213551d6d4::t_88eccd20fd9955 19-20
+recipes/09.txt
+  s_0959213551d6d4::t_eb1fa9438964d3 19-24
+recipes/11.txt
+  s_0959213551d6d4::t_f6dbadc2e28072 19-23
+recipes/16.txt
+  s_0959213551d6d4::t_74c24027c9ef5c 22-24
+recipes/17.txt
+  s_0959213551d6d4::t_c261bd063ba71b 1-18
+recipes/18.txt
+  s_0959213551d6d4::t_e9064792b8c134 1-18
+ui.js
+  s_0959213551d6d4::t_7e4844d084f844 31,33,44-45
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.1",
+  "base_commit_sha": "e51540641562fefc50e7b431d2073cb857de7001",
+  "prompts": {},
+  "sessions": {
+    "s_0959213551d6d4": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a16bec-fad3-7c30-bf1b-7b869e62d432",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Kevin <kevinchenkai@126.com>"
+    }
+  }
+}
